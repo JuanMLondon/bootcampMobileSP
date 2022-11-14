@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Challenge1 {
 
-    // randomGen method
+    // randomGen method: Generates and concatenates a string of numbers depending on the selected type.
     public static String randomGen(String tipo) {
         // Variables
         Random random = new Random();
@@ -33,7 +33,7 @@ public class Challenge1 {
         }
     }
 
-    // 
+    // sortString method: Takes a string of random numbers and sorts them acording to the selected order.
     public static int[] sortString(String unsorted, String sortOrder) {
         // Variables
         int[] numbersArr = new int[10];
