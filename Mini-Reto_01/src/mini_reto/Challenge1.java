@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class Challenge1 {
 
+    // randomGen method
     public static String randomGen(String tipo) {
         // Variables
         Random random = new Random();
@@ -32,9 +33,43 @@ public class Challenge1 {
         }
     }
 
-    public static String[] sortString(String sortOrder) {
-        
-        return null;
+    // 
+    public static int[] sortString(String unsorted, String sortOrder) {
+        // Variables
+        int[] numbersArr = new int[10];
+        int tmp;
+
+        // Creates an int array from the unsorted String.
+        for (int i = 0; i < numbersArr.length; i++) {
+            numbersArr[i] = Integer.parseInt(Character.toString(unsorted.charAt(i)));
+        }
+
+        if (sortOrder.equals("Asc")) {
+            // Sorts the numbers in the array in ascending order.
+            for (int i = 0; i < numbersArr.length - 1; i++) {
+                for (int j = 0; j < numbersArr.length - 1; j++) {
+                    if (numbersArr[j] > numbersArr[j + 1]) { 
+                        tmp = numbersArr[j];
+                        numbersArr[j] = numbersArr[j + 1];
+                        numbersArr[j + 1] = tmp;
+                    }
+                }
+            }
+        }
+        if (sortOrder.equals("Desc")) {
+            // Sorts the numbers in the array in descending order.
+            for (int i = 0; i < numbersArr.length - 1; i++) {
+                for (int j = 0; j < numbersArr.length - 1; j++) {
+                    if (numbersArr[j] < numbersArr[j + 1]) { // Logic change, numbersArr[j] < numbersArr[j + 1]
+                        tmp = numbersArr[j];
+                        numbersArr[j] = numbersArr[j + 1];
+                        numbersArr[j + 1] = tmp;
+                    }
+                }
+            }
+        }
+
+        return numbersArr;
     }
 
     public static void main(String[] args) {
@@ -42,9 +77,9 @@ public class Challenge1 {
         Scanner input = new Scanner(System.in);
         int menuOption1 = 0;
         int menuOption2 = 0;
-        String finalCode;
+        String finalCode = "";
         String sortOrder;
-        String[] orderedString;
+        int[] orderedArr;
 
         // Menu 1
         System.out.print("Welcome to the random number generator:\n"
@@ -99,13 +134,21 @@ public class Challenge1 {
         switch (menuOption2) {
             case 1:
                 sortOrder = "Asc";
-                orderedString = sortString(sortOrder);
-                System.out.println("The string in ascending order is:\n");
+                orderedArr = sortString(finalCode, sortOrder);
+                System.out.println("\nThe numbers in ascending order are:");
+                for (int i = 0; i < orderedArr.length; i++) {
+                    System.out.print(orderedArr[i] + ",");
+                }
+                System.out.println("");
                 break;
             case 2:
                 sortOrder = "Desc";
-                orderedString = sortString(sortOrder);
-                System.out.println("The string in descending order is:\n");
+                orderedArr = sortString(finalCode, sortOrder);
+                System.out.println("\nThe numbers in descending order are:");
+                for (int i = 0; i < orderedArr.length; i++) {
+                    System.out.print(orderedArr[i] + ",");
+                }
+                System.out.println("");
                 break;
             case 3:
                 System.out.println("Exit...");
