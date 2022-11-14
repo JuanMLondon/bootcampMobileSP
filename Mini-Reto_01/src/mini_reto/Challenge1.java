@@ -5,19 +5,36 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Challenge1 {
-    public String randomGen(String tipo){
-        return null;
-    }
-    
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
 
+    public static String randomGen(String tipo) {
         // Variables
-        int option = 0;
         Random random = new Random();
         String genCode = "";
         String prefixA = "54";
         String prefixB = "08";
+        String finalCode;
+        
+        // Generates a random numbers "String".        
+        for (int i = 0; i < 8; i++) {
+            int randomN = random.nextInt(10);
+            genCode += randomN;
+        }
+
+        if(tipo.equals("TipoA")){
+            finalCode = prefixA+genCode;
+            return finalCode;
+        }else if(tipo.equals("TipoB")){
+            finalCode = prefixB+genCode;
+            return finalCode;
+        }else {
+            return null;
+        }
+    }
+
+    public static void main(String[] args) {
+        // Variables
+        Scanner input = new Scanner(System.in);
+        int menuOption = 0;
         String finalCode;
 
         // Menu
@@ -30,24 +47,20 @@ public class Challenge1 {
                 + "\n"
                 + "Enter your selection (1, 2 or 3 to exit): ");
 
-        // Generates a random numbers "String".        
-        for (int i = 0; i < 8; i++) {
-            int randomN = random.nextInt(10);
-            genCode += randomN;
-        }
-
         try {
-            option = input.nextInt();
+            menuOption = input.nextInt();
+
         } catch (InputMismatchException immex) {
-            
+
         }
-        switch (option) {
+        
+        switch (menuOption){
             case 1:
-                finalCode = prefixA + genCode;
+                finalCode = randomGen("TipoA");
                 System.out.println("The generated string is:\n" + finalCode);
                 break;
             case 2:
-                finalCode = prefixB + genCode;
+                finalCode = randomGen("TipoB");
                 System.out.println("The generated string is:\n" + finalCode);
                 break;
             case 3:
