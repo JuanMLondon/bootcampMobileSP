@@ -33,7 +33,7 @@ public class Challenge1 {
         }
     }
 
-    // sortString method: Takes a string of random numbers and sorts them acording to the selected order.
+    // sortString method: Takes a string of random numbers and sorts them according to the selected order.
     public static int[] sortString(String unsorted, String sortOrder) {
         // Variables
         int[] numbersArr = new int[10];
@@ -43,7 +43,8 @@ public class Challenge1 {
         for (int i = 0; i < numbersArr.length; i++) {
             numbersArr[i] = Integer.parseInt(Character.toString(unsorted.charAt(i)));
         }
-
+        
+        // Sorts the array in ascending order
         if (sortOrder.equals("Asc")) {
             // Sorts the numbers in the array in ascending order.
             for (int i = 0; i < numbersArr.length - 1; i++) {
@@ -56,6 +57,8 @@ public class Challenge1 {
                 }
             }
         }
+        
+        // Sorts the array in descending order
         if (sortOrder.equals("Desc")) {
             // Sorts the numbers in the array in descending order.
             for (int i = 0; i < numbersArr.length - 1; i++) {
