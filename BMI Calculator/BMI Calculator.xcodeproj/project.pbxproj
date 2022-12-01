@@ -3,19 +3,20 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		A4C07A8A292D114A00017FD0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C07A89292D114A00017FD0 /* AppDelegate.swift */; };
 		A4C07A8C292D114A00017FD0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C07A8B292D114A00017FD0 /* SceneDelegate.swift */; };
-		A4C07A8E292D114A00017FD0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C07A8D292D114A00017FD0 /* ViewController.swift */; };
+		A4C07A8E292D114A00017FD0 /* InitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C07A8D292D114A00017FD0 /* InitialView.swift */; };
 		A4C07A91292D114A00017FD0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4C07A8F292D114A00017FD0 /* Main.storyboard */; };
 		A4C07A93292D114C00017FD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4C07A92292D114C00017FD0 /* Assets.xcassets */; };
 		A4C07A96292D114C00017FD0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4C07A94292D114C00017FD0 /* LaunchScreen.storyboard */; };
 		A4C07AA1292D114C00017FD0 /* BMI_CalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C07AA0292D114C00017FD0 /* BMI_CalculatorTests.swift */; };
 		A4C07AAB292D114C00017FD0 /* BMI_CalculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C07AAA292D114C00017FD0 /* BMI_CalculatorUITests.swift */; };
 		A4C07AAD292D114C00017FD0 /* BMI_CalculatorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C07AAC292D114C00017FD0 /* BMI_CalculatorUITestsLaunchTests.swift */; };
+		A4CFAA09293812870090502B /* SecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CFAA08293812870090502B /* SecondView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +40,7 @@
 		A4C07A86292D114A00017FD0 /* BMI Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BMI Calculator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4C07A89292D114A00017FD0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4C07A8B292D114A00017FD0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A4C07A8D292D114A00017FD0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A4C07A8D292D114A00017FD0 /* InitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialView.swift; sourceTree = "<group>"; };
 		A4C07A90292D114A00017FD0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A4C07A92292D114C00017FD0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A4C07A95292D114C00017FD0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +50,7 @@
 		A4C07AA6292D114C00017FD0 /* BMI CalculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BMI CalculatorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4C07AAA292D114C00017FD0 /* BMI_CalculatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMI_CalculatorUITests.swift; sourceTree = "<group>"; };
 		A4C07AAC292D114C00017FD0 /* BMI_CalculatorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMI_CalculatorUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A4CFAA08293812870090502B /* SecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,8 +103,9 @@
 			children = (
 				A4C07A89292D114A00017FD0 /* AppDelegate.swift */,
 				A4C07A8B292D114A00017FD0 /* SceneDelegate.swift */,
-				A4C07A8D292D114A00017FD0 /* ViewController.swift */,
+				A4C07A8D292D114A00017FD0 /* InitialView.swift */,
 				A4C07A8F292D114A00017FD0 /* Main.storyboard */,
+				A4CFAA08293812870090502B /* SecondView.swift */,
 				A4C07A92292D114C00017FD0 /* Assets.xcassets */,
 				A4C07A94292D114C00017FD0 /* LaunchScreen.storyboard */,
 				A4C07A97292D114C00017FD0 /* Info.plist */,
@@ -207,7 +210,7 @@
 				};
 			};
 			buildConfigurationList = A4C07A81292D114A00017FD0 /* Build configuration list for PBXProject "BMI Calculator" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -258,8 +261,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4C07A8E292D114A00017FD0 /* ViewController.swift in Sources */,
+				A4C07A8E292D114A00017FD0 /* InitialView.swift in Sources */,
 				A4C07A8A292D114A00017FD0 /* AppDelegate.swift in Sources */,
+				A4CFAA09293812870090502B /* SecondView.swift in Sources */,
 				A4C07A8C292D114A00017FD0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -445,6 +449,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -473,6 +478,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
