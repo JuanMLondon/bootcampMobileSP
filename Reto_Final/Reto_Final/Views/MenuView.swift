@@ -57,11 +57,11 @@ struct MenuView: View {
                     }
                 }
                 
-                menuItemView(menuTitle: "Enviar documentos", menuIconName: "doc.text")
+                menuItemView(menuTitle: "Enviar documentos", menuIconName: "doc.text", colorScheme: "fuchsia_UI", colorFill: "fuchsia_Fill", frameColor: "fuchsia_Frame")
                 
-                menuItemView(menuTitle: "Ver documentos", menuIconName: "doc.text.magnifyingglass")
+                menuItemView(menuTitle: "Ver documentos", menuIconName: "doc.text.magnifyingglass", colorScheme: "violet_UI", colorFill: "violet_Fill", frameColor: "violet_Frame")
                 
-                menuItemView(menuTitle: "Oficinas", menuIconName: "location.magnifyingglass")
+                menuItemView(menuTitle: "Oficinas", menuIconName: "location.magnifyingglass", colorScheme: "green_UI", colorFill: "green_Fill", frameColor: "green_Frame")
                 
             }
             .padding(.bottom, 50)
@@ -80,45 +80,48 @@ struct menuItemView: View {
     
     let menuTitle: String
     let menuIconName: String
+    let colorScheme: String
+    let colorFill: String
+    let frameColor: String
     
     var body: some View {
         RoundedRectangle(cornerRadius: 15)
-            .fill(Color("sophosBC"))
+            .fill(Color(colorFill))
             .frame(minHeight: 75.0)
-            .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color("violet_UI"), lineWidth: 2))
+            .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color(frameColor), lineWidth: 2))
             .overlay(HStack {
                 Image(systemName: menuIconName)
                     .resizable(resizingMode: .stretch)
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 25.0, height: 25.0)
-                    .foregroundColor(Color("violet_UI"))
+                    .foregroundColor(Color(colorScheme))
                     .padding(.leading, 30)
                     .padding(.bottom, 30)
                 
                 Text(menuTitle)
                     .font(.headline)
                     .fontWeight(.bold)
-                    .foregroundColor(Color("violet_UI"))
+                    .foregroundColor(Color(colorScheme))
                     .padding(.leading, 5)
                     .padding(.bottom, 35)
                 
                 Spacer()
                 
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(Color("sophosBC"))
+                    .fill(Color(colorFill))
                     .frame(width: 110, height: 28.0)
-                    .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color("violet_UI"), lineWidth: 1))
+                    .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color(colorScheme), lineWidth: 1))
                     .overlay(HStack {
                         Button("Ingresar") {
                             print("Button 2 tapped")
                             //self.isShowingMenuView = true
                         }
-                        .foregroundColor(Color("violet_UI"))
+                        .foregroundColor(Color(colorScheme))
                         .padding(.leading, 10)
                         .font(.footnote)
                         
                         Image(systemName: "arrow.forward")
-                            .foregroundColor(Color("violet_UI"))
+                            .foregroundColor(Color(colorScheme))
                             .padding(.trailing, 5)
                     })
                     .padding(.trailing, 15)

@@ -39,7 +39,7 @@ import SwiftUI
                      
                      VStack {
                          //NavigationLink(destination: Text("MenuView"), isActive: $isShowingMenuView) { EmptyView() }
-                         NavigationLink(destination: Text("MenuView").navigationBarBackButtonHidden(true), isActive: $isShowingMenuView) {
+                         NavigationLink(destination: MenuView().navigationBarBackButtonHidden(true), isActive: $isShowingMenuView) {
                              RoundedRectangle(cornerRadius: 15)
                                  .fill(Color("violet_UI"))
                                  .frame(width: 350, height: 45.0)
@@ -55,7 +55,8 @@ import SwiftUI
                                  )
                          }
                          
-                         NavigationLink(destination: Text("MenuView").navigationBarBackButtonHidden(true), isActive: $isShowingMenuView) {
+                         NavigationLink(destination: //Text("MenuView").navigationBarBackButtonHidden(true), isActive: $isShowingMenuView) {
+                             MenuView().navigationBarBackButtonHidden(true), isActive: $isShowingMenuView) {
                              RoundedRectangle(cornerRadius: 15)
                              
                                  .fill(Color("sophosBC"))
