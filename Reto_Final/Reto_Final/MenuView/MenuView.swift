@@ -23,10 +23,15 @@ struct MenuView: View {
                         .multilineTextAlignment(.leading)
                     Spacer()
                         .frame(maxWidth: 300, maxHeight: 40)
-                    Image("menu_icon")
-                        .resizable(resizingMode: .stretch)
-                        .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
-                        .frame(width: 40.0, height: 36.0)
+                    
+                    Button {
+                        print("Menu button was tapped")
+                    } label: {
+                        Image("menu_icon")
+                            .resizable(resizingMode: .stretch)
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 40.0, height: 36.0)
+                    }
                 }
                 .padding(.horizontal, 25)
                 .padding(.top, 55)
@@ -57,12 +62,11 @@ struct MenuView: View {
                     }
                 }
                 
-                menuItemView(menuTitle: "Enviar documentos", menuIconName: "doc.text", colorScheme: "fuchsia_UI", colorFill: "fuchsia_Fill", frameColor: "fuchsia_Frame")
+                menuItemView(linkedView: "SendDocuments", menuTitle: "Enviar documentos", menuIconName: "doc.text", colorScheme: "fuchsia_UI", colorFill: "fuchsia_Fill", frameColor: "fuchsia_Frame", lighterButtonColor: "fuchsia_Light", lighterButtonFill: "fuchsia_Fill_L")
                 
-                menuItemView(menuTitle: "Ver documentos", menuIconName: "doc.text.magnifyingglass", colorScheme: "violet_UI", colorFill: "violet_Fill", frameColor: "violet_Frame")
+                menuItemView(linkedView: "ViewDocuments", menuTitle: "Ver documentos", menuIconName: "doc.text.magnifyingglass", colorScheme: "violet_UI", colorFill: "violet_Fill", frameColor: "violet_Frame", lighterButtonColor: "violet_Light", lighterButtonFill: "violet_Fill_L")
                 
-                menuItemView(menuTitle: "Oficinas", menuIconName: "location.magnifyingglass", colorScheme: "green_UI", colorFill: "green_Fill", frameColor: "green_Frame")
-                
+                menuItemView(linkedView: "Offices", menuTitle: "Oficinas", menuIconName: "location.magnifyingglass", colorScheme: "green_UI", colorFill: "green_Fill", frameColor: "green_Frame", lighterButtonColor: "green_Light", lighterButtonFill: "green_Fill_L")
             }
             .padding(.bottom, 50)
         }
@@ -78,11 +82,15 @@ struct MenuView_Previews: PreviewProvider {
 
 struct menuItemView: View {
     
+    let linkedView: String
     let menuTitle: String
     let menuIconName: String
     let colorScheme: String
     let colorFill: String
     let frameColor: String
+    let lighterButtonColor: String
+    let lighterButtonFill: String
+    //let buttonAction: () -> Void
     
     var body: some View {
         RoundedRectangle(cornerRadius: 15)
@@ -107,27 +115,45 @@ struct menuItemView: View {
                 
                 Spacer()
                 
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(Color(colorFill))
-                    .frame(width: 110, height: 28.0)
-                    .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color(colorScheme), lineWidth: 1))
-                    .overlay(HStack {
-                        Button("Ingresar") {
-                            print("Button 2 tapped")
-                            //self.isShowingMenuView = true
-                        }
-                        .foregroundColor(Color(colorScheme))
-                        .padding(.leading, 10)
-                        .font(.footnote)
-                        
-                        Image(systemName: "arrow.forward")
-                            .foregroundColor(Color(colorScheme))
-                            .padding(.trailing, 5)
-                    })
-                    .padding(.trailing, 15)
-                    .padding(.top, 30)
+                NavButton(linkedView: linkedView, colorScheme: colorScheme, lighterButtonColor: lighterButtonColor, lighterButtonFill: lighterButtonFill)
             })
             .padding(.vertical, 3)
             .padding(.horizontal, 25)
     }
 }
+
+struct NavButton: View {
+    
+    @State var selection: String? = nil
+    let linkedView: String
+    let colorScheme: String
+    let lighterButtonColor: String
+    let lighterButtonFill: String
+    
+    var body: some View {
+        
+        
+        NavigationLink(destination: Text(linkedView).navigationBarBackButtonHidden(false), tag: linkedView, selection: $selection, label: {
+            RoundedRectangle(cornerRadius: 8)
+                .fill(Color(lighterButtonFill))
+                .frame(width: 110, height: 28.0)
+                .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color(lighterButtonColor), lineWidth: 1))
+                .overlay(HStack {
+                    Button("Ingresar") {
+                        print("Button 3 tapped")
+                        self.selection = linkedView
+                    }
+                    .foregroundColor(Color(colorScheme))
+                    .padding(.leading, 10)
+                    .font(.footnote)
+                    
+                    Image(systemName: "arrow.forward")
+                        .foregroundColor(Color(colorScheme))
+                        .padding(.trailing, 5)
+                })
+                .padding(.trailing, 15)
+                .padding(.top, 30)
+        })
+    }
+}
+

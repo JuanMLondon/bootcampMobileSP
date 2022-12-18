@@ -11,7 +11,17 @@
 		A41FE3ED294A21CD0098CA77 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41FE3EC294A21CD0098CA77 /* LoginView.swift */; };
 		A41FE3EF294A21CF0098CA77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A41FE3EE294A21CF0098CA77 /* Assets.xcassets */; };
 		A41FE3F2294A21CF0098CA77 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A41FE3F1294A21CF0098CA77 /* Preview Assets.xcassets */; };
+		A4400D8C294F56410042D671 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4400D8B294F56410042D671 /* MenuViewModel.swift */; };
+		A4400D8E294F56A70042D671 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4400D8D294F56A70042D671 /* UserData.swift */; };
+		A4400D91294F57450042D671 /* SendDocumentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4400D90294F57450042D671 /* SendDocumentsView.swift */; };
+		A4400D93294F57690042D671 /* SendDocumentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4400D92294F57690042D671 /* SendDocumentsViewModel.swift */; };
+		A4400D96294F57ED0042D671 /* ViewDocumentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4400D95294F57ED0042D671 /* ViewDocumentsView.swift */; };
+		A4400D98294F580B0042D671 /* ViewDocumentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4400D97294F580B0042D671 /* ViewDocumentsViewModel.swift */; };
+		A4400D9B294F58350042D671 /* OfficesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4400D9A294F58350042D671 /* OfficesView.swift */; };
+		A4400D9D294F58760042D671 /* OfficesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4400D9C294F58760042D671 /* OfficesViewModel.swift */; };
 		A48F46FA294BB8E100F2F8C3 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F46F9294BB8E100F2F8C3 /* MenuView.swift */; };
+		A4CCBF8D294E29B0009DBE5F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CCBF8C294E29B0009DBE5F /* NetworkManager.swift */; };
+		A4CCBF8F294E3007009DBE5F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CCBF8E294E3007009DBE5F /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,7 +30,17 @@
 		A41FE3EC294A21CD0098CA77 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A41FE3EE294A21CF0098CA77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A41FE3F1294A21CF0098CA77 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A4400D8B294F56410042D671 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
+		A4400D8D294F56A70042D671 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		A4400D90294F57450042D671 /* SendDocumentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDocumentsView.swift; sourceTree = "<group>"; };
+		A4400D92294F57690042D671 /* SendDocumentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDocumentsViewModel.swift; sourceTree = "<group>"; };
+		A4400D95294F57ED0042D671 /* ViewDocumentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDocumentsView.swift; sourceTree = "<group>"; };
+		A4400D97294F580B0042D671 /* ViewDocumentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDocumentsViewModel.swift; sourceTree = "<group>"; };
+		A4400D9A294F58350042D671 /* OfficesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficesView.swift; sourceTree = "<group>"; };
+		A4400D9C294F58760042D671 /* OfficesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficesViewModel.swift; sourceTree = "<group>"; };
 		A48F46F9294BB8E100F2F8C3 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		A4CCBF8C294E29B0009DBE5F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		A4CCBF8E294E3007009DBE5F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,9 +74,12 @@
 			isa = PBXGroup;
 			children = (
 				A41FE3EA294A21CD0098CA77 /* Reto_FinalApp.swift */,
+				A4400D89294F55BF0042D671 /* LoginView */,
+				A4400D8A294F55FA0042D671 /* MenuView */,
+				A4400D8F294F56E80042D671 /* SendDocumentsView */,
+				A4400D94294F57B40042D671 /* ViewDocumentsView */,
+				A4400D99294F58120042D671 /* OfficesView */,
 				A41FE3FA294A24640098CA77 /* Model */,
-				A41FE3F8294A243B0098CA77 /* Views */,
-				A41FE3F9294A24500098CA77 /* ViewModels */,
 				A41FE3EE294A21CF0098CA77 /* Assets.xcassets */,
 				A41FE3F0294A21CF0098CA77 /* Preview Content */,
 			);
@@ -71,27 +94,58 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		A41FE3F8294A243B0098CA77 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				A41FE3EC294A21CD0098CA77 /* LoginView.swift */,
-				A48F46F9294BB8E100F2F8C3 /* MenuView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		A41FE3F9294A24500098CA77 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		A41FE3FA294A24640098CA77 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A4CCBF8C294E29B0009DBE5F /* NetworkManager.swift */,
+				A4400D8D294F56A70042D671 /* UserData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		A4400D89294F55BF0042D671 /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				A41FE3EC294A21CD0098CA77 /* LoginView.swift */,
+				A4CCBF8E294E3007009DBE5F /* LoginViewModel.swift */,
+			);
+			path = LoginView;
+			sourceTree = "<group>";
+		};
+		A4400D8A294F55FA0042D671 /* MenuView */ = {
+			isa = PBXGroup;
+			children = (
+				A48F46F9294BB8E100F2F8C3 /* MenuView.swift */,
+				A4400D8B294F56410042D671 /* MenuViewModel.swift */,
+			);
+			path = MenuView;
+			sourceTree = "<group>";
+		};
+		A4400D8F294F56E80042D671 /* SendDocumentsView */ = {
+			isa = PBXGroup;
+			children = (
+				A4400D90294F57450042D671 /* SendDocumentsView.swift */,
+				A4400D92294F57690042D671 /* SendDocumentsViewModel.swift */,
+			);
+			path = SendDocumentsView;
+			sourceTree = "<group>";
+		};
+		A4400D94294F57B40042D671 /* ViewDocumentsView */ = {
+			isa = PBXGroup;
+			children = (
+				A4400D95294F57ED0042D671 /* ViewDocumentsView.swift */,
+				A4400D97294F580B0042D671 /* ViewDocumentsViewModel.swift */,
+			);
+			path = ViewDocumentsView;
+			sourceTree = "<group>";
+		};
+		A4400D99294F58120042D671 /* OfficesView */ = {
+			isa = PBXGroup;
+			children = (
+				A4400D9A294F58350042D671 /* OfficesView.swift */,
+				A4400D9C294F58760042D671 /* OfficesViewModel.swift */,
+			);
+			path = OfficesView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,9 +218,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4400D96294F57ED0042D671 /* ViewDocumentsView.swift in Sources */,
+				A4CCBF8D294E29B0009DBE5F /* NetworkManager.swift in Sources */,
+				A4400D9B294F58350042D671 /* OfficesView.swift in Sources */,
+				A4400D98294F580B0042D671 /* ViewDocumentsViewModel.swift in Sources */,
+				A4400D9D294F58760042D671 /* OfficesViewModel.swift in Sources */,
+				A4400D91294F57450042D671 /* SendDocumentsView.swift in Sources */,
 				A41FE3ED294A21CD0098CA77 /* LoginView.swift in Sources */,
 				A48F46FA294BB8E100F2F8C3 /* MenuView.swift in Sources */,
+				A4400D8C294F56410042D671 /* MenuViewModel.swift in Sources */,
+				A4CCBF8F294E3007009DBE5F /* LoginViewModel.swift in Sources */,
+				A4400D93294F57690042D671 /* SendDocumentsViewModel.swift in Sources */,
 				A41FE3EB294A21CD0098CA77 /* Reto_FinalApp.swift in Sources */,
+				A4400D8E294F56A70042D671 /* UserData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

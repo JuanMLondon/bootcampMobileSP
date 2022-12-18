@@ -8,7 +8,6 @@
 import SwiftUI
 
  struct LoginView: View {
-     @State var isShowingMenuView = false
      
      var body: some View {
          NavigationView {
@@ -38,45 +37,8 @@ import SwiftUI
                          .frame(maxHeight: 15)
                      
                      VStack {
-                         //NavigationLink(destination: Text("MenuView"), isActive: $isShowingMenuView) { EmptyView() }
-                         NavigationLink(destination: MenuView().navigationBarBackButtonHidden(true), isActive: $isShowingMenuView) {
-                             RoundedRectangle(cornerRadius: 15)
-                                 .fill(Color("violet_UI"))
-                                 .frame(width: 350, height: 45.0)
-                                 .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color("violet_UI"), lineWidth: 2))
-                                 .overlay(HStack {
-                                     Button("Ingresar") {
-                                         print("Button 1 tapped")
-                                         self.isShowingMenuView = true
-                                     }
-                                     .foregroundColor(Color("sophosBC"))
-                                 })
-                                 .padding(.vertical, 3
-                                 )
-                         }
-                         
-                         NavigationLink(destination: //Text("MenuView").navigationBarBackButtonHidden(true), isActive: $isShowingMenuView) {
-                             MenuView().navigationBarBackButtonHidden(true), isActive: $isShowingMenuView) {
-                             RoundedRectangle(cornerRadius: 15)
-                             
-                                 .fill(Color("sophosBC"))
-                                 .frame(width: 350, height: 45.0)
-                                 .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color("violet_UI"), lineWidth: 2))
-                                 .overlay(HStack {
-                                     Image(systemName: "touchid")
-                                         .foregroundColor(Color("violet_UI"))
-                                         .padding(.leading, 15)
-                                     Spacer()
-                                     
-                                     Button("Ingresar con huella") {
-                                         print("Button 2 tapped")
-                                         self.isShowingMenuView = true
-                                     }
-                                     .foregroundColor(Color("violet_UI"))
-                                     .padding(.trailing, 105)
-                                 })
-                                 .padding(.vertical, 3)
-                         }
+                         NavigationButton1()
+                         NavigationButton2()
                      }
                      .padding(.horizontal, 55)
                  }
@@ -85,6 +47,8 @@ import SwiftUI
          }
      }
  }
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
@@ -148,5 +112,65 @@ struct SecTextFieldRoundedFrame: View {
                  }
             })
             .padding(.vertical, 3)
+    }
+}
+
+//NavigationLink(destination: Text("MenuView"), isActive: $isShowingMenuView) { EmptyView() }
+struct NavigationButton1: View {
+    
+    @State var isShowingMenuView = false
+    @State var showingAlert = false
+    
+    var body: some View {
+        NavigationLink(destination: MenuView().navigationBarBackButtonHidden(true), isActive: $isShowingMenuView) {
+            RoundedRectangle(cornerRadius: 15)
+                .fill(Color("violet_UI"))
+                .frame(width: 350, height: 45.0)
+                .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color("violet_UI"), lineWidth: 2))
+                .overlay(HStack {
+                    Button("Ingresar") {
+                        print("Button 1 tapped")
+                        self.isShowingMenuView = true
+                        //showingAlert = true
+                    }
+                    .foregroundColor(Color("sophosBC"))
+                })
+                .padding(.vertical, 3
+                )
+        }
+    }
+}
+
+struct NavigationButton2: View {
+    
+    @State var isShowingMenuView = false
+    @State var showingAlert = false
+    
+    var body: some View {
+        NavigationLink(destination: MenuView().navigationBarBackButtonHidden(true), isActive: $isShowingMenuView) {
+            RoundedRectangle(cornerRadius: 15)
+            
+                .fill(Color("sophosBC"))
+                .frame(width: 350, height: 45.0)
+                .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color("violet_UI"), lineWidth: 2))
+                .overlay(HStack {
+                    Image(systemName: "touchid")
+                        .foregroundColor(Color("violet_UI"))
+                        .padding(.leading, 15)
+                    Spacer()
+                    
+                    Button("Ingresar con huella") {
+                        print("Button 2 tapped")
+                        //self.isShowingMenuView = true
+                        showingAlert = true
+                    }
+                    .foregroundColor(Color("violet_UI"))
+                    .padding(.trailing, 105)
+                    .alert(isPresented: $showingAlert) {
+                        Alert(title: Text("Datos no validos"), message: Text("El usuario o la contraseña son incorrectos."), dismissButton: .default(Text("Intentar nuevamente")))
+                    }
+                })
+                .padding(.vertical, 3)
+        }
     }
 }
