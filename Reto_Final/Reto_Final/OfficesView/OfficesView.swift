@@ -8,13 +8,21 @@
 import SwiftUI
 
 struct OfficesView: View {
+    
+    @ObservedObject var viewModel: OfficesViewModel
+    
     var body: some View {
-        Text("Placeholder Text")
+        ZStack {
+            //Color("sophosBC")
+            Color.red
+            Text("View the locations on the map")
+        }
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
 struct OfficesView_Previews: PreviewProvider {
     static var previews: some View {
-        OfficesView()
+        OfficesView(viewModel: OfficesViewModel())
     }
 }

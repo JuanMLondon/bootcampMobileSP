@@ -9,7 +9,17 @@ import SwiftUI
 
 struct MenuView: View {
     
+    @ObservedObject var viewModel: MenuViewModel
+    @State var loggedIn: Bool = false
+    
     var userName: String? = "Usuario"
+    
+    
+    func checkAuthorized() {
+      //if loggedIn() {
+        //self.loggedIn = true
+      //}
+    }
     
     var body: some View {
         ZStack{
@@ -71,12 +81,15 @@ struct MenuView: View {
             .padding(.bottom, 50)
         }
         .edgesIgnoringSafeArea(.all)
+        .onAppear(perform: {
+            self.checkAuthorized()
+        })
     }
 }
 
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
-        MenuView()
+        MenuView(viewModel: MenuViewModel())
     }
 }
 
@@ -132,28 +145,77 @@ struct NavButton: View {
     
     var body: some View {
         
-        
-        NavigationLink(destination: Text(linkedView).navigationBarBackButtonHidden(false), tag: linkedView, selection: $selection, label: {
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color(lighterButtonFill))
-                .frame(width: 110, height: 28.0)
-                .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color(lighterButtonColor), lineWidth: 1))
-                .overlay(HStack {
-                    Button("Ingresar") {
-                        print("Button 3 tapped")
-                        self.selection = linkedView
-                    }
-                    .foregroundColor(Color(colorScheme))
-                    .padding(.leading, 10)
-                    .font(.footnote)
-                    
-                    Image(systemName: "arrow.forward")
+        switch linkedView {
+        case "SendDocuments":
+            NavigationLink(destination: SendDocumentsView(viewModel: SendDocumentsViewModel()).navigationBarBackButtonHidden(false), tag: linkedView, selection: $selection, label: {
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color(lighterButtonFill))
+                    .frame(width: 110, height: 28.0)
+                    .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color(lighterButtonColor), lineWidth: 1))
+                    .overlay(HStack {
+                        Button("Ingresar") {
+                            print("Button 3 tapped")
+                            self.selection = linkedView
+                        }
                         .foregroundColor(Color(colorScheme))
-                        .padding(.trailing, 5)
-                })
-                .padding(.trailing, 15)
-                .padding(.top, 30)
-        })
+                        .padding(.leading, 10)
+                        .font(.footnote)
+                        
+                        Image(systemName: "arrow.forward")
+                            .foregroundColor(Color(colorScheme))
+                            .padding(.trailing, 5)
+                    })
+                    .padding(.trailing, 15)
+                    .padding(.top, 30)
+            })
+        case "ViewDocuments":
+            NavigationLink(destination: ViewDocumentsView(viewModel: ViewDocumentsViewModel()).navigationBarBackButtonHidden(false), tag: linkedView, selection: $selection, label: {
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color(lighterButtonFill))
+                    .frame(width: 110, height: 28.0)
+                    .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color(lighterButtonColor), lineWidth: 1))
+                    .overlay(HStack {
+                        Button("Ingresar") {
+                            print("Button 3 tapped")
+                            self.selection = linkedView
+                        }
+                        .foregroundColor(Color(colorScheme))
+                        .padding(.leading, 10)
+                        .font(.footnote)
+                        
+                        Image(systemName: "arrow.forward")
+                            .foregroundColor(Color(colorScheme))
+                            .padding(.trailing, 5)
+                    })
+                    .padding(.trailing, 15)
+                    .padding(.top, 30)
+            })
+            
+        case "Offices":
+            NavigationLink(destination: OfficesView(viewModel: OfficesViewModel()).navigationBarBackButtonHidden(false), tag: linkedView, selection: $selection, label: {
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color(lighterButtonFill))
+                    .frame(width: 110, height: 28.0)
+                    .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color(lighterButtonColor), lineWidth: 1))
+                    .overlay(HStack {
+                        Button("Ingresar") {
+                            print("Button 3 tapped")
+                            self.selection = linkedView
+                        }
+                        .foregroundColor(Color(colorScheme))
+                        .padding(.leading, 10)
+                        .font(.footnote)
+                        
+                        Image(systemName: "arrow.forward")
+                            .foregroundColor(Color(colorScheme))
+                            .padding(.trailing, 5)
+                    })
+                    .padding(.trailing, 15)
+                    .padding(.top, 30)
+            })
+        default:
+            NavigationLink(destination: MenuView(viewModel: MenuViewModel()).navigationBarBackButtonHidden(false), tag: linkedView, selection: $selection, label: { EmptyView() })
+        }
     }
 }
 

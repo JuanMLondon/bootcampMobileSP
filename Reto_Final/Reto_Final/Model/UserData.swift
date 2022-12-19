@@ -7,6 +7,12 @@
 
 import Foundation
 
-struct UserData {
-    
+struct UserData: Decodable {
+    let id: String
+    let nombre: String
+    let apellido: String
+    let acceso: Bool
+    let admin: Bool
 }
+
+

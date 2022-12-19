@@ -8,13 +8,20 @@
 import SwiftUI
 
 struct SendDocumentsView: View {
+    
+    @ObservedObject var viewModel: SendDocumentsViewModel
+    
     var body: some View {
-        Text("Placeholder Text")
+        ZStack {
+            Color("sophosBC")
+            Text("Prepare a document for submission")
+        }
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
 struct SendDocumentsView_Previews: PreviewProvider {
     static var previews: some View {
-        SendDocumentsView()
+        SendDocumentsView(viewModel: SendDocumentsViewModel())
     }
 }

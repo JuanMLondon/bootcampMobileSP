@@ -8,13 +8,21 @@
 import SwiftUI
 
 struct ViewDocumentsView: View {
+    
+    @ObservedObject var viewModel: ViewDocumentsViewModel
+    
     var body: some View {
-        Text("Placeholder Text")
+        ZStack {
+            //Color("sophosBC")
+            Color.green
+            Text("View a list of documents")
+        }
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
 struct ViewDocumentsView_Previews: PreviewProvider {
     static var previews: some View {
-        ViewDocumentsView()
+        ViewDocumentsView(viewModel: ViewDocumentsViewModel())
     }
 }
