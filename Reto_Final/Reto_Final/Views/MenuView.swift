@@ -10,16 +10,8 @@ import SwiftUI
 struct MenuView: View {
     
     @ObservedObject var viewModel: MenuViewModel
-    @State var loggedIn: Bool = false
     
     var userName: String? = "Usuario"
-    
-    
-    func checkAuthorized() {
-      //if loggedIn() {
-        //self.loggedIn = true
-      //}
-    }
     
     var body: some View {
         ZStack{
@@ -82,7 +74,7 @@ struct MenuView: View {
         }
         .edgesIgnoringSafeArea(.all)
         .onAppear(perform: {
-            self.checkAuthorized()
+
         })
     }
 }
@@ -103,7 +95,6 @@ struct menuItemView: View {
     let frameColor: String
     let lighterButtonColor: String
     let lighterButtonFill: String
-    //let buttonAction: () -> Void
     
     var body: some View {
         RoundedRectangle(cornerRadius: 15)

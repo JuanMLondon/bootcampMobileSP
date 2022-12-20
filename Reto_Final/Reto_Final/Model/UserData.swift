@@ -15,4 +15,3 @@ struct UserData: Decodable {
     let admin: Bool
 }
 
-

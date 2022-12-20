@@ -9,13 +9,16 @@ import SwiftUI
 
  struct LoginView: View {
      
-     @ObservedObject var viewModel: LoginViewModel
+     @ObservedObject var viewModel = LoginViewModel()
+     
+     //@State var working: Bool = LoginViewModel().isLoggingIn
+     //@State var failed: Bool = LoginViewModel().hasError
+     //@State var success: Bool = LoginViewModel().isLoggedIn
      
      var body: some View {
          NavigationView {
              ZStack {
                  Color("sophosBC")
-                 
                  VStack{
                      VStack {
                          Image("sophos_logo")
@@ -68,7 +71,7 @@ struct ContentView_Previews: PreviewProvider {
 
 struct TextFieldRoundedFrame: View {
     
-    @ObservedObject var viewModel: LoginViewModel
+    @ObservedObject var viewModel = LoginViewModel()
     
     var body: some View {
         RoundedRectangle(cornerRadius: 15)
@@ -97,7 +100,7 @@ struct TextFieldRoundedFrame: View {
 
 struct SecTextFieldRoundedFrame: View {
     
-    @ObservedObject var viewModel: LoginViewModel
+    @ObservedObject var viewModel = LoginViewModel()
     @State var isSecured: Bool = true
     
     var body: some View {
@@ -130,69 +133,31 @@ struct SecTextFieldRoundedFrame: View {
     }
 }
 
-struct NavigationButton1: View {
+struct NavLinkButton: View {
     
-    @ObservedObject var viewModel: LoginViewModel
+    @ObservedObject var viewModel = LoginViewModel()
     @State var selection: String? = nil
-    @State var isLoggedIn: Bool = false
-    
     var body: some View {
         NavigationLink(destination: MenuView(viewModel: MenuViewModel()).navigationBarBackButtonHidden(true), tag: "MenuView", selection: $selection, label: {
-            RoundedRectangle(cornerRadius: 15)
-                .fill(Color("violet_UI"))
-                .frame(width: 350, height: 45.0)
-                .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color("violet_UI"), lineWidth: 2))
-                .overlay(HStack {
-                    Button("Ingresar") {
-                        viewModel.login()
-                        print(viewModel.loginSuccessful)
-                        if viewModel.loginSuccessful == true {
-                            self.selection = "MenuView()"
-                        }
-                    }
-                    .foregroundColor(Color("sophosBC"))
-                })
-                .padding(.vertical, 3)
-                .alert(isPresented: $viewModel.hasError) {
-                    Alert(title: Text("Datos no validos"), message: Text("El usuario o la contraseña son incorrectos."), dismissButton: .default(Text("Intentar nuevamente")))
+            Button("Ingresar") {
+                viewModel.login(email: viewModel.email, password: viewModel.password)
+                print("Button 1 tapped")
+                print("Is Logged In? \($viewModel.isLoggedIn.wrappedValue) from LoginView")
+                
+                if viewModel.isLoggedIn == true {
+                    self.selection = "MenuView()"
                 }
+                //goToVIew()
+            }
+            .alert(isPresented: $viewModel.hasError) {
+                Alert(title: Text("Datos no validos"), message: Text("El usuario o la contraseña son incorrectos."), dismissButton: .default(Text("Intente nuevamente")))
+            }
         })
+        .foregroundColor(Color("sophosBC"))
     }
-}
-
-struct NavigationButton2: View {
     
-    @ObservedObject var viewModel: LoginViewModel
-    @State var selection: String? = nil
-    @State var isLoggedIn: Bool = false
-    
-    var body: some View {
-        NavigationLink(destination: MenuView(viewModel: MenuViewModel()).navigationBarBackButtonHidden(true), tag: "MenuView", selection: $selection, label: {
-            RoundedRectangle(cornerRadius: 15)
-            
-                .fill(Color("sophosBC"))
-                .frame(width: 350, height: 45.0)
-                .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color("violet_UI"), lineWidth: 2))
-                .overlay(HStack {
-                    Image(systemName: "touchid")
-                        .foregroundColor(Color("violet_UI"))
-                        .padding(.leading, 15)
-                    Spacer()
-                    
-                    Button("Ingresar con huella") {
-                        viewModel.login()
-                        print(viewModel.loginSuccessful)
-                        if viewModel.loginSuccessful == true {
-                            self.selection = "MenuView()"
-                        }
-                    }
-                    .foregroundColor(Color("violet_UI"))
-                    .padding(.trailing, 105)
-                    .alert(isPresented: $viewModel.hasError) {
-                        Alert(title: Text("Datos no validos"), message: Text("El usuario o la contraseña son incorrectos."), dismissButton: .default(Text("Intentar nuevamente")))
-                    }
-                })
-                .padding(.vertical, 3)
-        })
-    }
+    //func goToVIew() {
+        //@State var selection: String? = "MenuView()"
+        //NavigationLink(destination: MenuView(viewModel: //MenuViewModel()).navigationBarBackButtonHidden(true), tag: "MenuView", selection: //$selection, label: { EmptyView() })
+    //}
 }
