@@ -10,19 +10,20 @@ import SwiftUI
 struct MenuView: View {
     
     @ObservedObject var viewModel: MenuViewModel
-    
-    var userName: String? = "Usuario"
+    @StateObject var authenticated = Authentication()
     
     var body: some View {
         ZStack{
             Color("sophosBC")
             VStack{
                 HStack {
-                    Text("\(userName!)")
+                    Text("\(authenticated.userName)")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundColor(Color("violet_UI"))
                         .multilineTextAlignment(.leading)
+                        .environmentObject(authenticated)
+                    
                     Spacer()
                         .frame(maxWidth: 300, maxHeight: 40)
                     
@@ -43,6 +44,7 @@ struct MenuView: View {
                         .resizable(capInsets: EdgeInsets(top: 0.0, leading: 0.0, bottom: 0.0, trailing: 0.0), resizingMode: .stretch)
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 400.0, height: 260.0)
+                    
                     HStack{
                         VStack(alignment: .leading) {
                             Text("Bienvenido")
@@ -60,6 +62,7 @@ struct MenuView: View {
                                 .multilineTextAlignment(.center)
                         }
                         .frame(width: 250, height: 150)
+                        
                         Spacer()
                     }
                 }
@@ -97,11 +100,13 @@ struct menuItemView: View {
     let lighterButtonFill: String
     
     var body: some View {
+        
         RoundedRectangle(cornerRadius: 15)
             .fill(Color(colorFill))
             .frame(minHeight: 75.0)
             .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color(frameColor), lineWidth: 2))
             .overlay(HStack {
+                
                 Image(systemName: menuIconName)
                     .resizable(resizingMode: .stretch)
                     .aspectRatio(contentMode: .fill)
@@ -137,6 +142,7 @@ struct NavButton: View {
     var body: some View {
         
         switch linkedView {
+            
         case "SendDocuments":
             NavigationLink(destination: SendDocumentsView(viewModel: SendDocumentsViewModel()).navigationBarBackButtonHidden(false), tag: linkedView, selection: $selection, label: {
                 RoundedRectangle(cornerRadius: 8)
@@ -159,6 +165,7 @@ struct NavButton: View {
                     .padding(.trailing, 15)
                     .padding(.top, 30)
             })
+            
         case "ViewDocuments":
             NavigationLink(destination: ViewDocumentsView(viewModel: ViewDocumentsViewModel()).navigationBarBackButtonHidden(false), tag: linkedView, selection: $selection, label: {
                 RoundedRectangle(cornerRadius: 8)
@@ -204,6 +211,7 @@ struct NavButton: View {
                     .padding(.trailing, 15)
                     .padding(.top, 30)
             })
+            
         default:
             NavigationLink(destination: MenuView(viewModel: MenuViewModel()).navigationBarBackButtonHidden(false), tag: linkedView, selection: $selection, label: { EmptyView() })
         }

@@ -12,6 +12,7 @@
 		A41FE3EF294A21CF0098CA77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A41FE3EE294A21CF0098CA77 /* Assets.xcassets */; };
 		A41FE3F2294A21CF0098CA77 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A41FE3F1294A21CF0098CA77 /* Preview Assets.xcassets */; };
 		A43C244C294FBB49003F0277 /* OfficesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43C244B294FBB49003F0277 /* OfficesData.swift */; };
+		A43D256B2952B28400F3E8D6 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43D256A2952B28400F3E8D6 /* Authentication.swift */; };
 		A4400D8C294F56410042D671 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4400D8B294F56410042D671 /* MenuViewModel.swift */; };
 		A4400D8E294F56A70042D671 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4400D8D294F56A70042D671 /* UserData.swift */; };
 		A4400D91294F57450042D671 /* SendDocumentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4400D90294F57450042D671 /* SendDocumentsView.swift */; };
@@ -21,7 +22,7 @@
 		A4400D9B294F58350042D671 /* OfficesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4400D9A294F58350042D671 /* OfficesView.swift */; };
 		A4400D9D294F58760042D671 /* OfficesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4400D9C294F58760042D671 /* OfficesViewModel.swift */; };
 		A48F46FA294BB8E100F2F8C3 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F46F9294BB8E100F2F8C3 /* MenuView.swift */; };
-		A49FE46E2950C606003D6BAD /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49FE46D2950C606003D6BAD /* NetworkService.swift */; };
+		A491F2A52952A84300EF1FC0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A491F2A42952A84300EF1FC0 /* NetworkService.swift */; };
 		A4CCBF8F294E3007009DBE5F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CCBF8E294E3007009DBE5F /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		A41FE3EE294A21CF0098CA77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A41FE3F1294A21CF0098CA77 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A43C244B294FBB49003F0277 /* OfficesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficesData.swift; sourceTree = "<group>"; };
+		A43D256A2952B28400F3E8D6 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		A4400D8B294F56410042D671 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		A4400D8D294F56A70042D671 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		A4400D90294F57450042D671 /* SendDocumentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDocumentsView.swift; sourceTree = "<group>"; };
@@ -41,7 +43,7 @@
 		A4400D9A294F58350042D671 /* OfficesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficesView.swift; sourceTree = "<group>"; };
 		A4400D9C294F58760042D671 /* OfficesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficesViewModel.swift; sourceTree = "<group>"; };
 		A48F46F9294BB8E100F2F8C3 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
-		A49FE46D2950C606003D6BAD /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkService.swift; path = ../../../../../../../NetworkService.swift; sourceTree = "<group>"; };
+		A491F2A42952A84300EF1FC0 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		A4CCBF8E294E3007009DBE5F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,11 +105,6 @@
 				A401DC5F2952790500515B01 /* Views */,
 				A401DC602952791C00515B01 /* ViewModels */,
 				A41FE3FA294A24640098CA77 /* Model */,
-				A4400D89294F55BF0042D671 /* LoginView */,
-				A4400D8A294F55FA0042D671 /* MenuView */,
-				A4400D8F294F56E80042D671 /* SendDocumentsView */,
-				A4400D94294F57B40042D671 /* ViewDocumentsView */,
-				A4400D99294F58120042D671 /* OfficesView */,
 				A41FE3EE294A21CF0098CA77 /* Assets.xcassets */,
 				A41FE3F0294A21CF0098CA77 /* Preview Content */,
 			);
@@ -125,46 +122,12 @@
 		A41FE3FA294A24640098CA77 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A491F2A42952A84300EF1FC0 /* NetworkService.swift */,
 				A4400D8D294F56A70042D671 /* UserData.swift */,
 				A43C244B294FBB49003F0277 /* OfficesData.swift */,
-				A49FE46D2950C606003D6BAD /* NetworkService.swift */,
+				A43D256A2952B28400F3E8D6 /* Authentication.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		A4400D89294F55BF0042D671 /* LoginView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = LoginView;
-			sourceTree = "<group>";
-		};
-		A4400D8A294F55FA0042D671 /* MenuView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = MenuView;
-			sourceTree = "<group>";
-		};
-		A4400D8F294F56E80042D671 /* SendDocumentsView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SendDocumentsView;
-			sourceTree = "<group>";
-		};
-		A4400D94294F57B40042D671 /* ViewDocumentsView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewDocumentsView;
-			sourceTree = "<group>";
-		};
-		A4400D99294F58120042D671 /* OfficesView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = OfficesView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,9 +208,10 @@
 				A41FE3ED294A21CD0098CA77 /* LoginView.swift in Sources */,
 				A48F46FA294BB8E100F2F8C3 /* MenuView.swift in Sources */,
 				A4400D8C294F56410042D671 /* MenuViewModel.swift in Sources */,
+				A43D256B2952B28400F3E8D6 /* Authentication.swift in Sources */,
 				A43C244C294FBB49003F0277 /* OfficesData.swift in Sources */,
 				A4CCBF8F294E3007009DBE5F /* LoginViewModel.swift in Sources */,
-				A49FE46E2950C606003D6BAD /* NetworkService.swift in Sources */,
+				A491F2A52952A84300EF1FC0 /* NetworkService.swift in Sources */,
 				A4400D93294F57690042D671 /* SendDocumentsViewModel.swift in Sources */,
 				A41FE3EB294A21CD0098CA77 /* Reto_FinalApp.swift in Sources */,
 				A4400D8E294F56A70042D671 /* UserData.swift in Sources */,
