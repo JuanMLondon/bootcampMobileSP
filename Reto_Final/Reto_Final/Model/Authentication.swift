@@ -9,10 +9,12 @@ import SwiftUI
 
 class Authentication: ObservableObject {
     
+    @ObservedObject var networkService = NetworkService()
+    
     @Published var authenticated: Bool = false
-    @Published var userName: String = ""
+    @Published var userName: String = "Juan"
     
     func updateState() {
-        
+        self.authenticated = self.networkService.success
     }
 }

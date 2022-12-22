@@ -11,7 +11,6 @@ struct LoginView: View {
     
     @ObservedObject var viewModel = LoginViewModel()
     @StateObject var authenticated = Authentication()
-    
     @State var isShowingMenuView = false
     
     var body: some View {

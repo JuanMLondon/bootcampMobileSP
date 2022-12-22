@@ -13,59 +13,57 @@ class NetworkService: ObservableObject {
     @Published var failed: Bool = false
     @Published var success: Bool = false
     
-    func login(email: String, password: String) {
-        
-        self.working = true
+    func login(email: String, password: String/*, completion: @escaping (Bool) -> ()*/) {
         
         var request = URLRequest(url: URL(string: "https://6w33tkx4f9.execute-api.us-east-1.amazonaws.com/RS_Usuarios?idUsuario=\(email)&clave=\(password)") ?? URL(string: "https://www.google.com")!)
         
         print(request)
         
         request.httpMethod = "GET"
-
-        let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
-            
-            if error != nil {
-                self.working = false
-                self.failed = true
-                self.success = false
-                
-                print("Working? \(self.working) from NetworService \"Error\"")
-                print("Failed? \(self.failed) from NetworService \"Error\"")
-                print("Success? \(self.success) from NetworService \"Error\"")
-                
-            } else if let safeData = data {
-                do {
-                    let loginResponse = try JSONDecoder().decode(UserData.self, from: safeData)
+        
+        let task = URLSession.shared.dataTask(with: request, completionHandler: { [weak self] data, response, error in
+            //DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            DispatchQueue.main.async {
+                if error != nil {
+                    self?.working = false
+                    self?.failed = true
+                    self?.success = false
                     
-                    DispatchQueue.main.async {
-                        self.working = false
-                        self.failed = false
-                        self.success = true
+                    print("Failed? \(self!.failed) from NetworService \"Error\"")
+                    
+                } else if let safeData = data {
+                    do {
                         
-                        print("Working? \(self.working) from NetworService \"Do\"")
-                        print("Failed? \(self.failed) from NetworService \"Do\"")
-                        print("Success? \(self.success) from NetworService \"Do\"")
+                        let loginResponse = try JSONDecoder().decode(UserData.self, from: safeData)
+                        
+                        self?.working = false
+                        self?.failed = false
+                        self?.success = true
+                        Authentication().updateState()
+                        
+                        print("Success? \(self!.success) from NetworService \"Do\"")
                         
                         print("Response ok: \((response as! HTTPURLResponse).statusCode)")
                         print(loginResponse)
+                        
+                        
+                    } catch {
+                        
+                        self?.working = false
+                        self?.failed = true
+                        self?.success = false
+                        
+                        print("Failed? \(self!.failed) from NetworService \"Catch\"")
+                        
+                        print("Response catch: \((response as! HTTPURLResponse).statusCode)")
+                        print("Unable to decode response \(error)")
                     }
-                    
-                } catch {
-                    self.working = false
-                    self.failed = true
-                    self.success = false
-                    
-                    print("Working? \(self.working) from NetworService \"Catch\"")
-                    print("Failed? \(self.failed) from NetworService \"Catch\"")
-                    print("Success? \(self.success) from NetworService \"Catch\"")
-                    
-                    print("Response catch: \((response as! HTTPURLResponse).statusCode)")
-                    print("Unable to decode response \(error)")
                 }
-                //self.working = false
-            }
+                self?.working = false
+            }//DispatchQueue closing
         })
         task.resume()
+    //completion()
     }
 }
+
