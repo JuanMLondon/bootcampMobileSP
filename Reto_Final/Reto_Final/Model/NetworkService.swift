@@ -7,12 +7,14 @@
 
 import Foundation
 
-class NetworkService: ObservableObject {
+class NetworkService {
     
-    @Published var working: Bool = false
-    @Published var failed: Bool = false
-    @Published var success: Bool = false
-    @Published var user: UserModel? = nil
+    static let shared: NetworkService = NetworkService()
+    
+    var working: Bool = false
+    var failed: Bool = false
+    var success: Bool = false
+    var loggedInUser: UserModel?
     
     func login(email: String, password: String/*, completion: @escaping (Bool) -> ()*/) {
         
@@ -23,14 +25,12 @@ class NetworkService: ObservableObject {
         request.httpMethod = "GET"
         
         let task = URLSession.shared.dataTask(with: request, completionHandler: { [weak self] data, response, error in
-            //DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            //DispatchQueue.main.async {
                 if error != nil {
                     self?.working = false
                     self?.failed = true
                     self?.success = false
-                    
-                    print("Failed? \(self!.failed) from NetworService \"Error\"")
                     
                 } else if let safeData = data {
                     do {
@@ -41,9 +41,8 @@ class NetworkService: ObservableObject {
                         self?.failed = false
                         self?.success = true
                         
-                        self?.fetchData(safeData: safeData)
-                        
-                        print("Success? \(self!.success) from NetworService \"Do\"")
+                        self?.loggedInUser = self?.parseJSON(safeData)
+                        Authentication().isAuthenticated()
                         
                         print("Response ok: \((response as! HTTPURLResponse).statusCode)")
                         print(loginResponse)
@@ -55,8 +54,6 @@ class NetworkService: ObservableObject {
                         self?.failed = true
                         self?.success = false
                         
-                        print("Failed? \(self!.failed) from NetworService \"Catch\"")
-                        
                         print("Response catch: \((response as! HTTPURLResponse).statusCode)")
                         print("Unable to decode response \(error)")
                     }
@@ -66,16 +63,6 @@ class NetworkService: ObservableObject {
         })
         task.resume()
     //completion()
-    }
-    
-    func fetchData(safeData: Data) {
-        //Calling JSON Parser
-        if let user = self.parseJSON(safeData) {
-            DispatchQueue.main.async {
-                self.user = user
-                print("Parser test \"nombre\" :\(user.nombre)")
-            }
-        }
     }
     
     func parseJSON(_ userData: Data) -> UserModel? {
@@ -89,13 +76,14 @@ class NetworkService: ObservableObject {
             let acceso = decodedData.acceso
             let admin = decodedData.admin
             
-            let user = UserModel(id: id, nombre: nombre, apellido: apellido, acceso: acceso, admin: admin)
+            let parsedUser = UserModel(id: id, nombre: nombre, apellido: apellido, acceso: acceso, admin: admin)
             
-            return user
+            return parsedUser
             
         } catch {
             return nil
         }
     }
+    
 }
 

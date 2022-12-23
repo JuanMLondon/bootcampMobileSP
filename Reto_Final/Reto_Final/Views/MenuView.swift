@@ -17,9 +17,10 @@ struct MenuView: View {
             Color("sophosBC")
             VStack{
                 HStack {
-                    Text("\(authenticated.userName)")
-                        .font(.largeTitle)
+                    Text("\(authenticated.user.nombre)")
                         .fontWeight(.bold)
+                        .frame(width: 225)
+                        .font(.largeTitle)
                         .foregroundColor(Color("violet_UI"))
                         .multilineTextAlignment(.leading)
                         .environmentObject(authenticated)
@@ -77,7 +78,7 @@ struct MenuView: View {
         }
         .edgesIgnoringSafeArea(.all)
         .onAppear(perform: {
-            authenticated.updateState()
+            authenticated.getLoggedInUser()
         })
     }
 }

@@ -9,15 +9,20 @@ import SwiftUI
 
 class Authentication: ObservableObject {
     
-    @ObservedObject var networkService = NetworkService()
-    
+    @Published var user: UserModel = UserModel(id: "", nombre: "", apellido: "", acceso: false, admin: false)
     @Published var authenticated: Bool = false
-    @Published var userName: String = ""
     
-    func updateState() {
-        self.authenticated = networkService.success // No funciona
-        print("Athenticated updated?: \(self.authenticated)")
-        self.userName = networkService.user?.nombre ?? "Juan" // No funciona
-        print("Nombre: \(self.userName)")
+    var networkService = NetworkService()
+    
+    func isAuthenticated() -> Bool {
+        self.authenticated = NetworkService.shared.success
+        return authenticated
+    }
+    
+    func getLoggedInUser() -> UserModel {
+        DispatchQueue.main.async {
+            self.user = NetworkService.shared.loggedInUser ?? UserModel(id: "", nombre: "", apellido: "", acceso: false, admin: false)
+        }
+        return user
     }
 }
