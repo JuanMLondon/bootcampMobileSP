@@ -77,7 +77,7 @@ struct MenuView: View {
         }
         .edgesIgnoringSafeArea(.all)
         .onAppear(perform: {
-
+            authenticated.updateState()
         })
     }
 }

@@ -39,7 +39,7 @@ class LoginViewModel: ObservableObject {
     
     func shouldUpdateView(viewModel: LoginViewModel, isLoggedIn: Bool) -> Bool{
         var showNextView: Bool = false
-            if viewModel.isLoggedIn == true {
+            if self.isLoggedIn == true {
                 showNextView = true
                 print("Is LoggedIn? (from NavButtonAction): \(isLoggedIn)")
                 print("Should show MenuView? (from NavButtonAction): \(showNextView)")
@@ -51,10 +51,7 @@ class LoginViewModel: ObservableObject {
 
 struct NavButton1: View {
     
-    @ObservedObject var viewModel = LoginViewModel()
-
-    @StateObject var authenticated = Authentication()
-
+    @StateObject var viewModel = LoginViewModel()
     @State var isShowingMenuView = false
     
     var body: some View {
@@ -62,12 +59,13 @@ struct NavButton1: View {
         NavigationLink(destination: MenuView(viewModel: MenuViewModel()).navigationBarBackButtonHidden(true), isActive: $isShowingMenuView, label: {EmptyView()})
         
         Button("Ingresar") {
+            var update: Bool = false
             print("Button 1 tapped")
+            
             viewModel.login(email: viewModel.email, password: viewModel.password)
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: viewModel.updateStatus)
             
-            var update: Bool = false
             DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
                 update = viewModel.shouldUpdateView(viewModel: viewModel, isLoggedIn: viewModel.isLoggedIn)
             }
@@ -77,24 +75,9 @@ struct NavButton1: View {
                 self.isShowingMenuView = update // No ejecuta luego de implementar los dispatch queue!!
             }
             
-            /*
-            print("Button 1 tapped")
-            viewModel.login(email: viewModel.email, password: viewModel.password)
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: viewModel.updateStatus)
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
-                if authenticated.authenticated == true || viewModel.isLoggedIn == true {
-                    self.isShowingMenuView = true // No ejecuta luego de implementar los dispatch queue.
-                    print("Is LoggedIn? (from NavButton1): \(viewModel.isLoggedIn)")
-                    print("Should show MenuView? \(self.isShowingMenuView)")
-                }
-            }
-             */
-             
         }
         .foregroundColor(Color("sophosBC"))
-        .environmentObject(authenticated)
+        .environmentObject(viewModel)
 
         
         .alert(isPresented: $viewModel.hasError) {
@@ -105,10 +88,7 @@ struct NavButton1: View {
 
 struct NavButton2: View {
     
-    @ObservedObject var viewModel = LoginViewModel()
-
-    @StateObject var authenticated = Authentication()
-
+    @StateObject var viewModel = LoginViewModel()
     @State var isShowingMenuView = false
     
     var body: some View {
@@ -116,28 +96,28 @@ struct NavButton2: View {
         NavigationLink(destination: MenuView(viewModel: MenuViewModel()).navigationBarBackButtonHidden(true), isActive: $isShowingMenuView, label: {EmptyView()})
         
         Button("Ingresar con huella") {
-            print("Button 2 tapped")
+            var update: Bool = false
+            print("Button 1 tapped")
             viewModel.login(email: viewModel.email, password: viewModel.password)
             
             //DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: viewModel.updateStatus)
-            
             viewModel.updateStatus()
             
             //DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
-                if authenticated.authenticated == true || viewModel.isLoggedIn == true {
-                    self.isShowingMenuView = true // No ejecuta luego de implementar los dispatch queue.
-                    print("Is LoggedIn? (from NavButton1): \(viewModel.isLoggedIn)")
-                    print("Should show MenuView? \(self.isShowingMenuView)")
-                }
+                update = viewModel.shouldUpdateView(viewModel: viewModel, isLoggedIn: viewModel.isLoggedIn)
             //}
+            
+            //DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
+                print("Should show MenuView? \(update)")
+                self.isShowingMenuView = update // No ejecuta luego de implementar los dispatch queue!!
+
         }
         .padding(.trailing, 105)
-        .environmentObject(authenticated)
+        .environmentObject(viewModel)
         
         .alert(isPresented: $viewModel.hasError) {
             Alert(title: Text("Datos no validos"), message: Text("El usuario o la contraseña son incorrectos."), dismissButton: .default(Text("Intente nuevamente")))
         }
     }
 }
-
 

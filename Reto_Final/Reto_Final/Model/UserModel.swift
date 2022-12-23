@@ -1,19 +1,16 @@
 //
-//  User.swift
+//  UserModel.swift
 //  Reto_Final
 //
-//  Created by JML on 18/12/22.
+//  Created by JML on 22/12/22.
 //
 
 import Foundation
 
-struct UserData: Decodable, Identifiable {
-    
+struct UserModel {
     let id: String
     let nombre: String
     let apellido: String
     let acceso: Bool
     let admin: Bool
-    
 }
-

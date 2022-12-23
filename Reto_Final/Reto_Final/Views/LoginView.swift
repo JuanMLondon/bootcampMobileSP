@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @ObservedObject var viewModel = LoginViewModel()
+    @StateObject var viewModel = LoginViewModel()
     @StateObject var authenticated = Authentication()
     @State var isShowingMenuView = false
     
@@ -23,6 +23,9 @@ struct LoginView: View {
                             .resizable(resizingMode: .stretch)
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 240.0, height: 80.0)
+                            //.onTapGesture {
+                                //UIApplication.shared.inputView?.endEditing(true)
+                            //}
                         
                         Text("Ingresa tus datos aquí")
                             .foregroundColor(Color("violet_UI"))
@@ -35,6 +38,7 @@ struct LoginView: View {
                     }
                     //.navigationBarTitle("Vista Inicial", displayMode: .inline)
                     .padding(.horizontal, 55)
+                    .environmentObject(viewModel)
                     .disabled(viewModel.isLoggingIn)
                     
                     Spacer()
@@ -44,8 +48,8 @@ struct LoginView: View {
                         if viewModel.isLoggingIn {
                             ProgressView()
                                 .progressViewStyle(.circular)
+                                .environmentObject(viewModel)
                         } else {
-                            
                             
                             RoundedRectangle(cornerRadius: 15)
                                 .fill(Color("violet_UI"))
@@ -55,6 +59,7 @@ struct LoginView: View {
                                     
                                     NavButton1(viewModel: viewModel)
                                         .foregroundColor(Color("sophosBC"))
+                                        .environmentObject(viewModel)
                                 })
                                 .padding(.vertical, 3)
                             
@@ -72,6 +77,7 @@ struct LoginView: View {
                                     
                                     NavButton2(viewModel: viewModel)
                                         .foregroundColor(Color("violet_UI"))
+                                        .environmentObject(viewModel)
                                 })
                                 .padding(.vertical, 3)
                             
@@ -97,7 +103,7 @@ struct ContentView_Previews: PreviewProvider {
 
 struct TextFieldRoundedFrame: View {
     
-    @ObservedObject var viewModel = LoginViewModel()
+    @StateObject var viewModel = LoginViewModel()
     
     var body: some View {
         RoundedRectangle(cornerRadius: 15)
@@ -118,6 +124,7 @@ struct TextFieldRoundedFrame: View {
                     .disableAutocorrection(true)
                     .foregroundColor(Color("violet_UI"))
                     .padding(.horizontal, 5)
+                    .environmentObject(viewModel)
             })
             .padding(.vertical, 3)
     }
@@ -125,7 +132,7 @@ struct TextFieldRoundedFrame: View {
 
 struct SecTextFieldRoundedFrame: View {
     
-    @ObservedObject var viewModel = LoginViewModel()
+    @StateObject var viewModel = LoginViewModel()
     @State var isSecured: Bool = true
     
     var body: some View {
@@ -145,6 +152,7 @@ struct SecTextFieldRoundedFrame: View {
                     .disableAutocorrection(true)
                     .foregroundColor(Color("violet_UI"))
                     .padding(.horizontal, 5)
+                    .environmentObject(viewModel)
                 
                 Button(action: {
                     isSecured.toggle()

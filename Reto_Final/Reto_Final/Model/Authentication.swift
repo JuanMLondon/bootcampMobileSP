@@ -12,9 +12,12 @@ class Authentication: ObservableObject {
     @ObservedObject var networkService = NetworkService()
     
     @Published var authenticated: Bool = false
-    @Published var userName: String = "Juan"
+    @Published var userName: String = ""
     
     func updateState() {
-        self.authenticated = self.networkService.success
+        self.authenticated = networkService.success // No funciona
+        print("Athenticated updated?: \(self.authenticated)")
+        self.userName = networkService.user?.nombre ?? "Juan" // No funciona
+        print("Nombre: \(self.userName)")
     }
 }
