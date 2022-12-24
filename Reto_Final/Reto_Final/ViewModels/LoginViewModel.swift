@@ -40,6 +40,10 @@ class LoginViewModel: ObservableObject {
             }
         return false
     }
+    
+    func showPasswordToggle() -> Void{
+        
+    }
 }
 
 struct NavButton1: View {
@@ -63,7 +67,7 @@ struct NavButton1: View {
                 
                 self.update = authentication.isAuthenticated()
                 
-                self.isShowingMenuView = self.update
+                self.isShowingMenuView = update
             }
             
         }

@@ -133,35 +133,68 @@ struct TextFieldRoundedFrame: View {
 struct SecTextFieldRoundedFrame: View {
     
     @StateObject var viewModel = LoginViewModel()
-    @State var isSecured: Bool = true
+    @State var isPasswordSecured: Bool = true
+    @FocusState var inFocus: Field?
+    
+    enum Field {
+        case secure, plain
+    }
     
     var body: some View {
-        RoundedRectangle(cornerRadius: 15)
-            .fill(Color("sophosBC"))
-            .frame(height: 45.0)
-            .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color("violet_UI"), lineWidth: 2))
-            .overlay(HStack {
-                Image(systemName: "lock.circle")
-                    .foregroundColor(Color("violet_UI"))
-                    .padding(.leading, 15)
-                
-                Divider()
-                    .frame(width: 10)
-                
-                SecureField("Clave", text: $viewModel.password)
-                    .disableAutocorrection(true)
-                    .foregroundColor(Color("violet_UI"))
-                    .padding(.horizontal, 5)
-                    .environmentObject(viewModel)
-                
-                Button(action: {
-                    isSecured.toggle()
-                }) {
-                    Image(systemName: self.isSecured ? "eye.slash" : "eye")
+        
+        if isPasswordSecured {
+            RoundedRectangle(cornerRadius: 15)
+                .fill(Color("sophosBC"))
+                .frame(height: 45.0)
+                .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color("violet_UI"), lineWidth: 2))
+                .overlay(HStack {
+                    Image(systemName: "lock.circle")
                         .foregroundColor(Color("violet_UI"))
-                        .padding(.trailing, 15)
-                }
-            })
-            .padding(.vertical, 3)
+                        .padding(.leading, 15)
+                    
+                    Divider()
+                        .frame(width: 10)
+                    
+                    SecureField("Clave", text: $viewModel.password)
+                        .disableAutocorrection(true)
+                        .foregroundColor(Color("violet_UI"))
+                        .padding(.horizontal, 5)
+                        .focused($inFocus, equals: .secure)
+                    
+                    Button(action: { isPasswordSecured.toggle() },label: {
+                        Image(systemName: self.isPasswordSecured ? "eye.slash" : "eye")
+                            .foregroundColor(Color("violet_UI"))
+                            .padding(.trailing, 15)
+                    })
+                })
+                .padding(.vertical, 3)
+        } else {
+            RoundedRectangle(cornerRadius: 15)
+                .fill(Color("sophosBC"))
+                .frame(height: 45.0)
+                .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color("violet_UI"), lineWidth: 2))
+                .overlay(HStack {
+                    Image(systemName: "lock.circle")
+                        .foregroundColor(Color("violet_UI"))
+                        .padding(.leading, 15)
+                    
+                    Divider()
+                        .frame(width: 10)
+                    
+                    TextField("Clave", text: $viewModel.password)
+                        .disableAutocorrection(true)
+                        .foregroundColor(Color("violet_UI"))
+                        .padding(.horizontal, 5)
+                        .focused($inFocus, equals: .plain)
+                    
+                    Button(action: { isPasswordSecured.toggle() },label: {
+                        Image(systemName: self.isPasswordSecured ? "eye.slash" : "eye")
+                            .foregroundColor(Color("violet_UI"))
+                            .padding(.trailing, 15)
+                    })
+                })
+                .padding(.vertical, 3)
+            
+        }
     }
 }

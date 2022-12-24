@@ -15,8 +15,10 @@ struct SendDocumentsView: View {
         ZStack {
             Color("sophosBC")
             Text("Prepare a document for submission")
+                .navigationBarTitle("Send Documents", displayMode: .inline)
         }
         .edgesIgnoringSafeArea(.all)
+        
     }
 }
 

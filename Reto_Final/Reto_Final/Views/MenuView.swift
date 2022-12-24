@@ -10,20 +10,19 @@ import SwiftUI
 struct MenuView: View {
     
     @ObservedObject var viewModel: MenuViewModel
-    @StateObject var authenticated = Authentication()
+    @StateObject var authentication = Authentication()
     
     var body: some View {
         ZStack{
             Color("sophosBC")
             VStack{
                 HStack {
-                    Text("\(authenticated.user.nombre)")
+                    Text("Juan Manuel\(viewModel.getName())")
                         .fontWeight(.bold)
-                        .frame(width: 225)
-                        .font(.largeTitle)
+                        .frame(width: 190)
+                        .font(.title)
                         .foregroundColor(Color("violet_UI"))
                         .multilineTextAlignment(.leading)
-                        .environmentObject(authenticated)
                     
                     Spacer()
                         .frame(maxWidth: 300, maxHeight: 40)
@@ -37,7 +36,7 @@ struct MenuView: View {
                             .frame(width: 40.0, height: 36.0)
                     }
                 }
-                .padding(.horizontal, 25)
+                .padding(.horizontal, 20)
                 .padding(.top, 55)
                
                 ZStack {
@@ -78,7 +77,7 @@ struct MenuView: View {
         }
         .edgesIgnoringSafeArea(.all)
         .onAppear(perform: {
-            authenticated.getLoggedInUser()
+            //authentication.getLoggedInUser()
         })
     }
 }
