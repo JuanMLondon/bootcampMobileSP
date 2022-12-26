@@ -10,14 +10,13 @@ import SwiftUI
 struct MenuView: View {
     
     @ObservedObject var viewModel: MenuViewModel
-    @StateObject var authentication = Authentication()
     
     var body: some View {
         ZStack{
             Color("sophosBC")
             VStack{
                 HStack {
-                    Text("Juan Manuel\(viewModel.getName())")
+                    Text(viewModel.getLoggedUser().nombre)
                         .fontWeight(.bold)
                         .frame(width: 190)
                         .font(.title)
@@ -77,7 +76,7 @@ struct MenuView: View {
         }
         .edgesIgnoringSafeArea(.all)
         .onAppear(perform: {
-            //authentication.getLoggedInUser()
+
         })
     }
 }

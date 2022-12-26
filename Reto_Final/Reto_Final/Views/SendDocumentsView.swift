@@ -14,11 +14,42 @@ struct SendDocumentsView: View {
     var body: some View {
         ZStack {
             Color("sophosBC")
-            Text("Prepare a document for submission")
-                .navigationBarTitle("Send Documents", displayMode: .inline)
+                .toolbar {
+                    ToolbarItem(placement: .principal, content: {
+                        VStack{
+                            
+                            HStack{
+                                Spacer()
+                                
+                                Button {
+                                    print("Menu button was tapped")
+                                } label: {
+                                    Image("menu_icon")
+                                        .resizable(resizingMode: .stretch)
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 40.0, height: 36.0)
+                                        .padding(.leading, 40)
+                                }
+                            }
+                            
+                            HStack{
+                                Text("Envío de documentación")
+                                //navigationBarTitle("Menú", displayMode: .inline)
+                                    .font(.title3)
+                                    .fontWeight(.bold)
+                                    .multilineTextAlignment(.leading)
+                                Spacer()
+                            }
+                        }
+                        .padding(.top, 55)
+                    })
+                }
+                .navigationTitle("Title")
+                .onAppear() {
+                    
+                }
         }
         .edgesIgnoringSafeArea(.all)
-        
     }
 }
 

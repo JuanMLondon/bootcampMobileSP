@@ -14,6 +14,6 @@ struct UserData: Decodable, Identifiable {
     let apellido: String
     let acceso: Bool
     let admin: Bool
-    
+
 }
 

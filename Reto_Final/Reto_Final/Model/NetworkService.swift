@@ -7,16 +7,18 @@
 
 import Foundation
 
-class NetworkService {
+class NetworkService: ObservableObject {
     
-    static let shared: NetworkService = NetworkService()
+    static let shared = NetworkService()
     
-    var working: Bool = false
-    var failed: Bool = false
-    var success: Bool = false
-    var loggedInUser: UserModel?
+    @Published var working: Bool?
+    @Published var failed: Bool = false
+    @Published var success: Bool = false
+    @Published var loggedInUser: UserModel?
     
-    func login(email: String, password: String/*, completion: @escaping (Bool) -> ()*/) {
+    init() { }
+    
+    func login(email: String, password: String, completion: @escaping(Bool) -> Void) {
         
         var request = URLRequest(url: URL(string: "https://6w33tkx4f9.execute-api.us-east-1.amazonaws.com/RS_Usuarios?idUsuario=\(email)&clave=\(password)") ?? URL(string: "https://www.google.com")!)
         
@@ -25,47 +27,52 @@ class NetworkService {
         request.httpMethod = "GET"
         
         let task = URLSession.shared.dataTask(with: request, completionHandler: { [weak self] data, response, error in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            //DispatchQueue.main.async {
+
                 if error != nil {
                     self?.working = false
                     self?.failed = true
                     self?.success = false
                     
+                    completion(false)
+                    
                 } else if let safeData = data {
-                    do {
-                        
-                        let loginResponse = try JSONDecoder().decode(UserData.self, from: safeData)
-                        
-                        self?.working = false
-                        self?.failed = false
-                        self?.success = true
-                        
-                        self?.loggedInUser = self?.parseJSON(safeData)
-                        Authentication().isAuthenticated()
-                        
-                        print("Response ok: \((response as! HTTPURLResponse).statusCode)")
-                        print(loginResponse)
-                        
-                        
-                    } catch {
-                        
-                        self?.working = false
-                        self?.failed = true
-                        self?.success = false
-                        
-                        print("Response catch: \((response as! HTTPURLResponse).statusCode)")
-                        print("Unable to decode response \(error)")
+                    DispatchQueue.main.async {
+                        do {
+                            
+                            let loginResponse = try JSONDecoder().decode(UserData.self, from: safeData)
+                            
+                            self?.working = false
+                            self?.failed = false
+                            self?.success = true
+                            
+                            self?.loggedInUser = self?.parseJSON(safeData, completion: { [ weak self ] success in
+                                self!.loggedInUser = (success != nil) ? self?.loggedInUser : UserModel(id: "", nombre: "", apellido: "", acceso: false, admin: false)
+                            })
+                            
+                            print("User name test (from networkService.login): \(String(describing: self!.loggedInUser!.nombre))")
+                            print("Response ok: \((response as! HTTPURLResponse).statusCode)")
+                            print(loginResponse)
+                            
+                            completion(true)
+                            
+                        } catch {
+                            
+                            self?.working = false
+                            self?.failed = true
+                            self?.success = false
+                            
+                            print("Response catch: \((response as! HTTPURLResponse).statusCode)")
+                            print("Unable to decode response \(error)")
+                            
+                            completion(false)
+                        }
                     }
                 }
-                self?.working = false
-            }
         })
         task.resume()
-    //completion()
     }
     
-    func parseJSON(_ userData: Data) -> UserModel? {
+    func parseJSON(_ userData: Data, completion: @escaping(UserModel?) -> Void) -> UserModel? {
         let decoder = JSONDecoder()
         do{
             let decodedData = try decoder.decode(UserData.self, from: userData)
@@ -78,12 +85,19 @@ class NetworkService {
             
             let parsedUser = UserModel(id: id, nombre: nombre, apellido: apellido, acceso: acceso, admin: admin)
             
+            self.loggedInUser = parsedUser
+            
+            print("Parsed user name test: \(parsedUser.nombre)")
+            completion(parsedUser)
             return parsedUser
             
         } catch {
+            completion(nil)
             return nil
         }
     }
     
+    func getLoggedInUser() -> UserModel {
+        return loggedInUser!
+    }
 }
-

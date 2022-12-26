@@ -9,13 +9,9 @@ import SwiftUI
 
 class MenuViewModel: ObservableObject {
     
-    @ObservedObject var authentication = Authentication()
-    @Published var userName: String = ""
+    @ObservedObject var networkService = NetworkService.shared.self
     
-    func getName() -> String {
-        DispatchQueue.main.async {
-            self.userName = self.authentication.getLoggedInUser().nombre
-        }
-        return self.userName
+    func getLoggedUser() -> UserModel{
+        return networkService.getLoggedInUser()
     }
 }

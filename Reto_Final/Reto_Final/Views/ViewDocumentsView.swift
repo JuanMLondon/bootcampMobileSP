@@ -15,7 +15,40 @@ struct ViewDocumentsView: View {
         ZStack {
             //Color("sophosBC")
             Color.green
-            Text("View a list of documents")
+                .toolbar {
+                    ToolbarItem(placement: .principal, content: {
+                        VStack{
+                            
+                            HStack{
+                                Spacer()
+                                
+                                Button {
+                                    print("Menu button was tapped")
+                                } label: {
+                                    Image("menu_icon")
+                                        .resizable(resizingMode: .stretch)
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 40.0, height: 36.0)
+                                        .padding(.leading, 40)
+                                }
+                            }
+                            
+                            HStack{
+                                Text("Ver documentos")
+                                //navigationBarTitle("Menú", displayMode: .inline)
+                                    .font(.title3)
+                                    .fontWeight(.bold)
+                                    .multilineTextAlignment(.leading)
+                                Spacer()
+                            }
+                        }
+                        .padding(.top, 55)
+                    })
+                }
+                .navigationTitle("Title")
+                .onAppear() {
+                    
+                }
         }
         .edgesIgnoringSafeArea(.all)
     }

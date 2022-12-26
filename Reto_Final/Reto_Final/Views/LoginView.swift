@@ -8,10 +8,26 @@
 import SwiftUI
 
 struct LoginView: View {
+    @Environment(\.presentationMode) var presentationMode
     
     @StateObject var viewModel = LoginViewModel()
-    @StateObject var authenticated = Authentication()
     @State var isShowingMenuView = false
+    
+    func navButton(_ buttonLabel: String) -> Button<Text> {
+        return Button(buttonLabel) {
+            
+            self.viewModel.login(email: viewModel.email, password: viewModel.password)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self.viewModel.updateBusyStatus()
+                self.isShowingMenuView = self.viewModel.isLoggedIn
+                self.viewModel.saveUserSettings()
+                
+                let usedEmail = viewModel.defaults?.string(forKey: "LastUserEmail")
+                print("\(usedEmail!) was saved.")
+            }
+        }
+    }
     
     var body: some View {
         NavigationView {
@@ -23,9 +39,6 @@ struct LoginView: View {
                             .resizable(resizingMode: .stretch)
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 240.0, height: 80.0)
-                            //.onTapGesture {
-                                //UIApplication.shared.inputView?.endEditing(true)
-                            //}
                         
                         Text("Ingresa tus datos aquí")
                             .foregroundColor(Color("violet_UI"))
@@ -36,6 +49,9 @@ struct LoginView: View {
                         TextFieldRoundedFrame(viewModel: viewModel)
                         SecTextFieldRoundedFrame(viewModel: viewModel)
                     }
+                    //.onTapGesture {
+                        //UIApplication.shared.inputView?.endEditing(true)
+                    //}
                     //.navigationBarTitle("Vista Inicial", displayMode: .inline)
                     .padding(.horizontal, 55)
                     .environmentObject(viewModel)
@@ -48,7 +64,6 @@ struct LoginView: View {
                         if viewModel.isLoggingIn {
                             ProgressView()
                                 .progressViewStyle(.circular)
-                                .environmentObject(viewModel)
                         } else {
                             
                             RoundedRectangle(cornerRadius: 15)
@@ -57,9 +72,17 @@ struct LoginView: View {
                                 .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color("violet_UI"), lineWidth: 2))
                                 .overlay(HStack {
                                     
-                                    NavButton1(viewModel: viewModel)
-                                        .foregroundColor(Color("sophosBC"))
-                                        .environmentObject(viewModel)
+                                    NavigationLink(destination: MenuView(viewModel: MenuViewModel()).navigationBarBackButtonHidden(true), isActive: $isShowingMenuView, label: {
+                                        
+                                        navButton("Ingresar")
+                                            .foregroundColor(Color("sophosBC"))
+                                            .foregroundColor(Color("sophosBC"))
+                                            .environmentObject(viewModel)
+                                            .alert(isPresented: $viewModel.hasError) {
+                                                Alert(title: Text("Datos no validos"), message: Text("El usuario o la contraseña son incorrectos."), dismissButton: .default(Text("Intente nuevamente")))
+                                            }
+                                    })
+                                    .disabled(viewModel.isLoggedIn)
                                 })
                                 .padding(.vertical, 3)
                             
@@ -73,14 +96,23 @@ struct LoginView: View {
                                     Image(systemName: "touchid")
                                         .foregroundColor(Color("violet_UI"))
                                         .padding(.leading, 15)
+                                    
                                     Spacer()
                                     
-                                    NavButton2(viewModel: viewModel)
-                                        .foregroundColor(Color("violet_UI"))
-                                        .environmentObject(viewModel)
+                                    NavigationLink(destination: MenuView(viewModel: MenuViewModel()).navigationBarBackButtonHidden(true), isActive: $isShowingMenuView, label: {
+                                        
+                                        navButton("Ingresar con huella")
+                                            .padding(.trailing, 105)
+                                            .foregroundColor(Color("violet_UI"))
+                                            .environmentObject(viewModel)
+                                        
+                                            .alert(isPresented: $viewModel.hasError) {
+                                                Alert(title: Text("Datos no validos"), message: Text("El usuario o la contraseña son incorrectos."), dismissButton: .default(Text("Intente nuevamente")))
+                                            }
+                                    })
+                                    .disabled(viewModel.isLoggedIn)
                                 })
                                 .padding(.vertical, 3)
-                            
                         }
                     }
                     .padding(.horizontal, 55)
@@ -89,6 +121,10 @@ struct LoginView: View {
             }
             .edgesIgnoringSafeArea(.all)
         }
+        .onAppear(perform: {
+            let usedEmail = viewModel.defaults?.string(forKey: "LastUserEmail")
+            print("Last used email: \(usedEmail ?? "Not found.")")
+        })
     }
 }
 
@@ -194,7 +230,6 @@ struct SecTextFieldRoundedFrame: View {
                     })
                 })
                 .padding(.vertical, 3)
-            
         }
     }
 }

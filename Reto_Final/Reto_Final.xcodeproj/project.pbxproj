@@ -12,7 +12,6 @@
 		A41FE3EF294A21CF0098CA77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A41FE3EE294A21CF0098CA77 /* Assets.xcassets */; };
 		A41FE3F2294A21CF0098CA77 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A41FE3F1294A21CF0098CA77 /* Preview Assets.xcassets */; };
 		A43C244C294FBB49003F0277 /* OfficesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43C244B294FBB49003F0277 /* OfficesData.swift */; };
-		A43D256B2952B28400F3E8D6 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43D256A2952B28400F3E8D6 /* Authentication.swift */; };
 		A4400D8C294F56410042D671 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4400D8B294F56410042D671 /* MenuViewModel.swift */; };
 		A4400D8E294F56A70042D671 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4400D8D294F56A70042D671 /* UserData.swift */; };
 		A4400D91294F57450042D671 /* SendDocumentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4400D90294F57450042D671 /* SendDocumentsView.swift */; };
@@ -34,7 +33,6 @@
 		A41FE3EE294A21CF0098CA77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A41FE3F1294A21CF0098CA77 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A43C244B294FBB49003F0277 /* OfficesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficesData.swift; sourceTree = "<group>"; };
-		A43D256A2952B28400F3E8D6 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		A4400D8B294F56410042D671 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		A4400D8D294F56A70042D671 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		A4400D90294F57450042D671 /* SendDocumentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDocumentsView.swift; sourceTree = "<group>"; };
@@ -127,7 +125,6 @@
 				A491F2A42952A84300EF1FC0 /* NetworkService.swift */,
 				A4400D8D294F56A70042D671 /* UserData.swift */,
 				A43C244B294FBB49003F0277 /* OfficesData.swift */,
-				A43D256A2952B28400F3E8D6 /* Authentication.swift */,
 				A453F7DD2955041100A31174 /* UserModel.swift */,
 			);
 			path = Model;
@@ -211,7 +208,6 @@
 				A41FE3ED294A21CD0098CA77 /* LoginView.swift in Sources */,
 				A48F46FA294BB8E100F2F8C3 /* MenuView.swift in Sources */,
 				A4400D8C294F56410042D671 /* MenuViewModel.swift in Sources */,
-				A43D256B2952B28400F3E8D6 /* Authentication.swift in Sources */,
 				A43C244C294FBB49003F0277 /* OfficesData.swift in Sources */,
 				A453F7DE2955041100A31174 /* UserModel.swift in Sources */,
 				A4CCBF8F294E3007009DBE5F /* LoginViewModel.swift in Sources */,
