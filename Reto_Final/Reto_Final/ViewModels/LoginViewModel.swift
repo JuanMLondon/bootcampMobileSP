@@ -14,7 +14,7 @@ class LoginViewModel: ObservableObject {
     @Published var hasError: Bool = false
     @Published var isLoggingIn: Bool = false
     @Published var isLoggedIn: Bool = false
-    @Published var defaults: UserDefaults?
+    @Published var defaults = UserDefaults()
     
     var email: String = ""
     var password: String  = ""
@@ -24,7 +24,9 @@ class LoginViewModel: ObservableObject {
             self.hasError = true
             return
         } else {
-            self.isLoggingIn = true
+            DispatchQueue.main.async {
+                self.isLoggingIn = true
+            }
             networkService.login(email: email, password: password, completion: { [ weak self ] success in
                 DispatchQueue.main.async {
                     self!.isLoggedIn = success ? true : false;
@@ -45,10 +47,17 @@ class LoginViewModel: ObservableObject {
     
     func saveUserSettings() {
         defaults = UserDefaults.standard
-        defaults!.set(email, forKey: "LastUserEmail")
-        defaults!.set(true, forKey: "UseTouchID")
-        defaults!.set(Date(), forKey: "LastRun")
-        print("Saving: \(defaults?.string(forKey: "LastUserEmail")! ?? "")")
+        defaults.set(email, forKey: "LastUserEmail")
+        defaults.set(password, forKey: "BMASP")
+        defaults.set(true, forKey: "UseTouchID")
+        defaults.set(Date(), forKey: "LastRun")
+        print("Saving: \(String(describing: defaults.string(forKey: "LastUserEmail")))")
+    }
+    
+    func retrieveUserSettings() {
+        self.email = self.defaults.string(forKey: "LastUserEmail") ?? ""
     }
 }
+
+
 

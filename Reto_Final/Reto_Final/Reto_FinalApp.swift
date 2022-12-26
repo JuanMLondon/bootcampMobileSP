@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct Reto_FinalApp: App {
     
-    @Environment(\.presentationMode) var presentationMode
+    //@Environment(\.presentationMode) var presentationMode
     @StateObject var networkService = NetworkService.shared.self
     
     var body: some Scene {

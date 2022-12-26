@@ -5,13 +5,15 @@
 //  Created by JML on 14/12/22.
 //
 
+import LocalAuthentication
 import SwiftUI
 
 struct LoginView: View {
-    @Environment(\.presentationMode) var presentationMode
+    //@Environment(\.presentationMode) var presentationMode
     
     @StateObject var viewModel = LoginViewModel()
     @State var isShowingMenuView = false
+    @State private var isUnlocked = false
     
     func navButton(_ buttonLabel: String) -> Button<Text> {
         return Button(buttonLabel) {
@@ -23,10 +25,54 @@ struct LoginView: View {
                 self.isShowingMenuView = self.viewModel.isLoggedIn
                 self.viewModel.saveUserSettings()
                 
-                let usedEmail = viewModel.defaults?.string(forKey: "LastUserEmail")
-                print("\(usedEmail!) was saved.")
+                print("\(String(describing: viewModel.defaults.string(forKey: "LastUserEmail")!)) was saved.")
             }
         }
+    }
+    
+    func navButtonBiomAuth(_ buttonLabel: String) -> Button<Text> {
+        return Button(buttonLabel) {
+            
+            self.bioMAuthenticate()
+        }
+    }
+    
+    func bioMAuthenticate() {
+        let context = LAContext()
+        var error: NSError?
+        
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            let reason = "Para acceder a la aplicación utilizando datos biométricos."
+            
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason, reply: { success, authenticationError in
+                if success {
+                    // authenticated successfully
+                    print("Did biometric authentication succeeded?: \(isUnlocked)")
+                    isUnlocked = true
+                    
+                    // <<<<<<<<< temporary >>>>>>>>>>
+                    self.viewModel.password = self.viewModel.defaults.string(forKey: "BMASP") ?? ""
+                    
+                    self.viewModel.login(email: viewModel.email, password: viewModel.password)
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        self.viewModel.updateBusyStatus()
+                        self.isShowingMenuView = self.viewModel.isLoggedIn
+                        self.viewModel.saveUserSettings()
+                        
+                        print("\(String(describing: viewModel.defaults.string(forKey: "LastUserEmail")!)) was saved.")
+                    }
+                    
+                } else {
+                    // there was a problem
+                    print("Did biometric authentication succeeded?: \(isUnlocked)")
+                }
+            })
+        } else {
+            // no biometrics
+            print("No biometrics enrolled")
+        }
+        
     }
     
     var body: some View {
@@ -46,8 +92,10 @@ struct LoginView: View {
                         Spacer()
                             .frame(height: 5)
                         
-                        TextFieldRoundedFrame(viewModel: viewModel)
+                        EmailFieldRoundedFrame(viewModel: viewModel)
+
                         SecTextFieldRoundedFrame(viewModel: viewModel)
+                        
                     }
                     //.onTapGesture {
                         //UIApplication.shared.inputView?.endEditing(true)
@@ -101,11 +149,10 @@ struct LoginView: View {
                                     
                                     NavigationLink(destination: MenuView(viewModel: MenuViewModel()).navigationBarBackButtonHidden(true), isActive: $isShowingMenuView, label: {
                                         
-                                        navButton("Ingresar con huella")
+                                        navButtonBiomAuth("Ingresar con huella")
                                             .padding(.trailing, 105)
                                             .foregroundColor(Color("violet_UI"))
                                             .environmentObject(viewModel)
-                                        
                                             .alert(isPresented: $viewModel.hasError) {
                                                 Alert(title: Text("Datos no validos"), message: Text("El usuario o la contraseña son incorrectos."), dismissButton: .default(Text("Intente nuevamente")))
                                             }
@@ -122,8 +169,8 @@ struct LoginView: View {
             .edgesIgnoringSafeArea(.all)
         }
         .onAppear(perform: {
-            let usedEmail = viewModel.defaults?.string(forKey: "LastUserEmail")
-            print("Last used email: \(usedEmail ?? "Not found.")")
+            print("Last used email: \(viewModel.defaults.string(forKey: "LastUserEmail") ?? "Not found.")")
+            self.viewModel.retrieveUserSettings()
         })
     }
 }
@@ -166,6 +213,55 @@ struct TextFieldRoundedFrame: View {
     }
 }
 
+struct EmailFieldRoundedFrame: View {
+    
+    @StateObject var viewModel = LoginViewModel()
+    @State var isEmailValid : Bool = true
+    var eValidator = EmailValidator()
+    
+    
+    var body: some View {
+        RoundedRectangle(cornerRadius: 15)
+            .fill(Color("sophosBC"))
+            .frame(height: 45.0)
+            .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color("violet_UI"), lineWidth: 2))
+            .overlay(HStack {
+                Image(systemName: "person.circle.fill")
+                    .foregroundColor(Color("violet_UI"))
+                    .padding(.leading, 15)
+                
+                Divider()
+                    .frame(width: 8)
+                
+                TextField("Email", text: $viewModel.email, onEditingChanged: { (isChanged) in
+                    if !isChanged {
+                        if eValidator.validateEmailString(self.viewModel.email) {
+                            self.isEmailValid = true
+                        } else {
+                            self.isEmailValid = false
+                            self.viewModel.email = ""
+                        }
+                    }
+                })
+                .autocapitalization(.none)
+                .keyboardType(.emailAddress)
+                .disableAutocorrection(true)
+                .foregroundColor(Color("violet_UI"))
+                .padding(.horizontal, 5)
+                //.modifier(ClearButton(text: $viewModel.email))
+                
+                if !self.isEmailValid {
+                    Text("El correo no es válido")
+                        .font(.caption)
+                        .foregroundColor(Color.red)
+                        .padding(.trailing, 7)
+                }
+            })
+            .padding(.vertical, 3)
+            .disabled(viewModel.isLoggedIn)
+    }
+}
+
 struct SecTextFieldRoundedFrame: View {
     
     @StateObject var viewModel = LoginViewModel()
@@ -192,6 +288,7 @@ struct SecTextFieldRoundedFrame: View {
                         .frame(width: 10)
                     
                     SecureField("Clave", text: $viewModel.password)
+                        .autocapitalization(.none)
                         .disableAutocorrection(true)
                         .foregroundColor(Color("violet_UI"))
                         .padding(.horizontal, 5)
@@ -204,6 +301,8 @@ struct SecTextFieldRoundedFrame: View {
                     })
                 })
                 .padding(.vertical, 3)
+                .disabled(viewModel.isLoggedIn)
+            
         } else {
             RoundedRectangle(cornerRadius: 15)
                 .fill(Color("sophosBC"))
@@ -230,6 +329,7 @@ struct SecTextFieldRoundedFrame: View {
                     })
                 })
                 .padding(.vertical, 3)
+                .disabled(viewModel.isLoggedIn)
         }
     }
 }

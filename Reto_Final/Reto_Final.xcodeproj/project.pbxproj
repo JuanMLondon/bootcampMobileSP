@@ -11,6 +11,8 @@
 		A41FE3ED294A21CD0098CA77 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41FE3EC294A21CD0098CA77 /* LoginView.swift */; };
 		A41FE3EF294A21CF0098CA77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A41FE3EE294A21CF0098CA77 /* Assets.xcassets */; };
 		A41FE3F2294A21CF0098CA77 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A41FE3F1294A21CF0098CA77 /* Preview Assets.xcassets */; };
+		A43AD1D12959F948001A8754 /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43AD1D02959F948001A8754 /* EmailValidator.swift */; };
+		A43AD1D32959F982001A8754 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43AD1D22959F982001A8754 /* UserSettings.swift */; };
 		A43C244C294FBB49003F0277 /* OfficesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43C244B294FBB49003F0277 /* OfficesData.swift */; };
 		A4400D8C294F56410042D671 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4400D8B294F56410042D671 /* MenuViewModel.swift */; };
 		A4400D8E294F56A70042D671 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4400D8D294F56A70042D671 /* UserData.swift */; };
@@ -32,6 +34,9 @@
 		A41FE3EC294A21CD0098CA77 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A41FE3EE294A21CF0098CA77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A41FE3F1294A21CF0098CA77 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A43AD1D02959F948001A8754 /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
+		A43AD1D22959F982001A8754 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		A43AD1D4295A1C7D001A8754 /* Reto-Final-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Reto-Final-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A43C244B294FBB49003F0277 /* OfficesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficesData.swift; sourceTree = "<group>"; };
 		A4400D8B294F56410042D671 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		A4400D8D294F56A70042D671 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
@@ -101,6 +106,7 @@
 		A41FE3E9294A21CD0098CA77 /* Reto_Final */ = {
 			isa = PBXGroup;
 			children = (
+				A43AD1D4295A1C7D001A8754 /* Reto-Final-Info.plist */,
 				A41FE3EA294A21CD0098CA77 /* Reto_FinalApp.swift */,
 				A401DC5F2952790500515B01 /* Views */,
 				A401DC602952791C00515B01 /* ViewModels */,
@@ -126,6 +132,8 @@
 				A4400D8D294F56A70042D671 /* UserData.swift */,
 				A43C244B294FBB49003F0277 /* OfficesData.swift */,
 				A453F7DD2955041100A31174 /* UserModel.swift */,
+				A43AD1D02959F948001A8754 /* EmailValidator.swift */,
+				A43AD1D22959F982001A8754 /* UserSettings.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -213,8 +221,10 @@
 				A4CCBF8F294E3007009DBE5F /* LoginViewModel.swift in Sources */,
 				A491F2A52952A84300EF1FC0 /* NetworkService.swift in Sources */,
 				A4400D93294F57690042D671 /* SendDocumentsViewModel.swift in Sources */,
+				A43AD1D12959F948001A8754 /* EmailValidator.swift in Sources */,
 				A41FE3EB294A21CD0098CA77 /* Reto_FinalApp.swift in Sources */,
 				A4400D8E294F56A70042D671 /* UserData.swift in Sources */,
+				A43AD1D32959F982001A8754 /* UserSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +356,8 @@
 				DEVELOPMENT_TEAM = 5588KM8TT5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Reto-Final-Info.plist";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Para acceder a la aplicación utilizando datos biométricos.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -376,6 +388,8 @@
 				DEVELOPMENT_TEAM = 5588KM8TT5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Reto-Final-Info.plist";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Para acceder a la aplicación utilizando datos biométricos.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
