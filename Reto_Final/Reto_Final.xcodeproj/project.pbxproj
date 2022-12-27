@@ -26,6 +26,7 @@
 		A48F46FA294BB8E100F2F8C3 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F46F9294BB8E100F2F8C3 /* MenuView.swift */; };
 		A491F2A52952A84300EF1FC0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A491F2A42952A84300EF1FC0 /* NetworkService.swift */; };
 		A4CCBF8F294E3007009DBE5F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CCBF8E294E3007009DBE5F /* LoginViewModel.swift */; };
+		A4F7E1A8295B14AA009FF094 /* DropdownNavigationMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F7E1A7295B14AA009FF094 /* DropdownNavigationMenu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		A48F46F9294BB8E100F2F8C3 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		A491F2A42952A84300EF1FC0 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		A4CCBF8E294E3007009DBE5F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		A4F7E1A7295B14AA009FF094 /* DropdownNavigationMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownNavigationMenu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				A4400D90294F57450042D671 /* SendDocumentsView.swift */,
 				A4400D95294F57ED0042D671 /* ViewDocumentsView.swift */,
 				A4400D9A294F58350042D671 /* OfficesView.swift */,
+				A4F7E1A7295B14AA009FF094 /* DropdownNavigationMenu.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				A4400D98294F580B0042D671 /* ViewDocumentsViewModel.swift in Sources */,
 				A4400D9D294F58760042D671 /* OfficesViewModel.swift in Sources */,
 				A4400D91294F57450042D671 /* SendDocumentsView.swift in Sources */,
+				A4F7E1A8295B14AA009FF094 /* DropdownNavigationMenu.swift in Sources */,
 				A41FE3ED294A21CD0098CA77 /* LoginView.swift in Sources */,
 				A48F46FA294BB8E100F2F8C3 /* MenuView.swift in Sources */,
 				A4400D8C294F56410042D671 /* MenuViewModel.swift in Sources */,

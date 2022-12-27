@@ -10,34 +10,40 @@ import SwiftUI
 struct MenuView: View {
     
     @ObservedObject var viewModel: MenuViewModel
+    @State var viewSelection: String = "MenuView"
     
     var body: some View {
+        
         ZStack{
             Color("sophosBC")
-            VStack{
+
+            VStack {
+                
                 HStack {
-                    Text(viewModel.getLoggedUser().nombre)
+                    Text("Usuario")
+                    //Text(viewModel.getLoggedUser().nombre)
                         .fontWeight(.bold)
-                        .frame(width: 190)
+                        .frame(width: 180)
                         .font(.title)
                         .foregroundColor(Color("violet_UI"))
-                        .multilineTextAlignment(.leading)
                     
                     Spacer()
                         .frame(maxWidth: 300, maxHeight: 40)
                     
-                    Button {
-                        print("Menu button was tapped")
-                    } label: {
-                        Image("menu_icon")
-                            .resizable(resizingMode: .stretch)
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 40.0, height: 36.0)
-                    }
+                        /*.overlay(content: {
+                            VStack{
+                                HStack{
+                                    Spacer()
+                                    DropdownNavigationMenu()
+                                }
+                            }
+                        })*/
+                    
+                    DropdownNavigationMenu()
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 55)
-               
+                
                 ZStack {
                     Image("sophos_image")
                         .resizable(capInsets: EdgeInsets(top: 0.0, leading: 0.0, bottom: 0.0, trailing: 0.0), resizingMode: .stretch)
@@ -76,7 +82,8 @@ struct MenuView: View {
         }
         .edgesIgnoringSafeArea(.all)
         .onAppear(perform: {
-
+            viewModel.currentViewSelection = "MenuView"
+            print("Current view selection state: \(String(describing: viewModel.currentViewSelection))")
         })
     }
 }
@@ -132,7 +139,8 @@ struct menuItemView: View {
 
 struct NavButton: View {
     
-    @State var selection: String? = nil
+    @StateObject var viewModel = MenuViewModel()
+    @State var viewSelection: String? = "MenuView"
     let linkedView: String
     let colorScheme: String
     let lighterButtonColor: String
@@ -143,7 +151,7 @@ struct NavButton: View {
         switch linkedView {
             
         case "SendDocuments":
-            NavigationLink(destination: SendDocumentsView(viewModel: SendDocumentsViewModel()).navigationBarBackButtonHidden(false), tag: linkedView, selection: $selection, label: {
+            NavigationLink(destination: SendDocumentsView(viewModel: SendDocumentsViewModel()).navigationBarBackButtonHidden(false), tag: linkedView, selection: $viewSelection, label: {
                 RoundedRectangle(cornerRadius: 8)
                     .fill(Color(lighterButtonFill))
                     .frame(width: 110, height: 28.0)
@@ -151,7 +159,9 @@ struct NavButton: View {
                     .overlay(HStack {
                         Button("Ingresar") {
                             print("Button 3 tapped")
-                            self.selection = linkedView
+                            viewModel.currentViewSelection = linkedView
+                            viewSelection = viewModel.currentViewSelection
+                            print("Go to view: \(String(describing: viewSelection!))")
                         }
                         .foregroundColor(Color(colorScheme))
                         .padding(.leading, 10)
@@ -166,7 +176,7 @@ struct NavButton: View {
             })
             
         case "ViewDocuments":
-            NavigationLink(destination: ViewDocumentsView(viewModel: ViewDocumentsViewModel()).navigationBarBackButtonHidden(false), tag: linkedView, selection: $selection, label: {
+            NavigationLink(destination: ViewDocumentsView(viewModel: ViewDocumentsViewModel()).navigationBarBackButtonHidden(false), tag: linkedView, selection: $viewSelection, label: {
                 RoundedRectangle(cornerRadius: 8)
                     .fill(Color(lighterButtonFill))
                     .frame(width: 110, height: 28.0)
@@ -174,7 +184,9 @@ struct NavButton: View {
                     .overlay(HStack {
                         Button("Ingresar") {
                             print("Button 3 tapped")
-                            self.selection = linkedView
+                            viewModel.currentViewSelection = linkedView
+                            viewSelection = viewModel.currentViewSelection
+                            print("Go to view: \(String(describing: viewSelection!))")
                         }
                         .foregroundColor(Color(colorScheme))
                         .padding(.leading, 10)
@@ -189,7 +201,7 @@ struct NavButton: View {
             })
             
         case "Offices":
-            NavigationLink(destination: OfficesView(viewModel: OfficesViewModel()).navigationBarBackButtonHidden(false), tag: linkedView, selection: $selection, label: {
+            NavigationLink(destination: OfficesView(viewModel: OfficesViewModel()).navigationBarBackButtonHidden(false), tag: linkedView, selection: $viewSelection, label: {
                 RoundedRectangle(cornerRadius: 8)
                     .fill(Color(lighterButtonFill))
                     .frame(width: 110, height: 28.0)
@@ -197,7 +209,9 @@ struct NavButton: View {
                     .overlay(HStack {
                         Button("Ingresar") {
                             print("Button 3 tapped")
-                            self.selection = linkedView
+                            viewModel.currentViewSelection = linkedView
+                            viewSelection = viewModel.currentViewSelection
+                            print("Go to view: \(String(describing: viewSelection!))")
                         }
                         .foregroundColor(Color(colorScheme))
                         .padding(.leading, 10)
@@ -212,8 +226,7 @@ struct NavButton: View {
             })
             
         default:
-            NavigationLink(destination: MenuView(viewModel: MenuViewModel()).navigationBarBackButtonHidden(false), tag: linkedView, selection: $selection, label: { EmptyView() })
+            NavigationLink(destination: MenuView(viewModel: MenuViewModel()).navigationBarBackButtonHidden(false), tag: linkedView, selection: $viewSelection, label: { EmptyView() })
         }
     }
 }
-
