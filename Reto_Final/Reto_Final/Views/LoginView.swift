@@ -11,7 +11,8 @@ import SwiftUI
 struct LoginView: View {
     //@Environment(\.presentationMode) var presentationMode
     
-    @StateObject var viewModel = LoginViewModel()
+    @ObservedObject var viewModel = LoginViewModel.sharedLoginViewVM.self
+    //@StateObject var viewModel = LoginViewModel()
     @State var isShowingMenuView = false
     @State private var isUnlocked = false
     

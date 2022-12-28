@@ -9,4 +9,8 @@ import Foundation
 
 class OfficesViewModel: ObservableObject {
     
+    static let sharedOfficesViewVM = OfficesViewModel()
+    
+    init() { }
+    
 }

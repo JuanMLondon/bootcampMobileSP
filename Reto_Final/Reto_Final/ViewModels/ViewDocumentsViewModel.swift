@@ -7,6 +7,10 @@
 
 import Foundation
 
-class ViewDocumentsViewModel: ObservableObject{
+class ViewDocumentsViewModel: ObservableObject {
+    
+    static let sharedViewDocumentsViewVM = ViewDocumentsViewModel()
+    
+    init() { }
     
 }

@@ -98,6 +98,6 @@ class NetworkService: ObservableObject {
     }
     
     func getLoggedInUser() -> UserModel {
-        return loggedInUser!
+        return loggedInUser ?? UserModel(id: "", nombre: "Usuario", apellido: "", acceso: false, admin: false)
     }
 }

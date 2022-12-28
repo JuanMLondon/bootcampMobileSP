@@ -9,4 +9,8 @@ import Foundation
 
 class SendDocumentsViewModel: ObservableObject {
     
+    static let sharedSendDocumentsViewVM = SendDocumentsViewModel()
+    
+    init() { }
+    
 }

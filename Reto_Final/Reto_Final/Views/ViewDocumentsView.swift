@@ -9,48 +9,50 @@ import SwiftUI
 
 struct ViewDocumentsView: View {
     
-    @ObservedObject var viewModel: ViewDocumentsViewModel
+    @ObservedObject var viewModel = ViewDocumentsViewModel.sharedViewDocumentsViewVM.self
     
     var body: some View {
-        ZStack {
-            //Color("sophosBC")
-            Color.green
-                .toolbar {
-                    ToolbarItem(placement: .principal, content: {
-                        VStack{
-                            
-                            HStack{
-                                Spacer()
+        
+        NavigationView {
+            ZStack {
+                Color("sophosBC")
+                    .toolbar {
+                        ToolbarItem(placement: .principal, content: {
+                            VStack{
                                 
-                                Button {
-                                    print("Menu button was tapped")
-                                } label: {
-                                    Image("menu_icon")
-                                        .resizable(resizingMode: .stretch)
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(width: 40.0, height: 36.0)
-                                        .padding(.leading, 40)
+                                HStack{
+                                    Spacer()
+                                    
+                                    Button {
+                                        print("Menu button was tapped")
+                                    } label: {
+                                        Image("menu_icon")
+                                            .resizable(resizingMode: .stretch)
+                                            .aspectRatio(contentMode: .fill)
+                                            .frame(width: 40.0, height: 36.0)
+                                            .padding(.leading, 40)
+                                    }
+                                }
+                                
+                                HStack{
+                                    Text("Ver documentos")
+                                    //navigationBarTitle("Menú", displayMode: .inline)
+                                        .font(.title3)
+                                        .fontWeight(.bold)
+                                        .multilineTextAlignment(.leading)
+                                    Spacer()
                                 }
                             }
-                            
-                            HStack{
-                                Text("Ver documentos")
-                                //navigationBarTitle("Menú", displayMode: .inline)
-                                    .font(.title3)
-                                    .fontWeight(.bold)
-                                    .multilineTextAlignment(.leading)
-                                Spacer()
-                            }
-                        }
-                        .padding(.top, 55)
-                    })
-                }
-                .navigationTitle("Title")
-                .onAppear() {
-                    
-                }
+                            .padding(.top, 55)
+                        })
+                    }
+                    .navigationTitle("Title")
+                    .onAppear() {
+                    }
+            }
+            .edgesIgnoringSafeArea(.all)
         }
-        .edgesIgnoringSafeArea(.all)
+        Text("Ver documentos enviados")
     }
 }
 

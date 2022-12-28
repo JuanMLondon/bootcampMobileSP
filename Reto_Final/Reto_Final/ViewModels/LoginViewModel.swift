@@ -9,8 +9,9 @@ import SwiftUI
 
 class LoginViewModel: ObservableObject {
     
-    @ObservedObject var networkService = NetworkService.shared.self
+    static let sharedLoginViewVM = LoginViewModel()
     
+    @ObservedObject var networkService = NetworkService.shared.self
     @Published var hasError: Bool = false
     @Published var isLoggingIn: Bool = false
     @Published var isLoggedIn: Bool = false
@@ -18,6 +19,8 @@ class LoginViewModel: ObservableObject {
     
     var email: String = ""
     var password: String  = ""
+    
+    init() { }
     
     func login(email: String, password: String) {
         if email.isEmpty || password.isEmpty  {

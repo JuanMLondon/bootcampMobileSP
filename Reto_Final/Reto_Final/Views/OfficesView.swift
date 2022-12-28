@@ -9,15 +9,50 @@ import SwiftUI
 
 struct OfficesView: View {
     
-    @ObservedObject var viewModel: OfficesViewModel
+    @ObservedObject var viewModel = OfficesViewModel.sharedOfficesViewVM.self
     
     var body: some View {
-        ZStack {
-            //Color("sophosBC")
-            Color.red
-            Text("View the locations on the map")
+        
+        NavigationView {
+            ZStack {
+                Color("sophosBC")
+                    .toolbar {
+                        ToolbarItem(placement: .principal, content: {
+                            VStack{
+                                
+                                HStack{
+                                    Spacer()
+                                    
+                                    Button {
+                                        print("Menu button was tapped")
+                                    } label: {
+                                        Image("menu_icon")
+                                            .resizable(resizingMode: .stretch)
+                                            .aspectRatio(contentMode: .fill)
+                                            .frame(width: 40.0, height: 36.0)
+                                            .padding(.leading, 40)
+                                    }
+                                }
+                                
+                                HStack{
+                                    Text("Localización oficinas")
+                                    //navigationBarTitle("Menú", displayMode: .inline)
+                                        .font(.title3)
+                                        .fontWeight(.bold)
+                                        .multilineTextAlignment(.leading)
+                                    Spacer()
+                                }
+                            }
+                            .padding(.top, 55)
+                        })
+                    }
+                    .navigationTitle("Title")
+                    .onAppear() {
+                    }
+            }
+            .edgesIgnoringSafeArea(.all)
         }
-        .edgesIgnoringSafeArea(.all)
+        Text("Localización oficinas Sophos")
     }
 }
 
