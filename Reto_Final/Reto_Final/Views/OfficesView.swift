@@ -10,12 +10,14 @@ import SwiftUI
 struct OfficesView: View {
     
     @ObservedObject var viewModel = OfficesViewModel.sharedOfficesViewVM.self
+    @State var viewSelection: String?
     
     var body: some View {
         
-        NavigationView {
+        //NavigationView {
             ZStack {
-                Color("sophosBC")
+                //Color("sophosBC")
+                Color(.systemGreen)
                     .toolbar {
                         ToolbarItem(placement: .principal, content: {
                             VStack{
@@ -26,11 +28,9 @@ struct OfficesView: View {
                                     Button {
                                         print("Menu button was tapped")
                                     } label: {
-                                        Image("menu_icon")
-                                            .resizable(resizingMode: .stretch)
-                                            .aspectRatio(contentMode: .fill)
-                                            .frame(width: 40.0, height: 36.0)
-                                            .padding(.leading, 40)
+                                        
+                                        DropdownNavigationMenu()
+                                        
                                     }
                                 }
                                 
@@ -48,10 +48,13 @@ struct OfficesView: View {
                     }
                     .navigationTitle("Title")
                     .onAppear() {
+                        self.viewModel.currentViewSelection = MenuViewModel().currentViewSelection
+                        print("Current view selection state (from ViewModel): \(String(describing: self.$viewModel.currentViewSelection))")
+                        print("Current view selection state (from View): \(String(describing: self.viewSelection))")
                     }
             }
             .edgesIgnoringSafeArea(.all)
-        }
+        //}
         Text("Localización oficinas Sophos")
     }
 }

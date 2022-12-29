@@ -15,7 +15,6 @@ struct MenuView: View {
     var body: some View {
         
         NavigationView {
-            
             ZStack{
                 Color("sophosBC")
                 
@@ -45,8 +44,6 @@ struct MenuView: View {
                             })
                             .padding(.top, 55)
                             .padding(.leading, 50)
-                         
-                        //DropdownNavigationMenu()
                         
                     }
                     .padding(.horizontal, 5)
@@ -91,8 +88,7 @@ struct MenuView: View {
             }
             .edgesIgnoringSafeArea(.all)
             .onAppear(perform: {
-                viewModel.currentViewSelection = "MenuView"
-                print("Current view selection state: \(String(describing: viewModel.currentViewSelection))")
+                print("Current view selection state: \(String(describing: self.$viewModel.currentViewSelection))")
             })
         }
     }

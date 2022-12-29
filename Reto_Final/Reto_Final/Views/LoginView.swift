@@ -9,10 +9,9 @@ import LocalAuthentication
 import SwiftUI
 
 struct LoginView: View {
-    //@Environment(\.presentationMode) var presentationMode
     
-    @ObservedObject var viewModel = LoginViewModel.sharedLoginViewVM.self
-    //@StateObject var viewModel = LoginViewModel()
+    //@ObservedObject var viewModel = LoginViewModel.sharedLoginViewVM.self
+    @StateObject var viewModel = LoginViewModel.sharedLoginViewVM.self
     @State var isShowingMenuView = false
     @State private var isUnlocked = false
     

@@ -12,7 +12,7 @@ class MenuViewModel: ObservableObject {
     static let sharedMenuViewVM = MenuViewModel()
     
     @ObservedObject var networkService = NetworkService.shared.self
-    @Published var currentViewSelection: String = "MenuView"
+    @Published var currentViewSelection: String?
     
     init() { }
     
@@ -67,8 +67,7 @@ struct menuItemView: View {
 struct NavButton: View {
     
     @ObservedObject var viewModel = MenuViewModel.sharedMenuViewVM.self
-    //@StateObject var viewModel = MenuViewModel()
-    @State var viewSelection: String? = "MenuView"
+    @State var viewSelection: String?
     let linkedView: String
     let colorScheme: String
     let lighterButtonColor: String
@@ -99,8 +98,7 @@ struct NavButton: View {
 struct MenuNavLink: View {
     
     @ObservedObject var viewModel = MenuViewModel.sharedMenuViewVM.self
-    //@StateObject var viewModel = MenuViewModel()
-    @State var viewSelection: String? = "MenuView"
+    @State var viewSelection: String?
     let destinationView: any View
     let linkedView: String
     let colorScheme: String
@@ -118,7 +116,7 @@ struct MenuNavLink: View {
     
     var body: some View {
         
-        NavigationLink(destination: AnyView(destinationView ).navigationBarBackButtonHidden(false), tag: linkedView, selection: $viewSelection, label: {
+        NavigationLink(destination: AnyView(destinationView).navigationBarBackButtonHidden(false), tag: linkedView, selection: $viewSelection, label: {
             RoundedRectangle(cornerRadius: 8)
                 .fill(Color(lighterButtonFill))
                 .frame(width: 110, height: 28.0)
@@ -142,9 +140,13 @@ struct MenuNavLink: View {
     
     func buttonAction(viewSelection: String?) {
         DispatchQueue.main.async {
-            viewModel.currentViewSelection = linkedView
-            self.viewSelection = viewModel.currentViewSelection
-            print("Go to view 2: \(String(describing: viewSelection!))")
+            self.viewModel.currentViewSelection = self.linkedView
+            self.viewSelection = self.viewModel.currentViewSelection
+            print("Go to view (Stage 2A): \(String(describing: self.viewSelection!))")
+            print("Go to view (Stage 2B): \(String(describing: self.viewModel.currentViewSelection!))")
+            print("Go to view (Stage 2C): \(String(describing: MenuViewModel().currentViewSelection))")
         }
     }
 }
+
+

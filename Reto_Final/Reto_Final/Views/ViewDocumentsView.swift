@@ -10,48 +10,54 @@ import SwiftUI
 struct ViewDocumentsView: View {
     
     @ObservedObject var viewModel = ViewDocumentsViewModel.sharedViewDocumentsViewVM.self
+    @State var viewSelection: String?
+    
+    @State private var goToView: AnyView?
+    @State private var isActive = false
     
     var body: some View {
         
-        NavigationView {
-            ZStack {
-                Color("sophosBC")
-                    .toolbar {
-                        ToolbarItem(placement: .principal, content: {
-                            VStack{
+        //NavigationView {
+        ZStack {
+            //Color("sophosBC")
+            Color(.systemRed)
+                .toolbar {
+                    ToolbarItem(placement: .principal, content: {
+                        VStack{
+                            
+                            HStack{
+                                Spacer()
                                 
-                                HStack{
-                                    Spacer()
+                                Button {
+                                    print("Menu button was tapped")
+                                } label: {
                                     
-                                    Button {
-                                        print("Menu button was tapped")
-                                    } label: {
-                                        Image("menu_icon")
-                                            .resizable(resizingMode: .stretch)
-                                            .aspectRatio(contentMode: .fill)
-                                            .frame(width: 40.0, height: 36.0)
-                                            .padding(.leading, 40)
-                                    }
-                                }
-                                
-                                HStack{
-                                    Text("Ver documentos")
-                                    //navigationBarTitle("Menú", displayMode: .inline)
-                                        .font(.title3)
-                                        .fontWeight(.bold)
-                                        .multilineTextAlignment(.leading)
-                                    Spacer()
+                                    DropdownNavigationMenu()
+                                    
                                 }
                             }
-                            .padding(.top, 55)
-                        })
-                    }
-                    .navigationTitle("Title")
-                    .onAppear() {
-                    }
-            }
-            .edgesIgnoringSafeArea(.all)
+                            
+                            HStack{
+                                Text("Ver documentos")
+                                //navigationBarTitle("Menú", displayMode: .inline)
+                                    .font(.title3)
+                                    .fontWeight(.bold)
+                                    .multilineTextAlignment(.leading)
+                                Spacer()
+                            }
+                        }
+                        .padding(.top, 55)
+                    })
+                }
+                .navigationTitle("Title")
+                .onAppear() {
+                    self.viewModel.currentViewSelection = MenuViewModel().currentViewSelection
+                    print("Current view selection state (from ViewModel): \(String(describing: self.$viewModel.currentViewSelection))")
+                    print("Current view selection state (from View): \(String(describing: self.viewSelection))")
+                }
         }
+        .edgesIgnoringSafeArea(.all)
+        //}
         Text("Ver documentos enviados")
     }
 }

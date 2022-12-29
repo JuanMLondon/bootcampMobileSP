@@ -5,11 +5,15 @@
 //  Created by JML on 18/12/22.
 //
 
-import Foundation
+import SwiftUI
 
 class OfficesViewModel: ObservableObject {
     
     static let sharedOfficesViewVM = OfficesViewModel()
+    
+    @StateObject var menuViewModel = MenuViewModel.sharedMenuViewVM.self
+    
+    @Published var currentViewSelection: String?
     
     init() { }
     
