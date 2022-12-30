@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MenuView: View {
     
-    @ObservedObject var viewModel = MenuViewModel.sharedMenuViewVM.self
+    @StateObject var viewModel = MenuViewModel.sharedMenuViewVM.self
     @State var viewSelection: String?
     
     var body: some View {
@@ -20,6 +20,9 @@ struct MenuView: View {
                 
                 VStack {
                     
+                    Spacer()
+                        .frame(maxHeight: 40)
+                    
                     HStack {
                         Text(self.viewModel.getLoggedUser().nombre)
                             .fontWeight(.bold)
@@ -27,23 +30,25 @@ struct MenuView: View {
                             .frame(width: 180)
                             .font(.title)
                             .foregroundColor(Color("violet_UI"))
-                            .padding(.top, 55)
+                            //.padding(.top, 0)
                             .padding(.leading, 10)
                             .padding(.trailing, 55)
                         
                         Spacer()
-                            .frame(minWidth: 80, maxWidth: 350, minHeight: 50)
-                        
+                            .frame(minWidth: 70, maxWidth: 350, minHeight: 40)
                             .overlay(content: {
                                 VStack{
                                     HStack{
                                         Spacer()
                                         DropdownNavigationMenu()
+                                            .frame(width: 40, height: 26)
                                     }
                                 }
                             })
-                            .padding(.top, 55)
+                        //.padding(.top, 55)
                             .padding(.leading, 50)
+                            .padding(.trailing, 15)
+                            //.padding(.bottom, 0)
                         
                     }
                     .padding(.horizontal, 5)
@@ -83,6 +88,9 @@ struct MenuView: View {
                     menuItemView(linkedView: "ViewDocuments", menuTitle: "Ver documentos", menuIconName: "doc.text.magnifyingglass", colorScheme: "violet_UI", colorFill: "violet_Fill", frameColor: "violet_Frame", lighterButtonColor: "violet_Light", lighterButtonFill: "violet_Fill_L")
                     
                     menuItemView(linkedView: "Offices", menuTitle: "Oficinas", menuIconName: "location.magnifyingglass", colorScheme: "green_UI", colorFill: "green_Fill", frameColor: "green_Frame", lighterButtonColor: "green_Light", lighterButtonFill: "green_Fill_L")
+                    
+                Spacer()
+                    
                 }
                 .padding(.bottom, 50)
             }
@@ -90,7 +98,7 @@ struct MenuView: View {
             .onAppear(perform: {
                 print("Current view selection state: \(String(describing: self.$viewModel.currentViewSelection))")
             })
-        }
+        }//
     }
 }
 

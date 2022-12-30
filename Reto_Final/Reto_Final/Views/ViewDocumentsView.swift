@@ -17,48 +17,26 @@ struct ViewDocumentsView: View {
     
     var body: some View {
         
-        //NavigationView {
-        ZStack {
-            //Color("sophosBC")
-            Color(.systemRed)
-                .toolbar {
-                    ToolbarItem(placement: .principal, content: {
-                        VStack{
-                            
-                            HStack{
-                                Spacer()
-                                
-                                Button {
-                                    print("Menu button was tapped")
-                                } label: {
-                                    
-                                    DropdownNavigationMenu()
-                                    
-                                }
-                            }
-                            
-                            HStack{
-                                Text("Ver documentos")
-                                //navigationBarTitle("Menú", displayMode: .inline)
-                                    .font(.title3)
-                                    .fontWeight(.bold)
-                                    .multilineTextAlignment(.leading)
-                                Spacer()
-                            }
-                        }
-                        .padding(.top, 55)
-                    })
+        NavigationView {
+            ZStack {
+                //Color("sophosBC")
+                Color(.systemPink)
+                VStack {
+                    CustomMenuBar()
+                        .padding(.top, 75)
+                        .padding(.horizontal, 20)
+                    Spacer()
+                    Text("View a list of sent documents")
+                    Spacer()
                 }
-                .navigationTitle("Title")
-                .onAppear() {
-                    self.viewModel.currentViewSelection = MenuViewModel().currentViewSelection
-                    print("Current view selection state (from ViewModel): \(String(describing: self.$viewModel.currentViewSelection))")
-                    print("Current view selection state (from View): \(String(describing: self.viewSelection))")
-                }
+            }
+            .edgesIgnoringSafeArea(.all)
+            .onAppear() {
+                self.viewModel.currentViewSelection = MenuViewModel().currentViewSelection
+                print("Current view selection state (from ViewModel): \(String(describing: self.$viewModel.currentViewSelection))")
+                print("Current view selection state (from View): \(String(describing: self.viewSelection))")
+            }
         }
-        .edgesIgnoringSafeArea(.all)
-        //}
-        Text("Ver documentos enviados")
     }
 }
 

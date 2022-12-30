@@ -11,6 +11,7 @@ class MenuViewModel: ObservableObject {
     
     static let sharedMenuViewVM = MenuViewModel()
     
+    
     @ObservedObject var networkService = NetworkService.shared.self
     @Published var currentViewSelection: String?
     
@@ -116,7 +117,7 @@ struct MenuNavLink: View {
     
     var body: some View {
         
-        NavigationLink(destination: AnyView(destinationView).navigationBarBackButtonHidden(false), tag: linkedView, selection: $viewSelection, label: {
+        NavigationLink(destination: AnyView(destinationView).navigationBarBackButtonHidden(true), tag: linkedView, selection: $viewSelection, label: {
             RoundedRectangle(cornerRadius: 8)
                 .fill(Color(lighterButtonFill))
                 .frame(width: 110, height: 28.0)

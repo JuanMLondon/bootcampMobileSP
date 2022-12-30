@@ -14,48 +14,26 @@ struct OfficesView: View {
     
     var body: some View {
         
-        //NavigationView {
+        NavigationView {
             ZStack {
                 //Color("sophosBC")
                 Color(.systemGreen)
-                    .toolbar {
-                        ToolbarItem(placement: .principal, content: {
-                            VStack{
-                                
-                                HStack{
-                                    Spacer()
-                                    
-                                    Button {
-                                        print("Menu button was tapped")
-                                    } label: {
-                                        
-                                        DropdownNavigationMenu()
-                                        
-                                    }
-                                }
-                                
-                                HStack{
-                                    Text("Localización oficinas")
-                                    //navigationBarTitle("Menú", displayMode: .inline)
-                                        .font(.title3)
-                                        .fontWeight(.bold)
-                                        .multilineTextAlignment(.leading)
-                                    Spacer()
-                                }
-                            }
-                            .padding(.top, 55)
-                        })
-                    }
-                    .navigationTitle("Title")
-                    .onAppear() {
-                        self.viewModel.currentViewSelection = MenuViewModel().currentViewSelection
-                        print("Current view selection state (from ViewModel): \(String(describing: self.$viewModel.currentViewSelection))")
-                        print("Current view selection state (from View): \(String(describing: self.viewSelection))")
-                    }
+                VStack {
+                    CustomMenuBar()
+                        .padding(.top, 75)
+                        .padding(.horizontal, 20)
+                    Spacer()
+                    Text("View the location of Sophos' offices in the current city")
+                    Spacer()
+                }
             }
             .edgesIgnoringSafeArea(.all)
-        //}
-        Text("Localización oficinas Sophos")
+            .onAppear() {
+                self.viewModel.currentViewSelection = MenuViewModel().currentViewSelection
+                print("Current view selection state (from ViewModel): \(String(describing: self.$viewModel.currentViewSelection))")
+                print("Current view selection state (from View): \(String(describing: self.viewSelection))")
+            }
+        }
     }
 }
 

@@ -10,7 +10,7 @@ import SwiftUI
 struct SendDocumentsView: View {
     
     @ObservedObject var viewModel = SendDocumentsViewModel.sharedSendDocumentsViewVM.self
-
+    
     //@State private var shouldShowDropdown = true // Needed for customized Dropdown Menu
     @State private var selectedOption: String?
     @State var viewSelection: String?
@@ -24,48 +24,29 @@ struct SendDocumentsView: View {
     
     var body: some View {
         
-        //NavigationView {
+        NavigationView {
             ZStack {
                 //Color("sophosBC")
-                Color(.systemOrange)
-                    .toolbar {
-                        ToolbarItem(placement: .principal, content: {
-                            VStack{
-                                
-                                HStack{
-                                    Spacer()
-                                    
-                                    Button {
-                                        print("Menu button was tapped")
-                                    } label: {
-                                        
-                                        DropdownNavigationMenu()
-                                        
-                                    }
-                                }
-                                
-                                HStack{
-                                    Text("Envío de documentación")
-                                    //navigationBarTitle("Menú", displayMode: .inline)
-                                        .font(.title3)
-                                        .fontWeight(.bold)
-                                        .multilineTextAlignment(.leading)
-                                    Spacer()
-                                }
-                            }
-                            .padding(.top, 55)
-                        })
-                    }
-                    .navigationTitle("Title")
-                    .onAppear() {
-                        self.viewModel.currentViewSelection = MenuViewModel().currentViewSelection
-                        print("Current view selection state (from ViewModel): \(String(describing: self.$viewModel.currentViewSelection))")
-                        print("Current view selection state (from View): \(String(describing: self.viewSelection))")
-                    }
+                Color(.systemPurple)
+                VStack {
+                    CustomMenuBar()
+                        .padding(.top, 75)
+                        .padding(.horizontal, 20)
+                    Spacer()
+                    Text("Prepare a document for sending")
+                    Spacer()
+                }
             }
             .edgesIgnoringSafeArea(.all)
-        //}
-        Text("Envío de documentación")
+            .onAppear() {
+                self.viewModel.currentViewSelection = MenuViewModel().currentViewSelection
+                
+                CustomMenuBar().previousView = MenuViewModel().currentViewSelection
+                
+                print("Current view selection state (from ViewModel): \(String(describing: self.$viewModel.currentViewSelection))")
+                print("Current view selection state (from View): \(String(describing: self.viewSelection))")
+            }
+        }
     }
 }
 

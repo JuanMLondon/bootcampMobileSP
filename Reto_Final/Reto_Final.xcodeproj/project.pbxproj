@@ -22,11 +22,13 @@
 		A4400D98294F580B0042D671 /* ViewDocumentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4400D97294F580B0042D671 /* ViewDocumentsViewModel.swift */; };
 		A4400D9B294F58350042D671 /* OfficesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4400D9A294F58350042D671 /* OfficesView.swift */; };
 		A4400D9D294F58760042D671 /* OfficesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4400D9C294F58760042D671 /* OfficesViewModel.swift */; };
+		A4418E0B295F04E10086FC7B /* DropdownNavigationMenuVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4418E0A295F04E10086FC7B /* DropdownNavigationMenuVM.swift */; };
 		A453F7DE2955041100A31174 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A453F7DD2955041100A31174 /* UserModel.swift */; };
 		A48F46FA294BB8E100F2F8C3 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F46F9294BB8E100F2F8C3 /* MenuView.swift */; };
 		A491F2A52952A84300EF1FC0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A491F2A42952A84300EF1FC0 /* NetworkService.swift */; };
 		A4CCBF8F294E3007009DBE5F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CCBF8E294E3007009DBE5F /* LoginViewModel.swift */; };
 		A4F7E1A8295B14AA009FF094 /* DropdownNavigationMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F7E1A7295B14AA009FF094 /* DropdownNavigationMenu.swift */; };
+		A4F9B609295E2F9E00BB3F3A /* CustomMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F9B608295E2F9E00BB3F3A /* CustomMenuBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,11 +49,13 @@
 		A4400D97294F580B0042D671 /* ViewDocumentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDocumentsViewModel.swift; sourceTree = "<group>"; };
 		A4400D9A294F58350042D671 /* OfficesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficesView.swift; sourceTree = "<group>"; };
 		A4400D9C294F58760042D671 /* OfficesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficesViewModel.swift; sourceTree = "<group>"; };
+		A4418E0A295F04E10086FC7B /* DropdownNavigationMenuVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownNavigationMenuVM.swift; sourceTree = "<group>"; };
 		A453F7DD2955041100A31174 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		A48F46F9294BB8E100F2F8C3 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		A491F2A42952A84300EF1FC0 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		A4CCBF8E294E3007009DBE5F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		A4F7E1A7295B14AA009FF094 /* DropdownNavigationMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownNavigationMenu.swift; sourceTree = "<group>"; };
+		A4F9B608295E2F9E00BB3F3A /* CustomMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMenuBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,7 @@
 				A4400D95294F57ED0042D671 /* ViewDocumentsView.swift */,
 				A4400D9A294F58350042D671 /* OfficesView.swift */,
 				A4F7E1A7295B14AA009FF094 /* DropdownNavigationMenu.swift */,
+				A4F9B608295E2F9E00BB3F3A /* CustomMenuBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -86,6 +91,7 @@
 				A4400D92294F57690042D671 /* SendDocumentsViewModel.swift */,
 				A4400D97294F580B0042D671 /* ViewDocumentsViewModel.swift */,
 				A4400D9C294F58760042D671 /* OfficesViewModel.swift */,
+				A4418E0A295F04E10086FC7B /* DropdownNavigationMenuVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -227,7 +233,9 @@
 				A4400D93294F57690042D671 /* SendDocumentsViewModel.swift in Sources */,
 				A43AD1D12959F948001A8754 /* EmailValidator.swift in Sources */,
 				A41FE3EB294A21CD0098CA77 /* Reto_FinalApp.swift in Sources */,
+				A4F9B609295E2F9E00BB3F3A /* CustomMenuBar.swift in Sources */,
 				A4400D8E294F56A70042D671 /* UserData.swift in Sources */,
+				A4418E0B295F04E10086FC7B /* DropdownNavigationMenuVM.swift in Sources */,
 				A43AD1D32959F982001A8754 /* UserSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

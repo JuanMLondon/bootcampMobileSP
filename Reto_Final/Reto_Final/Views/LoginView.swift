@@ -10,7 +10,6 @@ import SwiftUI
 
 struct LoginView: View {
     
-    //@ObservedObject var viewModel = LoginViewModel.sharedLoginViewVM.self
     @StateObject var viewModel = LoginViewModel.sharedLoginViewVM.self
     @State var isShowingMenuView = false
     @State private var isUnlocked = false
@@ -80,6 +79,8 @@ struct LoginView: View {
             ZStack {
                 Color("sophosBC")
                 VStack{
+                    Spacer()
+                        .frame(maxHeight: 120)
                     VStack {
                         Image("sophos_logo")
                             .resizable(resizingMode: .stretch)
@@ -106,7 +107,7 @@ struct LoginView: View {
                     .disabled(viewModel.isLoggingIn)
                     
                     Spacer()
-                        .frame(maxHeight: 15)
+                        .frame(height: 40)
                     
                     VStack {
                         if viewModel.isLoggingIn {
@@ -164,9 +165,10 @@ struct LoginView: View {
                     }
                     .padding(.horizontal, 55)
                     .disabled(viewModel.isLoggingIn)
+                Spacer()
                 }
             }
-            .edgesIgnoringSafeArea(.all)
+            .edgesIgnoringSafeArea(.vertical)
         }
         .onAppear(perform: {
             print("Last used email: \(viewModel.defaults.string(forKey: "LastUserEmail") ?? "Not found.")")
