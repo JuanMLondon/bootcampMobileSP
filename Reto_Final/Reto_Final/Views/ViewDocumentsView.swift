@@ -11,7 +11,6 @@ struct ViewDocumentsView: View {
     
     @ObservedObject var viewModel = ViewDocumentsViewModel.sharedViewDocumentsViewVM.self
     @State var viewSelection: String?
-    
     @State private var goToView: AnyView?
     @State private var isActive = false
     
@@ -25,7 +24,7 @@ struct ViewDocumentsView: View {
                     CustomMenuBar()
                         .padding(.top, 75)
                         .padding(.horizontal, 20)
-                    Spacer()
+
                     Text("View a list of sent documents")
                     Spacer()
                 }
@@ -33,8 +32,8 @@ struct ViewDocumentsView: View {
             .edgesIgnoringSafeArea(.all)
             .onAppear() {
                 self.viewModel.currentViewSelection = MenuViewModel().currentViewSelection
-                print("Current view selection state (from ViewModel): \(String(describing: self.$viewModel.currentViewSelection))")
-                print("Current view selection state (from View): \(String(describing: self.viewSelection))")
+                CustomMenuBarVM().previousView = MenuViewModel().currentViewSelection
+                //print("Current view selection state (from ViewModel): \(String(describing: self.$viewModel.currentViewSelection))")
             }
         }
     }

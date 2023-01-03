@@ -7,6 +7,18 @@
 
 import Foundation
 
-struct OfficesData {
+struct OfficesData: Decodable {
+    let Items: [String]
+}
+
+struct OfficesItems: Decodable, Identifiable {
+    var id: Int {
+        return IdOficina
+    }
+    let IdOficina: Int
+    let Nombre: String
+    let Ciudad: String
+    let Longitud: String
+    let Latitud: String
     
 }

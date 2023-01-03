@@ -45,7 +45,7 @@ class NetworkService: ObservableObject {
                             self?.failed = false
                             self?.success = true
                             
-                            self?.loggedInUser = self?.parseJSON(safeData, completion: { [ weak self ] success in
+                            self?.loggedInUser = self?.parseUsersJSON(safeData, completion: { [ weak self ] success in
                                 self!.loggedInUser = (success != nil) ? self?.loggedInUser : UserModel(id: "", nombre: "", apellido: "", acceso: false, admin: false)
                             })
                             
@@ -72,7 +72,7 @@ class NetworkService: ObservableObject {
         task.resume()
     }
     
-    func parseJSON(_ userData: Data, completion: @escaping(UserModel?) -> Void) -> UserModel? {
+    func parseUsersJSON(_ userData: Data, completion: @escaping(UserModel?) -> Void) -> UserModel? {
         let decoder = JSONDecoder()
         do{
             let decodedData = try decoder.decode(UserData.self, from: userData)

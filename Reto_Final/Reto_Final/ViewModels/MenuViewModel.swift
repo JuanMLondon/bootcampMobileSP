@@ -11,7 +11,6 @@ class MenuViewModel: ObservableObject {
     
     static let sharedMenuViewVM = MenuViewModel()
     
-    
     @ObservedObject var networkService = NetworkService.shared.self
     @Published var currentViewSelection: String?
     
@@ -80,15 +79,16 @@ struct NavButton: View {
             
         case "SendDocuments":
             
-            MenuNavLink(viewSelection: viewSelection, destinationView: AnyView(SendDocumentsView(viewModel: SendDocumentsViewModel())), linkedView: linkedView, colorScheme: colorScheme, lighterButtonColor: lighterButtonColor, lighterButtonFill: lighterButtonFill)
+            MenuNavLinkButton(viewSelection: viewSelection, destinationView: AnyView(SendDocumentsView(viewModel: SendDocumentsViewModel())), linkedView: linkedView, colorScheme: colorScheme, lighterButtonColor: lighterButtonColor, lighterButtonFill: lighterButtonFill)
             
         case "ViewDocuments":
             
-            MenuNavLink(viewSelection: viewSelection, destinationView: AnyView(ViewDocumentsView(viewModel: ViewDocumentsViewModel())), linkedView: linkedView, colorScheme: colorScheme, lighterButtonColor: lighterButtonColor, lighterButtonFill: lighterButtonFill)
+            MenuNavLinkButton(viewSelection: viewSelection, destinationView: AnyView(ViewDocumentsView(viewModel: ViewDocumentsViewModel())), linkedView: linkedView, colorScheme: colorScheme, lighterButtonColor: lighterButtonColor, lighterButtonFill: lighterButtonFill)
             
         case "Offices":
             
-            MenuNavLink(viewSelection: viewSelection, destinationView: AnyView(OfficesView(viewModel: OfficesViewModel())), linkedView: linkedView, colorScheme: colorScheme, lighterButtonColor: lighterButtonColor, lighterButtonFill: lighterButtonFill)
+            MenuNavLinkButton(viewSelection: viewSelection, destinationView: AnyView(OfficesView(viewModel: OfficesViewModel())), linkedView: linkedView, colorScheme: colorScheme, lighterButtonColor: lighterButtonColor, lighterButtonFill: lighterButtonFill)
+            //MenuNavLink(viewSelection: viewSelection, destinationView: AnyView(OfficesView()), linkedView: linkedView, colorScheme: colorScheme, lighterButtonColor: lighterButtonColor, lighterButtonFill: lighterButtonFill)
             
         default:
             NavigationLink(destination: MenuView(viewModel: MenuViewModel()).navigationBarBackButtonHidden(false), tag: linkedView, selection: $viewSelection, label: { EmptyView() })
@@ -96,7 +96,7 @@ struct NavButton: View {
     }
 }
 
-struct MenuNavLink: View {
+struct MenuNavLinkButton: View {
     
     @ObservedObject var viewModel = MenuViewModel.sharedMenuViewVM.self
     @State var viewSelection: String?
@@ -145,7 +145,6 @@ struct MenuNavLink: View {
             self.viewSelection = self.viewModel.currentViewSelection
             print("Go to view (Stage 2A): \(String(describing: self.viewSelection!))")
             print("Go to view (Stage 2B): \(String(describing: self.viewModel.currentViewSelection!))")
-            print("Go to view (Stage 2C): \(String(describing: MenuViewModel().currentViewSelection))")
         }
     }
 }

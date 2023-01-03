@@ -14,66 +14,6 @@ struct LoginView: View {
     @State var isShowingMenuView = false
     @State private var isUnlocked = false
     
-    func navButton(_ buttonLabel: String) -> Button<Text> {
-        return Button(buttonLabel) {
-            
-            self.viewModel.login(email: viewModel.email, password: viewModel.password)
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                self.viewModel.updateBusyStatus()
-                self.isShowingMenuView = self.viewModel.isLoggedIn
-                self.viewModel.saveUserSettings()
-                
-                print("\(String(describing: viewModel.defaults.string(forKey: "LastUserEmail")!)) was saved.")
-            }
-        }
-    }
-    
-    func navButtonBiomAuth(_ buttonLabel: String) -> Button<Text> {
-        return Button(buttonLabel) {
-            
-            self.bioMAuthenticate()
-        }
-    }
-    
-    func bioMAuthenticate() {
-        let context = LAContext()
-        var error: NSError?
-        
-        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-            let reason = "Para acceder a la aplicación utilizando datos biométricos."
-            
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason, reply: { success, authenticationError in
-                if success {
-                    // authenticated successfully
-                    print("Did biometric authentication succeeded?: \(isUnlocked)")
-                    isUnlocked = true
-                    
-                    // <<<<<<<<< temporary >>>>>>>>>>
-                    self.viewModel.password = self.viewModel.defaults.string(forKey: "BMASP") ?? ""
-                    
-                    self.viewModel.login(email: viewModel.email, password: viewModel.password)
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        self.viewModel.updateBusyStatus()
-                        self.isShowingMenuView = self.viewModel.isLoggedIn
-                        self.viewModel.saveUserSettings()
-                        
-                        print("\(String(describing: viewModel.defaults.string(forKey: "LastUserEmail")!)) was saved.")
-                    }
-                    
-                } else {
-                    // there was a problem
-                    print("Did biometric authentication succeeded?: \(isUnlocked)")
-                }
-            })
-        } else {
-            // no biometrics
-            print("No biometrics enrolled")
-        }
-        
-    }
-    
     var body: some View {
         NavigationView {
             ZStack {
@@ -175,6 +115,65 @@ struct LoginView: View {
             self.viewModel.retrieveUserSettings()
         })
     }
+    
+    func navButton(_ buttonLabel: String) -> Button<Text> {
+        return Button(buttonLabel) {
+            
+            self.viewModel.login(email: viewModel.email, password: viewModel.password)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self.viewModel.updateBusyStatus()
+                self.isShowingMenuView = self.viewModel.isLoggedIn
+                self.viewModel.saveUserSettings()
+                
+                print("\(String(describing: viewModel.defaults.string(forKey: "LastUserEmail")!)) was saved.")
+            }
+        }
+    }
+    
+    func navButtonBiomAuth(_ buttonLabel: String) -> Button<Text> {
+        return Button(buttonLabel) {
+            
+            self.bioMAuthenticate()
+        }
+    }
+    
+    func bioMAuthenticate() {
+        let context = LAContext()
+        var error: NSError?
+        
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            let reason = "Para acceder a la aplicación utilizando datos biométricos."
+            
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason, reply: { success, authenticationError in
+                if success {
+                    // authenticated successfully
+                    print("Did biometric authentication succeeded?: \(isUnlocked)")
+                    isUnlocked = true
+                    
+                    // <<<<<<<<< temporary >>>>>>>>>>
+                    self.viewModel.password = self.viewModel.defaults.string(forKey: "BMASP") ?? ""
+                    
+                    self.viewModel.login(email: viewModel.email, password: viewModel.password)
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        self.viewModel.updateBusyStatus()
+                        self.isShowingMenuView = self.viewModel.isLoggedIn
+                        self.viewModel.saveUserSettings()
+                        
+                        print("\(String(describing: viewModel.defaults.string(forKey: "LastUserEmail")!)) was saved.")
+                    }
+                    
+                } else {
+                    // there was a problem
+                    print("Did biometric authentication succeeded?: \(isUnlocked)")
+                }
+            })
+        } else {
+            // no biometrics
+            print("No biometrics enrolled")
+        }
+    }
 }
 
 
@@ -209,7 +208,6 @@ struct TextFieldRoundedFrame: View {
                     .disableAutocorrection(true)
                     .foregroundColor(Color("violet_UI"))
                     .padding(.horizontal, 5)
-                    .environmentObject(viewModel)
             })
             .padding(.vertical, 3)
     }
@@ -238,7 +236,9 @@ struct EmailFieldRoundedFrame: View {
                 TextField("Email", text: $viewModel.email, onEditingChanged: { (isChanged) in
                     if !isChanged {
                         if eValidator.validateEmailString(self.viewModel.email) {
-                            self.isEmailValid = true
+                            DispatchQueue.main.async {
+                                self.isEmailValid = true
+                            }
                         } else {
                             self.isEmailValid = false
                             self.viewModel.email = ""

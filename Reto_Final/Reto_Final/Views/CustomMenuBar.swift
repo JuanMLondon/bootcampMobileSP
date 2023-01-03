@@ -9,43 +9,21 @@ import SwiftUI
 
 struct CustomMenuBar: View {
     
+    @StateObject var viewModel = CustomMenuBarVM.sharedCustomMenuBarVM.self
+    
     @State var isNavEnabled = false
     @State var goToView: AnyView?
     @State var previousView: String?
-    
-    var currentView: String = MenuViewModel.sharedMenuViewVM.currentViewSelection ?? ""
-    
-    var viewTitle: String? {
-        let title: String
-        switch currentView {
-        case "Login":
-            title = "Inicio"
-        case "Menu":
-            title = "Opciones"
-        case "SendDocuments":
-            title = "Envío de documentación"
-        case "ViewDocuments":
-            title = "Documentos"
-        case "Offices":
-            title = "Oficinas"
-        default:
-            title = ""
-        }
-        return title
-    }
+    @State var currentView: String = MenuViewModel.sharedMenuViewVM.currentViewSelection ?? ""
     
     var body: some View {
         
         VStack{
             HStack{
                 Button {
-                    self.isNavEnabled = true
-                    print("Back button was tapped")
-                    print("Estado success NetworkService.shared: \(NetworkService.shared.success)")
-                    print("Estado isLoggedIn LoginViewModel.sharedLoginViewVM: \(LoginViewModel.sharedLoginViewVM.isLoggedIn)")
-                    print("Estado previousView: \(String(describing: previousView))")
-                    print("Estado currentViewSelection: \(String(describing: MenuViewModel.sharedMenuViewVM.currentViewSelection))")
-
+                    
+                    self.isNavEnabled = viewModel.backButtonAction()
+                    
                 } label:{
                     HStack{
                         Image(systemName: "arrow.left")
@@ -58,9 +36,10 @@ struct CustomMenuBar: View {
                             .foregroundColor(Color("violet_UI"))
                             .multilineTextAlignment(.leading)
                     }
+                    .padding(.bottom, 10)
                 }
                 .background(content: {
-                    NavigationLink(destination:AnyView(MenuView(viewModel: MenuViewModel())) .navigationBarBackButtonHidden(true), isActive: $isNavEnabled, label: { EmptyView() })
+                    NavigationLink(destination: AnyView(MenuView(viewModel: MenuViewModel())).navigationBarBackButtonHidden(true), isActive: $isNavEnabled, label: { EmptyView() })
                 })
                 
                 Spacer()
@@ -75,9 +54,10 @@ struct CustomMenuBar: View {
             }
             
             HStack{
-                Text(viewTitle ?? "")
+                Text(viewModel.getTitle(currentView: currentView))
+                //Text("Título de la vista")
                 //navigationBarTitle("Menú", displayMode: .inline)
-                    .foregroundColor(Color("violet_UI"))
+                    .foregroundColor(Color("black_UI"))
                     .font(.title)
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
