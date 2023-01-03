@@ -9,7 +9,7 @@ import SwiftUI
 
 class LoginViewModel: ObservableObject {
     
-    static let sharedLoginViewVM = LoginViewModel()
+    static let shared = LoginViewModel()
     
     @ObservedObject var networkService = NetworkService.shared.self
     @Published var hasError: Bool = false

@@ -11,7 +11,7 @@ class OfficesViewModel: ObservableObject {
     
     static let sharedOfficesViewVM = OfficesViewModel()
     
-    @StateObject var menuViewModel = MenuViewModel.sharedMenuViewVM.self
+    @ObservedObject var menuViewModel = MenuViewModel.shared.self
     
     @Published var currentViewSelection: String?
     

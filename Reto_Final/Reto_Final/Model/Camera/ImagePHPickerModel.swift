@@ -11,27 +11,7 @@ import SwiftUI
 struct ImagePHPickerModel: UIViewControllerRepresentable {
     
     @Binding var selectedImage: UIImage?
-    var sourceType: UIImagePickerController.SourceType
-
-    class Coordinator: NSObject, PHPickerViewControllerDelegate {
-        var parent: ImagePHPickerModel
-
-        init(_ parent: ImagePHPickerModel) {
-            self.parent = parent
-        }
-
-        func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-            picker.dismiss(animated: true)
-
-            guard let provider = results.first?.itemProvider else { return }
-
-            if provider.canLoadObject(ofClass: UIImage.self) {
-                provider.loadObject(ofClass: UIImage.self) { image, _ in
-                    self.parent.selectedImage = image as? UIImage
-                }
-            }
-        }
-    }
+    //@Binding var base64SelectedImage: String?
 
     func makeUIViewController(context: Context) -> PHPickerViewController {
         var config = PHPickerConfiguration()
@@ -46,8 +26,8 @@ struct ImagePHPickerModel: UIViewControllerRepresentable {
 
     }
 
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
+    func makeCoordinator() -> PHPCoordinator {
+        PHPCoordinator(self)
     }
 }
 

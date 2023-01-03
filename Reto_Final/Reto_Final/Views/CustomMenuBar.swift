@@ -9,12 +9,12 @@ import SwiftUI
 
 struct CustomMenuBar: View {
     
-    @StateObject var viewModel = CustomMenuBarVM.sharedCustomMenuBarVM.self
+    @StateObject var viewModel = CustomMenuBarVM.shared.self
     
     @State var isNavEnabled = false
     @State var goToView: AnyView?
     @State var previousView: String?
-    @State var currentView: String = MenuViewModel.sharedMenuViewVM.currentViewSelection ?? ""
+    @State var currentView: String = MenuViewModel.shared.currentViewSelection ?? ""
     
     var body: some View {
         

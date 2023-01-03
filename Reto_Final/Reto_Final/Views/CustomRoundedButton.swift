@@ -7,9 +7,10 @@
 
 import SwiftUI
 
+
 struct CustomRoundedButton: View {
     
-    //@ObservedObject var viewModel = SendDocumentsViewModel.sharedSendDocumentsViewVM.self
+    @StateObject var viewModel = SendDocumentsViewModel.shared.self
     
     let buttonText: String?
     let colorScheme: String?
@@ -25,6 +26,7 @@ struct CustomRoundedButton: View {
             .overlay(HStack {
                 Button(buttonText ?? "Button") {
                     performAction()
+                    //print(viewModel.encodedDoc!)
                 }
                 .foregroundColor(Color(colorScheme!))
                 .font(.title2)
@@ -37,9 +39,9 @@ struct CustomRoundedButton: View {
     
     func performAction() {
         print("Button was tapped.")
+        viewModel.getBase64()
     }
 }
-
 
 struct CustomRoundedButton_Previews: PreviewProvider {
     static var previews: some View {

@@ -9,7 +9,7 @@ import SwiftUI
 
 class MenuViewModel: ObservableObject {
     
-    static let sharedMenuViewVM = MenuViewModel()
+    static let shared = MenuViewModel()
     
     @ObservedObject var networkService = NetworkService.shared.self
     @Published var currentViewSelection: String?
@@ -66,7 +66,7 @@ struct menuItemView: View {
 
 struct NavButton: View {
     
-    @ObservedObject var viewModel = MenuViewModel.sharedMenuViewVM.self
+    @ObservedObject var viewModel = MenuViewModel.shared.self
     @State var viewSelection: String?
     let linkedView: String
     let colorScheme: String
@@ -98,7 +98,7 @@ struct NavButton: View {
 
 struct MenuNavLinkButton: View {
     
-    @ObservedObject var viewModel = MenuViewModel.sharedMenuViewVM.self
+    @ObservedObject var viewModel = MenuViewModel.shared.self
     @State var viewSelection: String?
     let destinationView: any View
     let linkedView: String

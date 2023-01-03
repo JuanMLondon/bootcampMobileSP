@@ -9,15 +9,16 @@ import SwiftUI
 
 struct SendDocumentsView: View {
     
-    @ObservedObject var viewModel = SendDocumentsViewModel.sharedSendDocumentsViewVM.self
+    @StateObject var viewModel = SendDocumentsViewModel.shared.self
     
-    @ObservedObject private var model = FrameViewModel()
+    //@ObservedObject private var model = FrameViewModel()
     
     @State var viewSelection: String?
     @State var isNavEnabled = false
     @State var goToView: AnyView?
     @State private var sourceType: UIImagePickerController.SourceType = .camera
     @State var image: UIImage?
+    @State var base64Image: String?
     @State private var isImagePHPickerDisplay = false
     @State private var isUIImagePickerDisplay = false
     @State private var selectedOption: String?
@@ -79,6 +80,7 @@ struct SendDocumentsView: View {
                                 print(selectedOption!)
                                 self.sourceType = .photoLibrary
                                 self.isImagePHPickerDisplay.toggle()
+                                self.image = viewModel.getImage()
                                 
                             default:
                                 print(self.selectedOption!)
@@ -100,7 +102,7 @@ struct SendDocumentsView: View {
                             NavigationLink(destination: goToView.navigationBarBackButtonHidden(true), isActive: $isNavEnabled, label: { EmptyView() })
                         })*/
                         .sheet(isPresented: self.$isImagePHPickerDisplay, content: {
-                            ImagePHPickerModel(selectedImage: self.$image, sourceType: self.sourceType)
+                            ImagePHPickerModel(selectedImage: self.$image/*, base64SelectedImage: self.$base64Image, sourceType: self.sourceType*/)
                         })
                         .sheet(isPresented: self.$isUIImagePickerDisplay, content: {
                             UIImagePickerModel(selectedImage: self.$image, sourceType: self.sourceType)
@@ -191,7 +193,7 @@ struct SendDocumentsView: View {
                             DropdownList(dropdownLabel: "Ciudad/País", menuItems: cities)
                                 .foregroundColor(Color("black_UI"))
                                 .frame(height: 25)
-                            .font(.title3)
+                                .font(.title3)
                             
                             Divider()
                                 .overlay(Rectangle().stroke(Color("black_UI"), lineWidth: 0.7))

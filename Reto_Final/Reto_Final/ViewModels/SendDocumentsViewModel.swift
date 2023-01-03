@@ -9,9 +9,10 @@ import SwiftUI
 
 class SendDocumentsViewModel: ObservableObject {
     
-    static let sharedSendDocumentsViewVM = SendDocumentsViewModel()
+    static let shared = SendDocumentsViewModel()
     
-    @StateObject var menuViewModel = MenuViewModel.sharedMenuViewVM.self
+    @ObservedObject var menuViewModel = MenuViewModel.shared.self
+    @ObservedObject var sendDataService = SendDataService.shared.self
     @Published var currentViewSelection: String? = MenuViewModel().currentViewSelection
     
     var typeId: String = ""
@@ -21,9 +22,27 @@ class SendDocumentsViewModel: ObservableObject {
     var email: String = ""
     var city: String = ""
     var doctype: String = ""
-    var encodedDoc: String = ""
+    var image: UIImage?
+    var encodedDoc: String?
     
     init() { }
+    
+    func getImage() -> UIImage? {
+        if SendDocumentsView().image != nil {
+            let image = SendDocumentsView().image
+            return image!
+        }
+        return nil
+    }
+    
+    func getBase64() -> String? {
+        if SendDocumentsView().image != nil {
+            self.image = SendDocumentsView().image
+            self.encodedDoc = SendDataService().encodeImgBase64(image: image!)
+            return self.encodedDoc
+        }
+        return nil
+    }
 }
 
 struct DropdownList: View {

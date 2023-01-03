@@ -9,9 +9,9 @@ import SwiftUI
 
 class DropdownNavigationMenuVM: ObservableObject {
     
-    static let sharedDropdownNMVM = DropdownNavigationMenuVM()
+    static let shared = DropdownNavigationMenuVM()
     
-    @ObservedObject var viewModel = MenuViewModel.sharedMenuViewVM.self
+    @ObservedObject var viewModel = MenuViewModel.shared.self
     @Published var viewSelection: String?
     @Published var isNavEnabled = false
     @Published var goToView: AnyView?

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @StateObject var viewModel = LoginViewModel.sharedLoginViewVM.self
+    @StateObject var viewModel = LoginViewModel.shared.self
     @State var isShowingMenuView = false
     @State private var isUnlocked = false
     
@@ -187,7 +187,8 @@ struct ContentView_Previews: PreviewProvider {
 
 struct TextFieldRoundedFrame: View {
     
-    @StateObject var viewModel = LoginViewModel()
+    //@StateObject var viewModel = LoginViewModel()
+    @StateObject var viewModel = LoginViewModel.shared.self
     
     var body: some View {
         RoundedRectangle(cornerRadius: 15)
@@ -215,7 +216,8 @@ struct TextFieldRoundedFrame: View {
 
 struct EmailFieldRoundedFrame: View {
     
-    @StateObject var viewModel = LoginViewModel()
+    //@StateObject var viewModel = LoginViewModel()
+    @StateObject var viewModel = LoginViewModel.shared.self
     @State var isEmailValid : Bool = true
     var eValidator = EmailValidator()
     
@@ -266,7 +268,8 @@ struct EmailFieldRoundedFrame: View {
 
 struct SecTextFieldRoundedFrame: View {
     
-    @StateObject var viewModel = LoginViewModel()
+    //@StateObject var viewModel = LoginViewModel()
+    @StateObject var viewModel = LoginViewModel.shared.self
     @State var isPasswordSecured: Bool = true
     @FocusState var inFocus: Field?
     

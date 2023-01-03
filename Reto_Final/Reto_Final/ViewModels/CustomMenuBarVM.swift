@@ -9,21 +9,21 @@ import SwiftUI
 
 class CustomMenuBarVM: ObservableObject {
     
-    static let sharedCustomMenuBarVM = CustomMenuBarVM()
+    static let shared = CustomMenuBarVM()
     
     @Published var isNavEnabled = false
     @Published var goToView: AnyView?
     @Published var previousView: String?
-    @Published var currentView: String = MenuViewModel.sharedMenuViewVM.currentViewSelection ?? ""
+    @Published var currentView: String = MenuViewModel.shared.currentViewSelection ?? ""
     var viewTitle: String?
     
     func backButtonAction() -> Bool{
         self.isNavEnabled = true
         print("Back button was tapped")
         print("Estado success NetworkService.shared: \(NetworkService.shared.success)")
-        print("Estado isLoggedIn LoginViewModel.sharedLoginViewVM: \(LoginViewModel.sharedLoginViewVM.isLoggedIn)")
+        print("Estado isLoggedIn LoginViewModel.sharedLoginViewVM: \(LoginViewModel.shared.isLoggedIn)")
         print("Estado previousView: \(String(describing: previousView))")
-        print("Estado currentViewSelection: \(String(describing: MenuViewModel.sharedMenuViewVM.currentViewSelection))")
+        print("Estado currentViewSelection: \(String(describing: MenuViewModel.shared.currentViewSelection))")
         return self.isNavEnabled
     }
     

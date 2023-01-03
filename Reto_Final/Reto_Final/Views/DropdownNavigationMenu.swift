@@ -10,7 +10,7 @@ import SwiftUI
 
 struct DropdownNavigationMenu: View {
     
-    @ObservedObject var viewModel = MenuViewModel.sharedMenuViewVM.self
+    @ObservedObject var viewModel = MenuViewModel.shared.self
     @State private var selectedOption: String?
     @State var viewSelection: String?
     @State var isNavEnabled = false

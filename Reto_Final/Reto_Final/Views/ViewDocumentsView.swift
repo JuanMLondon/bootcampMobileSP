@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ViewDocumentsView: View {
     
-    @ObservedObject var viewModel = ViewDocumentsViewModel.sharedViewDocumentsViewVM.self
+    @ObservedObject var viewModel = ViewDocumentsViewModel.shared.self
     @State var viewSelection: String?
     @State private var goToView: AnyView?
     @State private var isActive = false

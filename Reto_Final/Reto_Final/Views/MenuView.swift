@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MenuView: View {
     
-    @StateObject var viewModel = MenuViewModel.sharedMenuViewVM.self
+    @StateObject var viewModel = MenuViewModel.shared.self
     @State var viewSelection: String?
     
     var body: some View {

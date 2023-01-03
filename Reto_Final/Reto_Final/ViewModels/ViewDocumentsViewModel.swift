@@ -9,9 +9,9 @@ import SwiftUI
 
 class ViewDocumentsViewModel: ObservableObject {
     
-    static let sharedViewDocumentsViewVM = ViewDocumentsViewModel()
+    static let shared = ViewDocumentsViewModel()
     
-    @StateObject var menuViewModel = MenuViewModel.sharedMenuViewVM.self
+    @ObservedObject var menuViewModel = MenuViewModel.shared.self
     
     @Published var currentViewSelection: String?
     
