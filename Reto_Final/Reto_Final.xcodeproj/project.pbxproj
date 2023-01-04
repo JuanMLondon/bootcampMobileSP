@@ -191,9 +191,8 @@
 				A43AD1D02959F948001A8754 /* EmailValidator.swift */,
 				A43AD1D22959F982001A8754 /* UserSettings.swift */,
 				A481FADF295FC1A2009F0DF2 /* DocumentsData.swift */,
-				A4323CBF2961F1DF00652F00 /* Camera */,
-				A4FAD6A2296335C500329333 /* SaveLocally.swift */,
 				A4C5C2C1296459C2000D4C85 /* SendDataService.swift */,
+				A4323CBF2961F1DF00652F00 /* Camera */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -212,6 +211,7 @@
 		A4323CBF2961F1DF00652F00 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				A4FAD6A2296335C500329333 /* SaveLocally.swift */,
 				A4323CC52961F6F000652F00 /* SaveImageToLibrary.swift */,
 				A43686C92960D0B900974099 /* CameraError.swift */,
 				A4E10F962960C15000F11AE2 /* CameraManager.swift */,

@@ -22,6 +22,7 @@ class PHPCoordinator: NSObject, PHPickerViewControllerDelegate {
         if provider.canLoadObject(ofClass: UIImage.self) {
             provider.loadObject(ofClass: UIImage.self) { image, _ in
                 self.parent.selectedImage = image as? UIImage
+                self.parent.imageData = image as? UIImage
                 //self.parent.base64SelectedImage = SendDataService().encodeImgBase64(image: (image as? UIImage)!)
             }
         }

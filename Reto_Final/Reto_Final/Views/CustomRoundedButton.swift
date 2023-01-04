@@ -25,7 +25,7 @@ struct CustomRoundedButton: View {
             .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color(lighterButtonColor!), lineWidth: 1))
             .overlay(HStack {
                 Button(buttonText ?? "Button") {
-                    performAction()
+                    //SendDocumentsView().sendButtonAction()
                     //print(viewModel.encodedDoc!)
                 }
                 .foregroundColor(Color(colorScheme!))
@@ -35,11 +35,6 @@ struct CustomRoundedButton: View {
                     .foregroundColor(Color(colorScheme!))
                     .padding(.trailing, 5)*/
             })
-    }
-    
-    func performAction() {
-        print("Button was tapped.")
-        viewModel.getBase64()
     }
 }
 

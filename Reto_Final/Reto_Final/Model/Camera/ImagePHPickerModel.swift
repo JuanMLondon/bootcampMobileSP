@@ -11,7 +11,8 @@ import SwiftUI
 struct ImagePHPickerModel: UIViewControllerRepresentable {
     
     @Binding var selectedImage: UIImage?
-    //@Binding var base64SelectedImage: String?
+    var imageData: UIImage?
+    //var base64SelectedImage: String?
 
     func makeUIViewController(context: Context) -> PHPickerViewController {
         var config = PHPickerConfiguration()

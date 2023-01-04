@@ -22,13 +22,13 @@ class SendDocumentsViewModel: ObservableObject {
     var email: String = ""
     var city: String = ""
     var doctype: String = ""
-    var image: UIImage?
-    var encodedDoc: String?
+    var encodedDoc: String? = ""
     
     init() { }
     
+    /*
     func getImage() -> UIImage? {
-        if SendDocumentsView().image != nil {
+        if ImagePHPickerModel(selectedImage: $placeHolder).imageData != nil {
             let image = SendDocumentsView().image
             return image!
         }
@@ -36,13 +36,14 @@ class SendDocumentsViewModel: ObservableObject {
     }
     
     func getBase64() -> String? {
-        if SendDocumentsView().image != nil {
+        if self.image != nil {
             self.image = SendDocumentsView().image
             self.encodedDoc = SendDataService().encodeImgBase64(image: image!)
             return self.encodedDoc
         }
         return nil
     }
+     */
 }
 
 struct DropdownList: View {

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreMedia
 
 struct SendDocumentsView: View {
     
@@ -18,7 +19,9 @@ struct SendDocumentsView: View {
     @State var goToView: AnyView?
     @State private var sourceType: UIImagePickerController.SourceType = .camera
     @State var image: UIImage?
-    @State var base64Image: String?
+    var imageData: UIImage?
+    var base64Image: String?
+    
     @State private var isImagePHPickerDisplay = false
     @State private var isUIImagePickerDisplay = false
     @State private var selectedOption: String?
@@ -80,7 +83,6 @@ struct SendDocumentsView: View {
                                 print(selectedOption!)
                                 self.sourceType = .photoLibrary
                                 self.isImagePHPickerDisplay.toggle()
-                                self.image = viewModel.getImage()
                                 
                             default:
                                 print(self.selectedOption!)
@@ -209,12 +211,30 @@ struct SendDocumentsView: View {
                                 .overlay(Rectangle().stroke(Color("black_UI"), lineWidth: 0.7))
                         }
                         
-
+                        
                         
                         Spacer()
                             .frame(maxHeight: 80)
                         
-                        CustomRoundedButton(buttonText:"Enviar", colorScheme: "white", lighterButtonColor: "fuchsia_Light", lighterButtonFill: "fuchsia_Light")
+                        //CustomRoundedButton(buttonText:"Enviar", colorScheme: "white", lighterButtonColor: "fuchsia_Light", lighterButtonFill: "fuchsia_Light")
+                        
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(Color("fuchsia_Light"))
+                            .frame(width: 280, height: 45.0)
+                            .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color("fuchsia_Light"), lineWidth: 1))
+                            .overlay(HStack {
+                                Button(action: {
+                                    sendButtonAction()
+                                }, label: {
+                                    Text("Enviar")
+                                })
+                                .foregroundColor(Color("white"))
+                                .font(.title2)
+                                
+                                /*Image(systemName: "arrow.forward")
+                                    .foregroundColor(Color("white"))
+                                    .padding(.trailing, 5)*/
+                            })
                         
                         Spacer()
                         
@@ -229,6 +249,31 @@ struct SendDocumentsView: View {
                 CustomMenuBarVM().previousView = MenuViewModel().currentViewSelection
                 //print("Current view selection state (from ViewModel): \(String(describing: self.$viewModel.currentViewSelection))")
             }
+        }
+    }
+    
+    func getImage() -> UIImage? {
+        if ImagePHPickerModel(selectedImage: $image).selectedImage != nil {
+            let imageData = ImagePHPickerModel(selectedImage: $image).selectedImage
+            return imageData
+        }
+        return nil
+    }
+    
+    func getBase64() -> String? {
+        if self.imageData != nil {
+            let base64Image = SendDataService().encodeImgBase64(image: self.imageData!)
+            return base64Image
+        }
+        return nil
+    }
+    
+    func sendButtonAction() {
+        print("Button was tapped.")
+        if self.image != nil {
+            let imageData = getImage()!
+            let base64 = SendDataService().encodeImgBase64(image: imageData)
+            viewModel.encodedDoc = base64
         }
     }
 }
