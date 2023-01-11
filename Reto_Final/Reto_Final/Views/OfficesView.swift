@@ -17,7 +17,8 @@ struct OfficesView: View {
     @StateObject var manager = LocationManager()
     @State var tracking:MapUserTrackingMode = .follow
     @State var viewSelection: String?
-    @State var officeLocations: [OfficeModel] = [] //@State var officeLocations: [OfficeModel]?
+    //@State var officeLocations: [OfficeModel] = [] //@State var officeLocations: [OfficeModel]?
+    @State var officeLocations = [OfficeModel]()
     
     var body: some View {
         
@@ -31,7 +32,13 @@ struct OfficesView: View {
                         .padding(.top, 75)
                         .padding(.horizontal, 20)
                     
-                    Map(coordinateRegion: $manager.region, interactionModes: MapInteractionModes.all, showsUserLocation: true, userTrackingMode: $tracking)
+                    Map(coordinateRegion: $manager.region, interactionModes: MapInteractionModes.all, showsUserLocation: true, userTrackingMode: $tracking, annotationItems: officeLocations, annotationContent: {location in
+                        //MapPin(coordinate: location.coordinate, tint: .red)
+                        MapAnnotation(coordinate: location.coordinate, content: {
+                            Image(systemName: "pin.circle.fill").foregroundColor(.red)
+                            Text(location.Nombre)
+                        })
+                    })
                 }
             }
             .edgesIgnoringSafeArea(.all)
@@ -42,6 +49,7 @@ struct OfficesView: View {
                 self.officeLocations =  getOfficesService.getOffices(completion: { success in })!
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.5, execute: {
+                    
                     self.officeLocations = self.getOfficesService.getOfficesList()
                     print("Test officeLocations from OfficesView: \(self.officeLocations)")
                 })

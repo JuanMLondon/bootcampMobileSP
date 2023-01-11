@@ -5,6 +5,7 @@
 //  Created by JML on 18/12/22.
 //
 
+import _MapKit_SwiftUI
 import Foundation
 
 struct OfficesData: Decodable {
@@ -23,10 +24,13 @@ struct OfficeModel: Decodable, Identifiable {
     let Ciudad: String
     let Longitud: String
     let Latitud: String
-    var LongitudeDouble: Double {
+    var longitudeDouble: Double {
         return Double(Longitud) ?? 0.0
     }
-    var LatitudeDouble: Double {
+    var latitudeDouble: Double {
         return Double(Latitud) ?? 0.0
+    }
+    var coordinate: CLLocationCoordinate2D {
+        CLLocationCoordinate2D(latitude: latitudeDouble, longitude: longitudeDouble)
     }
 }

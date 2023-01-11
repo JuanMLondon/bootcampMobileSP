@@ -16,15 +16,14 @@ class OfficesViewModel: ObservableObject {
     @ObservedObject var getOfficesService = GetOfficesService.shared.self
     @ObservedObject var menuViewModel = MenuViewModel.shared.self
     @Published var currentViewSelection: String?
-    @Published var officeLocations: [OfficeModel]?
+    @Published var officeLocations: [OfficeModel] = []
     
     init() { }
     
     func getOfficesData() -> [OfficeModel] {
         self.officeLocations = self.getOfficesService.getOfficesList()
-        print("Test from OfficesViewVM: \(officeLocations)")
         print("Test from OfficesViewVM Iterator):")
-        self.officeLocations!.forEach({print($0.IdOficina, $0.Nombre, $0.Ciudad, $0.LongitudeDouble, $0.LatitudeDouble)})
-        return self.officeLocations!
+        self.officeLocations.forEach({print($0.IdOficina, $0.Nombre, $0.Ciudad, $0.longitudeDouble, $0.latitudeDouble)})
+        return self.officeLocations
     }
 }

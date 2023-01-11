@@ -16,18 +16,8 @@ class GetOfficesService: ObservableObject {
     //@Published var officesList: [OfficeModel] = [] //
     @Published var currentCity: String? //= "Bogotá"
     
-    var officeID: Int?
-    var officeName: String?
-    var officeCity: String?
-    var officeLongitude: Double?
-    var officeLatitude: Double?
-    
     //var array: [Any]?
     //var array: Array<Any>?
-    
-    var officesCount: Int?
-    var currentLongitude: Double?
-    var currentLatirude: Double?
     
     init() { }
     
@@ -64,7 +54,7 @@ class GetOfficesService: ObservableObject {
                 completion(false)
                 
             } else if let jsonData = data {
-                //DispatchQueue.main.async {
+                DispatchQueue.main.async {
                     /*self.officesList = self.parseCitiesJSON(jsonData, completion: { [weak self] success in
                         self?.officesList = (success != nil) ? self!.officesList : [OfficeModel(IdOficina: 0, Nombre: "", Ciudad: "", Longitud: "", Latitud: "")]
                     })!
@@ -74,7 +64,7 @@ class GetOfficesService: ObservableObject {
                         self.officesList = (success != nil) ? self.officesList : [OfficeModel(IdOficina: 0, Nombre: "", Ciudad: "", Longitud: "", Latitud: "")]
                     })!
                     completion(true)
-                //}
+                }
             }
         })
         task.resume()
@@ -90,12 +80,18 @@ class GetOfficesService: ObservableObject {
             
             OfficesView().officeLocations = officesResponse.Items
             
+            /*let officeID: Int?
+            let officeName: String?
+            let officeCity: String?
+            let officeLongitude: Double?
+            let officeLatitude: Double?*/
+            
             /*print("Response body:\n\(officesResponse)")
             print("Decoder test 1:\(self.officesList[0].Nombre)")
             print("Decoder test (Iterator 1):")
             officesResponse.Items.forEach{print($0.IdOficina, $0.Nombre, $0.Ciudad)}*/
             print("Decoder test (officesList Iterator):")
-            self.officesList.forEach({print($0.IdOficina, $0.Nombre, $0.Ciudad, $0.LongitudeDouble, $0.LatitudeDouble)})
+            self.officesList.forEach({print($0.IdOficina, $0.Nombre, $0.Ciudad, $0.longitudeDouble, $0.latitudeDouble)})
             /*self.array = self.officesList
             print("Array<Any> Test: \(self.array?[0] ?? [])")*/
             
@@ -110,9 +106,8 @@ class GetOfficesService: ObservableObject {
     }
     
     func getOfficesList() -> [OfficeModel] {
-        print("Test from getOfficesList(): \(officesList)")
         print("Test from getOfficesList() Iterator):")
-        self.officesList.forEach({print($0.IdOficina, $0.Nombre, $0.Ciudad, $0.LongitudeDouble, $0.LatitudeDouble)})
+        self.officesList.forEach({print($0.IdOficina, $0.Nombre, $0.Ciudad, $0.longitudeDouble, $0.latitudeDouble)})
         return self.officesList
     }
 }
