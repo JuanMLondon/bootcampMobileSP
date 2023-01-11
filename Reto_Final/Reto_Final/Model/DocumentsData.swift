@@ -7,22 +7,56 @@
 
 import Foundation
 
-struct DocumentsData: Codable {
-    let Items: [String]
+struct DocumentsData: Decodable {
+    let Items: [DocumentModel]
+    let Count: Int
+    let ScannedCount: Int
 }
 
-struct Items: Codable, Identifiable {
+
+struct DocumentModel: Decodable, Identifiable {
     var id: String {
-        return IdRegistro
+        return IdRegistro ?? ""
     }
-    let IdRegistro: String
-    let Fecha: String
-    let TipoId: String
-    let Identificacion: String
-    let Nombre: String
-    let Apellido: String
-    let Ciudad: String
-    let Correo: String
-    let TipoAdjunto: String
-    let Adjunto: String
+    let IdRegistro: String?
+    let Fecha: String?
+    let Nombre: String?
+    let Apellido: String?
+    let TipoAdjunto: String?
+}
+
+
+struct GetDocumentData: Decodable {
+    let Items: [GetDocumentModel]
+}
+
+
+struct GetDocumentModel: Decodable {
+    let IdRegistro: String?
+    let Fecha: String?
+    let TipoId: String?
+    let Identificacion: String?
+    let Nombre: String?
+    let Apellido: String?
+    let Ciudad: String?
+    let Correo: String?
+    let TipoAdjunto: String?
+    let Adjunto: String?
+}
+
+
+struct PostDocumentModel: Codable {
+    let TipoId: String?
+    let Identificacion: String?
+    let Nombre: String?
+    let Apellido: String?
+    let Ciudad: String?
+    let Correo: String?
+    let TipoAdjunto: String?
+    let Adjunto: String?
+}
+
+
+struct PutModel: Decodable {
+    let put: Bool
 }

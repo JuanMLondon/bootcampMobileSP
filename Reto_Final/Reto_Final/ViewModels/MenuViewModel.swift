@@ -9,15 +9,16 @@ import SwiftUI
 
 class MenuViewModel: ObservableObject {
     
+    // Singleton
     static let shared = MenuViewModel()
     
-    @ObservedObject var networkService = NetworkService.shared.self
+    @ObservedObject var authenticationService = AuthenticationService.shared.self
     @Published var currentViewSelection: String?
     
     init() { }
     
     func getLoggedUser() -> UserModel{
-        return networkService.getLoggedInUser()
+        return authenticationService.getLoggedInUser()
     }
 }
 
@@ -78,17 +79,13 @@ struct NavButton: View {
         switch linkedView {
             
         case "SendDocuments":
-            
             MenuNavLinkButton(viewSelection: viewSelection, destinationView: AnyView(SendDocumentsView(viewModel: SendDocumentsViewModel())), linkedView: linkedView, colorScheme: colorScheme, lighterButtonColor: lighterButtonColor, lighterButtonFill: lighterButtonFill)
-            
+
         case "ViewDocuments":
-            
             MenuNavLinkButton(viewSelection: viewSelection, destinationView: AnyView(ViewDocumentsView(viewModel: ViewDocumentsViewModel())), linkedView: linkedView, colorScheme: colorScheme, lighterButtonColor: lighterButtonColor, lighterButtonFill: lighterButtonFill)
-            
+
         case "Offices":
-            
             MenuNavLinkButton(viewSelection: viewSelection, destinationView: AnyView(OfficesView(viewModel: OfficesViewModel())), linkedView: linkedView, colorScheme: colorScheme, lighterButtonColor: lighterButtonColor, lighterButtonFill: lighterButtonFill)
-            //MenuNavLink(viewSelection: viewSelection, destinationView: AnyView(OfficesView()), linkedView: linkedView, colorScheme: colorScheme, lighterButtonColor: lighterButtonColor, lighterButtonFill: lighterButtonFill)
             
         default:
             NavigationLink(destination: MenuView(viewModel: MenuViewModel()).navigationBarBackButtonHidden(false), tag: linkedView, selection: $viewSelection, label: { EmptyView() })
@@ -107,7 +104,6 @@ struct MenuNavLinkButton: View {
     let lighterButtonFill: String
     
     init(viewSelection: String? = nil, destinationView: AnyView, linkedView: String, colorScheme: String, lighterButtonColor: String, lighterButtonFill: String) {
-        //self.viewSelection = viewSelection
         self.destinationView = destinationView
         self.linkedView = linkedView
         self.colorScheme = colorScheme
@@ -143,8 +139,8 @@ struct MenuNavLinkButton: View {
         DispatchQueue.main.async {
             self.viewModel.currentViewSelection = self.linkedView
             self.viewSelection = self.viewModel.currentViewSelection
-            print("Go to view (Stage 2A): \(String(describing: self.viewSelection!))")
-            print("Go to view (Stage 2B): \(String(describing: self.viewModel.currentViewSelection!))")
+            //print("Go to view (Stage 2A): \(String(describing: self.viewSelection!))")
+            //print("Go to view (Stage 2B): \(String(describing: self.viewModel.currentViewSelection!))")
         }
     }
 }

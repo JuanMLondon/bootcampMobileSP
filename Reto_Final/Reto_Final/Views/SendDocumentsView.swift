@@ -10,13 +10,14 @@ import CoreMedia
 
 struct SendDocumentsView: View {
     
+    @Environment(\.dismiss) var dismiss
     @StateObject var viewModel = SendDocumentsViewModel.shared.self
     
     //@ObservedObject private var model = FrameViewModel()
+    //@State var viewSelection: String?
+    //@State var isNavEnabled = false
+    //@State var goToView: AnyView?
     
-    @State var viewSelection: String?
-    @State var isNavEnabled = false
-    @State var goToView: AnyView?
     @State private var sourceType: UIImagePickerController.SourceType = .camera
     @State var image: UIImage?
     var imageData: UIImage?
@@ -24,15 +25,18 @@ struct SendDocumentsView: View {
     
     @State private var isImagePHPickerDisplay = false
     @State private var isUIImagePickerDisplay = false
+    
     @State private var selectedOption: String?
-    
-    @State var isEmailValid : Bool = true
-    var eValidator = EmailValidator()
-    
     var menuItems: [String] = ["Tomar foto", "Cargar foto"]
     var onOptionSelected: ((_ option: String) -> Void)?
     
+    @State private var selectedCity: String?
     var cities: [String] = ["Bogotá", "Medellín", "México", "Panamá", "Chile", "Estados Unidos"]
+    var onCitySelected: ((_ option: String) -> Void)?
+    
+    @State var email: String?
+    @State var isEmailValid : Bool = true
+    var eValidator = EmailValidator()
     
     var body: some View {
         
@@ -104,7 +108,7 @@ struct SendDocumentsView: View {
                             NavigationLink(destination: goToView.navigationBarBackButtonHidden(true), isActive: $isNavEnabled, label: { EmptyView() })
                         })*/
                         .sheet(isPresented: self.$isImagePHPickerDisplay, content: {
-                            ImagePHPickerModel(selectedImage: self.$image/*, base64SelectedImage: self.$base64Image, sourceType: self.sourceType*/)
+                            ImagePHPickerModel(selectedImage: self.$image)
                         })
                         .sheet(isPresented: self.$isUIImagePickerDisplay, content: {
                             UIImagePickerModel(selectedImage: self.$image, sourceType: self.sourceType)
@@ -190,12 +194,20 @@ struct SendDocumentsView: View {
                                 .overlay(Rectangle().stroke(Color("black_UI"), lineWidth: 0.7))
                             
                         }
-
+                        
                         Group {
-                            DropdownList(dropdownLabel: "Ciudad/País", menuItems: cities)
-                                .foregroundColor(Color("black_UI"))
-                                .frame(height: 25)
-                                .font(.title3)
+                            DropdownList(dropdownLabel: "Ciudad/País", menuItems: cities){ option in
+                                self.selectedCity = option
+                                self.onCitySelected?(option)
+                                if selectedCity != nil {
+                                    viewModel.city = selectedCity!
+                                    print(self.selectedCity!)
+                                }
+                            }
+                            .foregroundColor(Color("black_UI"))
+                            .frame(height: 25)
+                            .font(.title3)
+                            .id(self.selectedOption)
                             
                             Divider()
                                 .overlay(Rectangle().stroke(Color("black_UI"), lineWidth: 0.7))
@@ -216,8 +228,6 @@ struct SendDocumentsView: View {
                         Spacer()
                             .frame(maxHeight: 80)
                         
-                        //CustomRoundedButton(buttonText:"Enviar", colorScheme: "white", lighterButtonColor: "fuchsia_Light", lighterButtonFill: "fuchsia_Light")
-                        
                         RoundedRectangle(cornerRadius: 8)
                             .fill(Color("fuchsia_Light"))
                             .frame(width: 280, height: 45.0)
@@ -225,19 +235,20 @@ struct SendDocumentsView: View {
                             .overlay(HStack {
                                 Button(action: {
                                     sendButtonAction()
+                                    self.viewModel.setParameters()
+                                    SendDataService.shared.postData(completion: { success in })
+                                    //dismiss()
                                 }, label: {
                                     Text("Enviar")
+                                    /*Image(systemName: "arrow.forward")
+                                        .foregroundColor(Color("white"))
+                                        .padding(.trailing, 5)*/
                                 })
                                 .foregroundColor(Color("white"))
                                 .font(.title2)
-                                
-                                /*Image(systemName: "arrow.forward")
-                                    .foregroundColor(Color("white"))
-                                    .padding(.trailing, 5)*/
                             })
                         
                         Spacer()
-                        
                     }
                     .padding(.horizontal, 30)
                 }
@@ -247,8 +258,14 @@ struct SendDocumentsView: View {
                 self.viewModel.currentViewSelection = MenuViewModel().currentViewSelection
                 
                 CustomMenuBarVM().previousView = MenuViewModel().currentViewSelection
-                //print("Current view selection state (from ViewModel): \(String(describing: self.$viewModel.currentViewSelection))")
+                print("Current selection state (from SendDocumentsViewVM): \(String(describing: self.$viewModel.currentViewSelection))")
+                self.email = self.viewModel.retrieveEmail()
+                //print("Current user email (view): \(self.email!)")
+                //print("Current user email (viewModel): \(self.viewModel.email)")
             }
+            /*.onDisappear() {
+                dismiss()
+            }*/
         }
     }
     
@@ -262,7 +279,7 @@ struct SendDocumentsView: View {
     
     func getBase64() -> String? {
         if self.imageData != nil {
-            let base64Image = SendDataService().encodeImgBase64(image: self.imageData!)
+            let base64Image = SendDataService.shared.encodeImgBase64(image: self.imageData!)
             return base64Image
         }
         return nil
@@ -272,8 +289,12 @@ struct SendDocumentsView: View {
         print("Button was tapped.")
         if self.image != nil {
             let imageData = getImage()!
-            let base64 = SendDataService().encodeImgBase64(image: imageData)
+            let base64 = SendDataService.shared.encodeImgBase64(image: imageData)
             viewModel.encodedDoc = base64
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                viewModel.result = viewModel.getResult()
+                print("Post successful: \(viewModel.result!)")
+            })
         }
     }
 }

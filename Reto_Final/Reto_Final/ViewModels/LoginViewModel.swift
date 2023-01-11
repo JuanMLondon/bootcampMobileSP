@@ -9,9 +9,10 @@ import SwiftUI
 
 class LoginViewModel: ObservableObject {
     
+    // Singleton
     static let shared = LoginViewModel()
     
-    @ObservedObject var networkService = NetworkService.shared.self
+    @ObservedObject var authenticationService = AuthenticationService.shared.self
     @Published var hasError: Bool = false
     @Published var isLoggingIn: Bool = false
     @Published var isLoggedIn: Bool = false
@@ -30,7 +31,7 @@ class LoginViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.isLoggingIn = true
             }
-            networkService.login(email: email, password: password, completion: { [ weak self ] success in
+            authenticationService.login(email: email, password: password, completion: { [ weak self ] success in
                 DispatchQueue.main.async {
                     self!.isLoggedIn = success ? true : false;
                     self!.hasError = success ? false : true;

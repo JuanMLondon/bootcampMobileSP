@@ -9,6 +9,7 @@ import SwiftUI
 
 class DropdownNavigationMenuVM: ObservableObject {
     
+    // Singleton
     static let shared = DropdownNavigationMenuVM()
     
     @ObservedObject var viewModel = MenuViewModel.shared.self

@@ -31,7 +31,7 @@ struct DropdownNavigationMenu: View {
     }
     
     var body: some View {
-            // Default Dropdown Menu
+            // Standard Dropdown Menu
             Menu(content: {
                 
                 Dropdown(options: self.menuItems) { option in
@@ -52,8 +52,6 @@ struct DropdownNavigationMenu: View {
 
                     case "Oficinas":
                         navigateAction(linkedView: "Offices", navigateTo: AnyView(OfficesView(viewModel: OfficesViewModel())))
-                        //navigateAction(linkedView: "Offices", navigateTo: AnyView(OfficesView()))
-                        
                         
                     case "Cerrar sesión":
                         navigateAction(linkedView: "LoginView", navigateTo: AnyView(LoginView(viewModel: LoginViewModel())))

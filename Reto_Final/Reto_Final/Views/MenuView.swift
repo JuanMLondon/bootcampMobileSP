@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MenuView: View {
     
+    @Environment(\.dismiss) var dismiss
     @StateObject var viewModel = MenuViewModel.shared.self
     @State var viewSelection: String?
     

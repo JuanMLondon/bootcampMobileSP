@@ -11,22 +11,21 @@ import SwiftUI
 struct Reto_FinalApp: App {
     
     //@Environment(\.presentationMode) var presentationMode
-    @StateObject var networkService = NetworkService.shared.self
+    @StateObject var authenticationService = AuthenticationService.shared.self
     
     var body: some Scene {
         
         WindowGroup {
             LoginView(viewModel: LoginViewModel())
-                .environmentObject(networkService)
+                .environmentObject(authenticationService)
             
-            /*if !NetworkService.shared.success {
+            /*if !AuthenticationService.shared.success {
                 LoginView(viewModel: LoginViewModel())
-                    .environmentObject(networkService)
+                    .environmentObject(authenticationService)
             } else {
                 MenuView(viewModel: MenuViewModel())
-                    .environmentObject(networkService)
-            }
-             */
+                    .environmentObject(authenticationService)
+            }*/
         }
     }
 }

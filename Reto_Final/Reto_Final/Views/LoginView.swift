@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  LoginView.swift
 //  Reto_Final
 //
 //  Created by JML on 14/12/22.
@@ -10,6 +10,7 @@ import SwiftUI
 
 struct LoginView: View {
     
+    @Environment(\.dismiss) var dismiss
     @StateObject var viewModel = LoginViewModel.shared.self
     @State var isShowingMenuView = false
     @State private var isUnlocked = false
@@ -121,7 +122,7 @@ struct LoginView: View {
             
             self.viewModel.login(email: viewModel.email, password: viewModel.password)
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
                 self.viewModel.updateBusyStatus()
                 self.isShowingMenuView = self.viewModel.isLoggedIn
                 self.viewModel.saveUserSettings()

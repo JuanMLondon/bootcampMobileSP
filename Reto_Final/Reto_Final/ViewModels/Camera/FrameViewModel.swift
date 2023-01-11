@@ -12,11 +12,11 @@ class FrameViewModel: ObservableObject {
     @Published var error: Error?
     @Published var frame: CGImage?
     
-    /* //Needed for applying filters
+    //Needed for applying filters
     var comicFilter = false
     var monoFilter = false
     var crystalFilter = false
-    */
+    
 
     private let context = CIContext()
     
@@ -46,7 +46,7 @@ class FrameViewModel: ObservableObject {
             .compactMap { buffer in
                 return CGImage.create(from: buffer)
                 
-                /*//Needed for applying filters
+                //Needed for applying filters
                 guard let image = CGImage.create(from: buffer) else {
                   return nil
                 }
@@ -66,7 +66,7 @@ class FrameViewModel: ObservableObject {
                 }
 
                 return self.context.createCGImage(ciImage, from: ciImage.extent)
-                 */
+                
             }
         // 4 Assign the output of the pipeline — which is, itself, a publisher — to your published frame.
             .assign(to: &$frame)

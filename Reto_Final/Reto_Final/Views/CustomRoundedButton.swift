@@ -10,8 +10,6 @@ import SwiftUI
 
 struct CustomRoundedButton: View {
     
-    @StateObject var viewModel = SendDocumentsViewModel.shared.self
-    
     let buttonText: String?
     let colorScheme: String?
     let lighterButtonColor: String?
@@ -24,16 +22,16 @@ struct CustomRoundedButton: View {
             .frame(width: 280, height: 45.0)
             .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color(lighterButtonColor!), lineWidth: 1))
             .overlay(HStack {
-                Button(buttonText ?? "Button") {
-                    //SendDocumentsView().sendButtonAction()
-                    //print(viewModel.encodedDoc!)
-                }
+                Button(action: {
+                    //sendButtonAction()
+                }, label: {
+                    Text(buttonText ?? "Button")
+                    Image(systemName: "arrow.forward")
+                        .foregroundColor(Color(colorScheme!))
+                        .padding(.trailing, 5)
+                })
                 .foregroundColor(Color(colorScheme!))
                 .font(.title2)
-                
-                /*Image(systemName: "arrow.forward")
-                    .foregroundColor(Color(colorScheme!))
-                    .padding(.trailing, 5)*/
             })
     }
 }
