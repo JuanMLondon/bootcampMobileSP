@@ -22,7 +22,7 @@ class SendDocumentsViewModel: ObservableObject {
     
     @Published var result: Bool?
     
-    var typeId: String = "001"
+    var typeId: String = ""
     var idNumber: String = ""
     var name: String = ""
     var lastname: String = ""

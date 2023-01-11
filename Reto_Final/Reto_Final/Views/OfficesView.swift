@@ -17,8 +17,9 @@ struct OfficesView: View {
     @StateObject var manager = LocationManager()
     @State var tracking:MapUserTrackingMode = .follow
     @State var viewSelection: String?
-    //@State var officeLocations: [OfficeModel] = [] //@State var officeLocations: [OfficeModel]?
-    @State var officeLocations = [OfficeModel]()
+    //@State var officeLocations = [OfficeModel]() // One way.
+    //@State var officeLocations: [OfficeModel]? // Another way.
+    @State var officeLocations: [OfficeModel] = [] // Yet another way.
     
     var body: some View {
         
@@ -26,14 +27,13 @@ struct OfficesView: View {
             
             ZStack {
                 Color("sophosBC")
-                //Color(.systemGreen)
                 VStack {
                     CustomMenuBar()
                         .padding(.top, 75)
                         .padding(.horizontal, 20)
                     
                     Map(coordinateRegion: $manager.region, interactionModes: MapInteractionModes.all, showsUserLocation: true, userTrackingMode: $tracking, annotationItems: officeLocations, annotationContent: {location in
-                        //MapPin(coordinate: location.coordinate, tint: .red)
+                        //MapPin(coordinate: location.coordinate, tint: .red) // Without annotations.
                         MapAnnotation(coordinate: location.coordinate, content: {
                             Image(systemName: "pin.circle.fill").foregroundColor(.red)
                             Text(location.Nombre)
@@ -46,18 +46,24 @@ struct OfficesView: View {
                 self.viewModel.currentViewSelection = MenuViewModel().currentViewSelection
                 CustomMenuBarVM().previousView = MenuViewModel().currentViewSelection
                 print("Current selection state (from OfficesViewVM): \(String(describing: self.$viewModel.currentViewSelection))")
-                self.officeLocations =  getOfficesService.getOffices(completion: { success in })!
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5, execute: {
-                    
-                    self.officeLocations = self.getOfficesService.getOfficesList()
-                    print("Test officeLocations from OfficesView: \(self.officeLocations)")
-                })
+                self.getLocationsData()
+                
             }
             /*.onDisappear() {
                 dismiss()
             }*/
         }
+    }
+    
+    func getLocationsData() {
+        getOfficesService.getOffices(completion: { success in })
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5, execute: {
+            self.viewModel.officeLocations = self.viewModel.getOfficesData()
+            self.officeLocations = self.viewModel.officeLocations
+            //print("Test officeLocations from OfficesView: \(self.officeLocations)")
+        })
     }
 }
 

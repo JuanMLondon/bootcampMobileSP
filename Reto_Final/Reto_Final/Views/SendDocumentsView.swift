@@ -30,6 +30,11 @@ struct SendDocumentsView: View {
     var menuItems: [String] = ["Tomar foto", "Cargar foto"]
     var onOptionSelected: ((_ option: String) -> Void)?
     
+    @State private var selectedDocType: String?
+    var docTypes: [String] = ["C.C.", "C.E.", "Pasaporte"]
+    var onDocTypeSelected: ((_ option: String) -> Void)?
+    
+    
     @State private var selectedCity: String?
     var cities: [String] = ["Bogotá", "Medellín", "México", "Panamá", "Chile", "Estados Unidos"]
     var onCitySelected: ((_ option: String) -> Void)?
@@ -37,6 +42,9 @@ struct SendDocumentsView: View {
     @State var email: String?
     @State var isEmailValid : Bool = true
     var eValidator = EmailValidator()
+    
+    @State var result: Bool?
+    @State var alertMessagePresented: Bool = false
     
     var body: some View {
         
@@ -47,19 +55,7 @@ struct SendDocumentsView: View {
                     CustomMenuBar()
                         .padding(.top, 75)
                         .padding(.horizontal, 20)
-                    
-                    if image != nil {
-                        Image(uiImage: self.image!)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(maxWidth: .infinity, maxHeight: 200)
-                    } else {
-                        Image(systemName: "camera")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 80, height: 65)
-                    }
-                    
+
                     Menu(content: {
                         Dropdown(options: self.menuItems) { option in
                             self.selectedOption = option
@@ -95,15 +91,19 @@ struct SendDocumentsView: View {
                         }
                     }, label: {
                         HStack{
-                            Text("Tipo de documento")
-                                .font(.title2)
-                                .foregroundColor(Color("black_UI"))
-                            Spacer()
-                            Image(systemName: "arrowtriangle.down.fill")
-                                .resizable(resizingMode: .stretch)
-                                .frame(width: 13, height: 8)
-                                .foregroundColor(Color("black_UI"))
+                            if image != nil {
+                                Image(uiImage: self.image!)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 360, height: 200)
+                            } else {
+                                Image(systemName: "camera")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 80, height: 65)
+                            }
                         }
+                        .foregroundColor(Color("black_UI"))
                         /*.overlay(content: {
                             NavigationLink(destination: goToView.navigationBarBackButtonHidden(true), isActive: $isNavEnabled, label: { EmptyView() })
                         })*/
@@ -117,8 +117,23 @@ struct SendDocumentsView: View {
                             FrameView(image: model.frame)
                         })*/
                     })
+                    //.frame(minWidth: 80, idealWidth: 80, maxWidth: .infinity, minHeight: 65, idealHeight: 65, maxHeight: 200)
+                    .frame(minWidth: 80, maxWidth: .infinity, minHeight: 65, maxHeight: 180)
+                    .padding(.horizontal, 35)
+                    
+                    DropdownList(dropdownLabel: "Tipo de documento", menuItems: docTypes){ option in
+                        self.selectedDocType = option
+                        self.onDocTypeSelected?(option)
+                        if selectedDocType != nil {
+                            viewModel.typeId = selectedDocType!
+                            print(self.selectedDocType!)
+                        }
+                    }
+                    .foregroundColor(Color("black_UI"))
                     .frame(height: 40)
                     .padding(.horizontal, 35)
+                    .font(.title3)
+                    //.id(self.selectedDocType)
                     
                     VStack{
                         HStack {
@@ -207,7 +222,7 @@ struct SendDocumentsView: View {
                             .foregroundColor(Color("black_UI"))
                             .frame(height: 25)
                             .font(.title3)
-                            .id(self.selectedOption)
+                            //.id(self.selectedCity)
                             
                             Divider()
                                 .overlay(Rectangle().stroke(Color("black_UI"), lineWidth: 0.7))
@@ -237,6 +252,7 @@ struct SendDocumentsView: View {
                                     sendButtonAction()
                                     self.viewModel.setParameters()
                                     SendDataService.shared.postData(completion: { success in })
+                                    self.alertMessagePresented.toggle()
                                     //dismiss()
                                 }, label: {
                                     Text("Enviar")
@@ -246,6 +262,13 @@ struct SendDocumentsView: View {
                                 })
                                 .foregroundColor(Color("white"))
                                 .font(.title2)
+                                .alert(isPresented: self.$alertMessagePresented) {
+                                    if self.result != nil && self.result == true {
+                                        return Alert(title: Text("Datos enviados"), message: Text("Los datos fueron enviados exitósamente."), dismissButton: .default(Text("Aceptar")))
+                                    }
+                                    return Alert(title: Text("No se ha realizado el envío"), message: Text("Complete los datos requeridos."), dismissButton: .default(Text("Intente nuevamente")))
+                                }
+                                
                             })
                         
                         Spacer()
@@ -292,8 +315,9 @@ struct SendDocumentsView: View {
             let base64 = SendDataService.shared.encodeImgBase64(image: imageData)
             viewModel.encodedDoc = base64
             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-                viewModel.result = viewModel.getResult()
-                print("Post successful: \(viewModel.result!)")
+                self.viewModel.result = self.viewModel.getResult()
+                self.result = self.viewModel.result
+                print("Post successful: \(self.result!)")
             })
         }
     }

@@ -10,10 +10,10 @@ import Foundation
 class GetOfficesService: ObservableObject {
     
     // Singleton
-    static let shared = GetOfficesService()
+    static let shared = GetOfficesService() //Lazy access.
     
-    @Published var officesList = [OfficeModel]()
-    //@Published var officesList: [OfficeModel] = [] //
+    //@Published var officesList = [OfficeModel]() // One way.
+    @Published var officesList: [OfficeModel] = [] // Another way.
     @Published var currentCity: String? //= "Bogotá"
     
     //var array: [Any]?
@@ -21,7 +21,7 @@ class GetOfficesService: ObservableObject {
     
     init() { }
     
-    func getOffices(completion: @escaping(Bool) -> Void) -> [OfficeModel]? {
+    func getOffices(completion: @escaping(Bool) -> Void)/* -> [OfficeModel]?*/ {
         
         var urlString = "https://6w33tkx4f9.execute-api.us-east-1.amazonaws.com/RS_Oficinas"
         let safeCityQuery = "?ciudad=" + "\(String(describing: currentCity ?? "Medellín"))".addingPercentEncoding(withAllowedCharacters: .alphanumerics)!
@@ -55,20 +55,20 @@ class GetOfficesService: ObservableObject {
                 
             } else if let jsonData = data {
                 DispatchQueue.main.async {
-                    /*self.officesList = self.parseCitiesJSON(jsonData, completion: { [weak self] success in
+                    self.officesList = self.parseCitiesJSON(jsonData, completion: { [weak self] success in
                         self?.officesList = (success != nil) ? self!.officesList : [OfficeModel(IdOficina: 0, Nombre: "", Ciudad: "", Longitud: "", Latitud: "")]
                     })!
-                    completion(true)*/
                     
-                    self.officesList = self.parseCitiesJSON(jsonData, completion: { success in
+                    // For debugging only. Modifies the variable's life cycle in memory.
+                    /*self.officesList = self.parseCitiesJSON(jsonData, completion: { success in
                         self.officesList = (success != nil) ? self.officesList : [OfficeModel(IdOficina: 0, Nombre: "", Ciudad: "", Longitud: "", Latitud: "")]
-                    })!
+                    })!*/
                     completion(true)
                 }
             }
         })
         task.resume()
-        return self.officesList
+        //return self.officesList
     }
     
     func parseCitiesJSON(_ jsonData: Data, completion: @escaping([OfficeModel]?) -> Void) -> [OfficeModel]? {
@@ -106,8 +106,8 @@ class GetOfficesService: ObservableObject {
     }
     
     func getOfficesList() -> [OfficeModel] {
-        print("Test from getOfficesList() Iterator):")
-        self.officesList.forEach({print($0.IdOficina, $0.Nombre, $0.Ciudad, $0.longitudeDouble, $0.latitudeDouble)})
+        //print("Test from getOfficesList() Iterator):")
+        //self.officesList.forEach({print($0.IdOficina, $0.Nombre, $0.Ciudad, $0.longitudeDouble, $0.latitudeDouble)})
         return self.officesList
     }
 }
