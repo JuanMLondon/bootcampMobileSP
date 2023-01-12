@@ -18,16 +18,6 @@ class ImagePickerViewVM: ObservableObject {
     @Published var showCameraAlert = false
     @Published var cameraError: Picker.CameraErrorType?
     
-    /*func showPhotoPicker() {
-        if source == .camera {
-            if !Picker.checkCameraPermissions() {
-                print("The camera on this device is not available")
-                return
-            }
-        }
-        showPicker = true
-    }*/
-    
     func showPhotoPicker() {
         do {
             if source == .camera {

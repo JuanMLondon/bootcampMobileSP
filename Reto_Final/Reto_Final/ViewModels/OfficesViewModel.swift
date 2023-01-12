@@ -22,8 +22,6 @@ class OfficesViewModel: ObservableObject {
     
     func getOfficesData() -> [OfficeModel] {
         self.officeLocations = self.getOfficesService.getOfficesList()
-        //print("Test from OfficesViewVM Iterator):")
-        //self.officeLocations.forEach({print($0.IdOficina, $0.Nombre, $0.Ciudad, $0.longitudeDouble, $0.latitudeDouble)})
         return self.officeLocations
     }
 }

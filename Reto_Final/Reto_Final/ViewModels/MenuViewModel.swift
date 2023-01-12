@@ -139,8 +139,6 @@ struct MenuNavLinkButton: View {
         DispatchQueue.main.async {
             self.viewModel.currentViewSelection = self.linkedView
             self.viewSelection = self.viewModel.currentViewSelection
-            //print("Go to view (Stage 2A): \(String(describing: self.viewSelection!))")
-            //print("Go to view (Stage 2B): \(String(describing: self.viewModel.currentViewSelection!))")
         }
     }
 }

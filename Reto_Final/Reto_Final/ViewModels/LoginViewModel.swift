@@ -37,10 +37,6 @@ class LoginViewModel: ObservableObject {
                     self!.hasError = success ? false : true;
                     self!.isLoggingIn = success ? false : true;
                 }
-                //print("Is successful?: \(success)")
-                //print("Has error?: \(String(describing: self!.hasError))")
-                //print("Is logging in??: \(String(describing: self!.isLoggingIn!))")
-                //print("Is logged in?: \(String(describing: self!.isLoggedIn ?? false))")
             })
         }
     }

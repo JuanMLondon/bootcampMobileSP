@@ -25,21 +25,11 @@ struct ViewDocumentsView: View {
         NavigationView {
             ZStack {
                 Color("sophosBC")
-                //Color(.systemPink)
                 
                 VStack {
                     CustomMenuBar()
                         .padding(.top, 75)
                         .padding(.horizontal, 20)
-                    
-                    /*if image != nil {
-                        Image(uiImage: self.image!)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(maxWidth: .infinity, maxHeight: 200)
-                    }*/
-                    
-                    /*List(<#T##data: RandomAccessCollection##RandomAccessCollection#>, rowContent: <#T##(Identifiable) -> View#>)*/
                     
                     List(getDocumentsService.documentsList, rowContent: { document in
                         
@@ -71,9 +61,7 @@ struct ViewDocumentsView: View {
                                 }
                                 .padding(.vertical, 12)
                             })
-                            //.background(Color("sophosBC"))
                             .sheet(isPresented: self.$isShowingDocumentView, content: {
-                                //DocumentView(selectedImage: self.$image)
                                 DocumentView()
                             })
                     })
@@ -87,8 +75,6 @@ struct ViewDocumentsView: View {
                 print("Current selection state (from ViewDocumentsViewVM): \(String(describing: self.$viewModel.currentViewSelection))")
                 self.email = viewModel.retrieveEmail()
                 self.viewModel.setEmail(email: self.email!)
-                //print("Current user email (view): \(self.email!)")
-                //print("Current user email (viewModel): \(self.viewModel.email!)")
                 getDocumentsService.fetchData(completion: { success in })
             }
             /*.onDisappear() {

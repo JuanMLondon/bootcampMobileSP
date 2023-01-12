@@ -33,14 +33,6 @@ enum Picker {
         }
     }
     
-    /*static func checkCameraPermissions() -> Bool {
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            return true
-        } else {
-            return false
-        }
-    }*/
-    
     static func checkCameraPermissions()throws {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let authStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)

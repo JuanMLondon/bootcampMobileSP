@@ -31,7 +31,6 @@ struct MenuView: View {
                             .frame(width: 180)
                             .font(.title)
                             .foregroundColor(Color("violet_UI"))
-                            //.padding(.top, 0)
                             .padding(.leading, 10)
                             .padding(.trailing, 55)
                         
@@ -46,10 +45,8 @@ struct MenuView: View {
                                     }
                                 }
                             })
-                        //.padding(.top, 55)
                             .padding(.leading, 50)
                             .padding(.trailing, 15)
-                            //.padding(.bottom, 0)
                         
                     }
                     .padding(.horizontal, 5)
@@ -99,7 +96,7 @@ struct MenuView: View {
             .onAppear(perform: {
                 print("Current view selection state: \(String(describing: self.$viewModel.currentViewSelection))")
             })
-        }//
+        }
     }
 }
 

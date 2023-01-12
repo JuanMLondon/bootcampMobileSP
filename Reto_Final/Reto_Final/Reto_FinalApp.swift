@@ -9,8 +9,7 @@ import SwiftUI
 
 @main
 struct Reto_FinalApp: App {
-    
-    //@Environment(\.presentationMode) var presentationMode
+
     @StateObject var authenticationService = AuthenticationService.shared.self
     
     var body: some Scene {
@@ -18,14 +17,7 @@ struct Reto_FinalApp: App {
         WindowGroup {
             LoginView(viewModel: LoginViewModel())
                 .environmentObject(authenticationService)
-            
-            /*if !AuthenticationService.shared.success {
-                LoginView(viewModel: LoginViewModel())
-                    .environmentObject(authenticationService)
-            } else {
-                MenuView(viewModel: MenuViewModel())
-                    .environmentObject(authenticationService)
-            }*/
+
         }
     }
 }

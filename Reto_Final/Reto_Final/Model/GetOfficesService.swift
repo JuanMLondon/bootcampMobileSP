@@ -12,16 +12,12 @@ class GetOfficesService: ObservableObject {
     // Singleton
     static let shared = GetOfficesService() //Lazy access.
     
-    //@Published var officesList = [OfficeModel]() // One way.
-    @Published var officesList: [OfficeModel] = [] // Another way.
+    @Published var officesList: [OfficeModel] = []
     @Published var currentCity: String? //= "Bogotá"
-    
-    //var array: [Any]?
-    //var array: Array<Any>?
     
     init() { }
     
-    func getOffices(completion: @escaping(Bool) -> Void)/* -> [OfficeModel]?*/ {
+    func getOffices(completion: @escaping(Bool) -> Void) {
         
         var urlString = "https://6w33tkx4f9.execute-api.us-east-1.amazonaws.com/RS_Oficinas"
         let safeCityQuery = "?ciudad=" + "\(String(describing: currentCity ?? "Medellín"))".addingPercentEncoding(withAllowedCharacters: .alphanumerics)!
@@ -63,12 +59,12 @@ class GetOfficesService: ObservableObject {
                     /*self.officesList = self.parseCitiesJSON(jsonData, completion: { success in
                         self.officesList = (success != nil) ? self.officesList : [OfficeModel(IdOficina: 0, Nombre: "", Ciudad: "", Longitud: "", Latitud: "")]
                     })!*/
+                    
                     completion(true)
                 }
             }
         })
         task.resume()
-        //return self.officesList
     }
     
     func parseCitiesJSON(_ jsonData: Data, completion: @escaping([OfficeModel]?) -> Void) -> [OfficeModel]? {
@@ -80,20 +76,8 @@ class GetOfficesService: ObservableObject {
             
             OfficesView().officeLocations = officesResponse.Items
             
-            /*let officeID: Int?
-            let officeName: String?
-            let officeCity: String?
-            let officeLongitude: Double?
-            let officeLatitude: Double?*/
-            
-            /*print("Response body:\n\(officesResponse)")
-            print("Decoder test 1:\(self.officesList[0].Nombre)")
-            print("Decoder test (Iterator 1):")
-            officesResponse.Items.forEach{print($0.IdOficina, $0.Nombre, $0.Ciudad)}*/
-            print("Decoder test (officesList Iterator):")
-            self.officesList.forEach({print($0.IdOficina, $0.Nombre, $0.Ciudad, $0.longitudeDouble, $0.latitudeDouble)})
-            /*self.array = self.officesList
-            print("Array<Any> Test: \(self.array?[0] ?? [])")*/
+            //print("Decoder test (officesList Iterator):")
+            //self.officesList.forEach({print($0.IdOficina, $0.Nombre, $0.Ciudad, $0.longitudeDouble, $0.latitudeDouble)})
             
             completion(self.officesList)
             return self.officesList
@@ -106,8 +90,6 @@ class GetOfficesService: ObservableObject {
     }
     
     func getOfficesList() -> [OfficeModel] {
-        //print("Test from getOfficesList() Iterator):")
-        //self.officesList.forEach({print($0.IdOficina, $0.Nombre, $0.Ciudad, $0.longitudeDouble, $0.latitudeDouble)})
         return self.officesList
     }
 }

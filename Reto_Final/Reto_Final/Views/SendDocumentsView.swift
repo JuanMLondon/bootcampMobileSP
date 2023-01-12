@@ -84,7 +84,7 @@ struct SendDocumentsView: View {
                         }
                         .foregroundColor(Color("black_UI"))
                         .sheet(isPresented: self.$pickerViewModel.showPicker, content: {
-                            ImagePicker(sourceType: pickerViewModel.source == .library ? .photoLibrary : .camera, selectedImage: $image/*, presentationMode: */)
+                            ImagePicker(sourceType: pickerViewModel.source == .library ? .photoLibrary : .camera, selectedImage: $image)
                                 .ignoresSafeArea()
                         })
                         .alert("Error", isPresented: $pickerViewModel.showCameraAlert, presenting: pickerViewModel.cameraError, actions: { cameraError in
@@ -93,7 +93,6 @@ struct SendDocumentsView: View {
                             Text(cameraError.message)
                         })
                     })
-                    //.frame(minWidth: 80, idealWidth: 80, maxWidth: .infinity, minHeight: 65, idealHeight: 65, maxHeight: 200)
                     .frame(minWidth: 80, maxWidth: .infinity, minHeight: 65, maxHeight: 180)
                     .padding(.horizontal, 35)
                     
@@ -109,7 +108,6 @@ struct SendDocumentsView: View {
                     .frame(height: 40)
                     .padding(.horizontal, 35)
                     .font(.title3)
-                    //.id(self.selectedDocType)
                     
                     VStack{
                         HStack {
@@ -192,13 +190,12 @@ struct SendDocumentsView: View {
                                 self.onCitySelected?(option)
                                 if selectedCity != nil {
                                     viewModel.city = selectedCity!
-                                    print(self.selectedCity!)
+                                    //print(self.selectedCity!)
                                 }
                             }
                             .foregroundColor(Color("black_UI"))
                             .frame(height: 25)
                             .font(.title3)
-                            //.id(self.selectedCity)
                             
                             Divider()
                                 .overlay(Rectangle().stroke(Color("black_UI"), lineWidth: 0.7))
@@ -231,9 +228,6 @@ struct SendDocumentsView: View {
                                     self.alertMessagePresented.toggle()
                                 }, label: {
                                     Text("Enviar")
-                                    /*Image(systemName: "arrow.forward")
-                                        .foregroundColor(Color("white"))
-                                        .padding(.trailing, 5)*/
                                 })
                                 .foregroundColor(Color("white"))
                                 .font(.title2)
@@ -258,8 +252,6 @@ struct SendDocumentsView: View {
                 CustomMenuBarVM().previousView = MenuViewModel().currentViewSelection
                 print("Current selection state (from SendDocumentsViewVM): \(String(describing: self.$viewModel.currentViewSelection))")
                 self.email = self.viewModel.retrieveEmail()
-                //print("Current user email (view): \(self.email!)")
-                //print("Current user email (viewModel): \(self.viewModel.email)")
             }
             /*.onDisappear() {
                 dismiss()
@@ -284,7 +276,6 @@ struct SendDocumentsView: View {
     }
     
     func sendButtonAction() {
-        print("Button was tapped.")
         if self.image != nil {
             let imageData = getImage()!
             let base64 = SendDataService.shared.encodeImgBase64(image: imageData)
@@ -292,7 +283,6 @@ struct SendDocumentsView: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                 self.viewModel.result = self.viewModel.getResult()
                 self.result = self.viewModel.result
-                print("Post successful: \(self.result!)")
             })
         }
     }

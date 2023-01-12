@@ -28,25 +28,19 @@ class GetDocumentsService: ObservableObject {
         print(request)
         
         request.httpMethod = "GET"
-        
-        // Set HTTP Request Header
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         
         let task = URLSession.shared.dataTask(with: request, completionHandler: { [weak self] data, response, error in
             
             if let response = response as? HTTPURLResponse {
-                // Read all HTTP Response Headers
                 print("All headers: \(response.allHeaderFields)")
-                // Read a specific HTTP Response Header by name
                 print("Specific header: \(response.value(forHTTPHeaderField: "Content-Type") ?? " header not found")")
-                
                 print("Response code: \(response.statusCode)")
             }
             
-            // Convert HTTP Response Data to a simple String
-            if let jsonData = data, let dataString = String(data: jsonData, encoding: .utf8) {
+            /*if let jsonData = data, let dataString = String(data: jsonData, encoding: .utf8) {
                 print("Response data as string:\n\(dataString)")
-            }
+            }*/
             
             if error != nil {
                 
@@ -65,7 +59,6 @@ class GetDocumentsService: ObservableObject {
                     do {
                         let decoder = JSONDecoder()
                         
-                        //let fetchResponse = try decoder.decode(<#T##type: Decodable.Protocol##Decodable.Protocol#>, from: <#T##Data#>)
                         let fetchResponse = try decoder.decode(DocumentsData.self, from: jsonData)
 
                         self?.working = false
@@ -74,11 +67,11 @@ class GetDocumentsService: ObservableObject {
                         
                         self?.documentsList = fetchResponse.Items
                         
-                        print("Decoder test: \(self!.documentsList[0].formattedDate)")
+                        /*print("Decoder test: \(self!.documentsList[0].formattedDate)")
                         print("Decoder test (Iterator):")
                         self!.documentsList.forEach{print($0.IdRegistro!, $0.Fecha!, $0.TipoAdjunto!)}
                         print("Response code: \((response as! HTTPURLResponse).statusCode)")
-                        print("Response: \(fetchResponse)")
+                        print("Response: \(fetchResponse)")*/
                         
                         completion(true)
                         
@@ -92,7 +85,7 @@ class GetDocumentsService: ObservableObject {
                         
                         completion(false)
                     }
-                }//
+                }
             }
         })
         task.resume()

@@ -39,10 +39,6 @@ struct LoginView: View {
                         SecTextFieldRoundedFrame(viewModel: viewModel)
                         
                     }
-                    //.onTapGesture {
-                        //UIApplication.shared.inputView?.endEditing(true)
-                    //}
-                    //.navigationBarTitle("Vista Inicial", displayMode: .inline)
                     .padding(.horizontal, 55)
                     .environmentObject(viewModel)
                     .disabled(viewModel.isLoggingIn)
@@ -127,8 +123,7 @@ struct LoginView: View {
                 self.viewModel.updateBusyStatus()
                 self.isShowingMenuView = self.viewModel.isLoggedIn
                 self.viewModel.saveUserSettings()
-                
-                print("\(String(describing: viewModel.defaults.string(forKey: "LastUserEmail")!)) was saved.")
+                //print("\(String(describing: viewModel.defaults.string(forKey: "LastUserEmail")!)) was saved.")
             }
         }
     }
@@ -189,7 +184,6 @@ struct ContentView_Previews: PreviewProvider {
 
 struct TextFieldRoundedFrame: View {
     
-    //@StateObject var viewModel = LoginViewModel()
     @StateObject var viewModel = LoginViewModel.shared.self
     
     var body: some View {
@@ -218,7 +212,6 @@ struct TextFieldRoundedFrame: View {
 
 struct EmailFieldRoundedFrame: View {
     
-    //@StateObject var viewModel = LoginViewModel()
     @StateObject var viewModel = LoginViewModel.shared.self
     @State var isEmailValid : Bool = true
     var eValidator = EmailValidator()
@@ -270,7 +263,6 @@ struct EmailFieldRoundedFrame: View {
 
 struct SecTextFieldRoundedFrame: View {
     
-    //@StateObject var viewModel = LoginViewModel()
     @StateObject var viewModel = LoginViewModel.shared.self
     @State var isPasswordSecured: Bool = true
     @FocusState var inFocus: Field?

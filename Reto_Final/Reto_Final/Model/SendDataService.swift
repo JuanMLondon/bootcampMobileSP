@@ -36,8 +36,6 @@ class SendDataService: ObservableObject {
         var request = URLRequest(url: requestUrl)
         
         request.httpMethod = "POST"
-        
-        // Set HTTP Request Header
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
@@ -63,7 +61,6 @@ class SendDataService: ObservableObject {
                 print("Response code (initial): \(response.statusCode)")
             }
             
-            // Convert HTTP Response Data to a simple String
             if let jsonData = data, let dataString = String(data: jsonData, encoding: .utf8) {
                 print("Response data string:\n\(dataString)")
             }
@@ -79,33 +76,18 @@ class SendDataService: ObservableObject {
                 
             } else if let jsonData = data{
                 
-                /*do {
-                    
-                    let sentResponse = try JSONDecoder().decode(DocumentModel.self, from: jsonData)*/
-                    
-                    self?.working = false
-                    self?.failed = false
-                    self?.success = true
-                    
-                    //Parse JSON Result Response
-                    self?.result = self?.parseJSONResult(jsonData, completion: { [ weak self ] success in
-                        self?.result = (success != nil) ? self?.result : PutModel(put: false)
-                    })
-                    
-                    print("Response code: \((response as! HTTPURLResponse).statusCode)")
-                    
-                    completion(true)
-                    
-                /*} catch let jsonError{
-                    
-                    self?.working = false
-                    self?.failed = true
-                    self?.success = false
-                    
-                    print("Error, unable to decode response:\n\(jsonError)")
-                    
-                    completion(false)
-                }*/
+                self?.working = false
+                self?.failed = false
+                self?.success = true
+                
+                //Parse JSON Result Response
+                self?.result = self?.parseJSONResult(jsonData, completion: { [ weak self ] success in
+                    self?.result = (success != nil) ? self?.result : PutModel(put: false)
+                })
+                
+                print("Response code: \((response as! HTTPURLResponse).statusCode)")
+                
+                completion(true)
             }
         })
         task.resume()
@@ -115,12 +97,9 @@ class SendDataService: ObservableObject {
         let decoder = JSONDecoder()
         do{
             let decodedData = try decoder.decode(PutModel.self, from: jsonData)
-            
             let put = decodedData.put
-            
             let parsedResult = PutModel(put: put)
             self.result = parsedResult
-            
             print("Parsed result test: \(String(describing: parsedResult.put))")
             completion(parsedResult)
             return parsedResult
@@ -135,7 +114,6 @@ class SendDataService: ObservableObject {
     
     func encodeImgBase64(image: UIImage) -> String {
         let imageData = image.jpegData(compressionQuality: 0)
-        //let imageData = UIImageJPEGRepresentation(image, 0.1)
         let base64String = imageData?.base64EncodedString()
         //print(base64String ?? "")
         return base64String!

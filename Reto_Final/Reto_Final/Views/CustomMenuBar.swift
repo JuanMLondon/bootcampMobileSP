@@ -55,8 +55,6 @@ struct CustomMenuBar: View {
             
             HStack{
                 Text(viewModel.getTitle(currentView: currentView))
-                //Text("Título de la vista")
-                //navigationBarTitle("Menú", displayMode: .inline)
                     .foregroundColor(Color("black_UI"))
                     .font(.title)
                     .fontWeight(.bold)

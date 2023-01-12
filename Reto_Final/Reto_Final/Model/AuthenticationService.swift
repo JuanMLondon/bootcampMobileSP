@@ -22,17 +22,15 @@ class AuthenticationService: ObservableObject {
     func login(email: String, password: String, completion: @escaping(Bool) -> Void) {
         
         var request = URLRequest(url: URL(string: "https://6w33tkx4f9.execute-api.us-east-1.amazonaws.com/RS_Usuarios?idUsuario=\(email)&clave=\(password)") ?? URL(string: "https://www.google.com")!)
-        
-        print(request)
+        //print(request)
         
         request.httpMethod = "GET"
         
         let task = URLSession.shared.dataTask(with: request, completionHandler: { [weak self] data, response, error in
             
-            // Convert HTTP Response Data to a simple String
-            if let jsonData = data, let dataString = String(data: jsonData, encoding: .utf8) {
+            /*if let jsonData = data, let dataString = String(data: jsonData, encoding: .utf8) {
                 print("Response data string:\n\(dataString)")
-            }
+            }*/
             
             if error != nil {
                 self?.working = false
@@ -92,7 +90,6 @@ class AuthenticationService: ObservableObject {
             
             self.loggedInUser = parsedUser
             
-            print("Parsed user name test: \(parsedUser.nombre)")
             completion(parsedUser)
             return parsedUser
             
