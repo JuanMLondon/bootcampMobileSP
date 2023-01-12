@@ -23,6 +23,13 @@ struct DocumentModel: Decodable, Identifiable {
     let Nombre: String?
     let Apellido: String?
     let TipoAdjunto: String?
+    var formattedDate: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z''"
+        let date = formatter.date(from: Fecha!) ?? Date.now
+        formatter.dateFormat = "dd/MM/yyyy"
+        return formatter.string(from: date)
+    }
 }
 
 

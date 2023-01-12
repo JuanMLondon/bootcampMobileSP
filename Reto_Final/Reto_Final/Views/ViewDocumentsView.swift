@@ -56,7 +56,8 @@ struct ViewDocumentsView: View {
                             }, label: {
                                 VStack {
                                     HStack {
-                                        Text(document.Fecha!)
+                                        //Text(document.Fecha!)
+                                        Text(document.formattedDate)
                                         Text(" - ")
                                         Text(document.TipoAdjunto!)
                                         Spacer()

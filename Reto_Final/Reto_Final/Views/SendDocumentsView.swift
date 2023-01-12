@@ -12,24 +12,13 @@ struct SendDocumentsView: View {
     
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel = SendDocumentsViewModel.shared.self
-    
     @StateObject var pickerViewModel = ImagePickerViewVM.shared.self
-    //@State var isShowingImagePicker: Bool = false
-    
-    //@ObservedObject private var model = FrameViewModel()
-    //@State var viewSelection: String?
-    //@State var isNavEnabled = false
-    //@State var goToView: AnyView?
-    
-    @State private var sourceType: UIImagePickerController.SourceType = .camera
     @State var image: UIImage?
     var imageData: UIImage?
     var base64Image: String?
     
     @State private var isImagePHPickerDisplay = false
     @State private var isUIImagePickerDisplay = false
-    
-    
     
     @State private var selectedOption: String?
     var menuItems: [String] = ["Tomar foto", "Cargar foto"]
@@ -38,7 +27,6 @@ struct SendDocumentsView: View {
     @State private var selectedDocType: String?
     var docTypes: [String] = ["C.C.", "C.E.", "Pasaporte", "T.I."]
     var onDocTypeSelected: ((_ option: String) -> Void)?
-    
     
     @State private var selectedCity: String?
     var cities: [String] = ["Bogotá", "Medellín", "México", "Panamá", "Chile", "Estados Unidos"]
@@ -67,23 +55,16 @@ struct SendDocumentsView: View {
                             self.onOptionSelected?(option)
                             
                             switch self.selectedOption! {
-                                
                             case "Tomar foto":
-                                print(selectedOption!)
-                                //pickerViewModel.showPicker.toggle()
-                                self.sourceType = .camera
+                                //print(selectedOption!)
                                 pickerViewModel.source = .camera
                                 pickerViewModel.showPhotoPicker()
-                                
                             case "Cargar foto":
-                                print(selectedOption!)
-                                //pickerViewModel.showPicker.toggle()
-                                self.sourceType = .photoLibrary
+                                //print(selectedOption!)
                                 pickerViewModel.source = .library
                                 pickerViewModel.showPhotoPicker()
                                 
                             default:
-                                print(self.selectedOption!)
                                 break
                             }
                         }
@@ -91,8 +72,6 @@ struct SendDocumentsView: View {
                         HStack{
                             if image != nil {
                                 Image(uiImage: self.image!)
-                            /*if let image = pickerViewModel.image {*/
-                                //Image(uiImage: image)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 360, height: 200)
@@ -123,7 +102,7 @@ struct SendDocumentsView: View {
                         self.onDocTypeSelected?(option)
                         if selectedDocType != nil {
                             viewModel.typeId = selectedDocType!
-                            print(self.selectedDocType!)
+                            //print(self.selectedDocType!)
                         }
                     }
                     .foregroundColor(Color("black_UI"))
@@ -250,7 +229,6 @@ struct SendDocumentsView: View {
                                     self.viewModel.setParameters()
                                     SendDataService.shared.postData(completion: { success in })
                                     self.alertMessagePresented.toggle()
-                                    //dismiss()
                                 }, label: {
                                     Text("Enviar")
                                     /*Image(systemName: "arrow.forward")
@@ -261,11 +239,11 @@ struct SendDocumentsView: View {
                                 .font(.title2)
                                 .alert(isPresented: self.$alertMessagePresented) {
                                     if self.result != nil && self.result == true {
+                                        dismiss()
                                         return Alert(title: Text("Datos enviados"), message: Text("Los datos fueron enviados exitósamente."), dismissButton: .default(Text("Aceptar")))
                                     }
-                                    return Alert(title: Text("No se ha realizado el envío"), message: Text("Complete los datos requeridos."), dismissButton: .default(Text("Intente nuevamente")))
+                                    return Alert(title: Text("No se ha realizado el envío"), message: Text("Complete todos los datos."), dismissButton: .default(Text("Intente nuevamente")))
                                 }
-                                
                             })
                         
                         Spacer()

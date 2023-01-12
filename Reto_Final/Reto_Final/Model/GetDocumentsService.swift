@@ -64,12 +64,6 @@ class GetDocumentsService: ObservableObject {
                     
                     do {
                         let decoder = JSONDecoder()
-                        let dateFormatter = DateFormatter()
-                        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-                        dateFormatter.locale = Locale(identifier: "en_US")
-                        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-                        decoder.dateDecodingStrategy = .formatted(dateFormatter)
-                        
                         
                         //let fetchResponse = try decoder.decode(<#T##type: Decodable.Protocol##Decodable.Protocol#>, from: <#T##Data#>)
                         let fetchResponse = try decoder.decode(DocumentsData.self, from: jsonData)
@@ -80,11 +74,11 @@ class GetDocumentsService: ObservableObject {
                         
                         self?.documentsList = fetchResponse.Items
                         
-                        /*print("Decoder test: \(self!.documentsList[0].Fecha!)")
+                        print("Decoder test: \(self!.documentsList[0].formattedDate)")
                         print("Decoder test (Iterator):")
                         self!.documentsList.forEach{print($0.IdRegistro!, $0.Fecha!, $0.TipoAdjunto!)}
                         print("Response code: \((response as! HTTPURLResponse).statusCode)")
-                        print("Response: \(fetchResponse)")*/
+                        print("Response: \(fetchResponse)")
                         
                         completion(true)
                         
