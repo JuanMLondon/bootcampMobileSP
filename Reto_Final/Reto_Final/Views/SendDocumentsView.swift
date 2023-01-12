@@ -13,6 +13,9 @@ struct SendDocumentsView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel = SendDocumentsViewModel.shared.self
     
+    @StateObject var pickerViewModel = ImagePickerViewVM.shared.self
+    //@State var isShowingImagePicker: Bool = false
+    
     //@ObservedObject private var model = FrameViewModel()
     //@State var viewSelection: String?
     //@State var isNavEnabled = false
@@ -26,12 +29,14 @@ struct SendDocumentsView: View {
     @State private var isImagePHPickerDisplay = false
     @State private var isUIImagePickerDisplay = false
     
+    
+    
     @State private var selectedOption: String?
     var menuItems: [String] = ["Tomar foto", "Cargar foto"]
     var onOptionSelected: ((_ option: String) -> Void)?
     
     @State private var selectedDocType: String?
-    var docTypes: [String] = ["C.C.", "C.E.", "Pasaporte"]
+    var docTypes: [String] = ["C.C.", "C.E.", "Pasaporte", "T.I."]
     var onDocTypeSelected: ((_ option: String) -> Void)?
     
     
@@ -64,25 +69,18 @@ struct SendDocumentsView: View {
                             switch self.selectedOption! {
                                 
                             case "Tomar foto":
-                                /*
                                 print(selectedOption!)
-                                self.isNavEnabled.toggle()
-                                self.goToView = AnyView(FrameView(image: model.frame))
-                                */
-                                
-                                print(selectedOption!)
+                                //pickerViewModel.showPicker.toggle()
                                 self.sourceType = .camera
-                                self.isUIImagePickerDisplay.toggle()
-                                
-                                /*
-                                print(selectedOption!)
-                                self.isNavEnabled.toggle()
-                                 */
+                                pickerViewModel.source = .camera
+                                pickerViewModel.showPhotoPicker()
                                 
                             case "Cargar foto":
                                 print(selectedOption!)
+                                //pickerViewModel.showPicker.toggle()
                                 self.sourceType = .photoLibrary
-                                self.isImagePHPickerDisplay.toggle()
+                                pickerViewModel.source = .library
+                                pickerViewModel.showPhotoPicker()
                                 
                             default:
                                 print(self.selectedOption!)
@@ -93,6 +91,8 @@ struct SendDocumentsView: View {
                         HStack{
                             if image != nil {
                                 Image(uiImage: self.image!)
+                            /*if let image = pickerViewModel.image {*/
+                                //Image(uiImage: image)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 360, height: 200)
@@ -104,18 +104,15 @@ struct SendDocumentsView: View {
                             }
                         }
                         .foregroundColor(Color("black_UI"))
-                        /*.overlay(content: {
-                            NavigationLink(destination: goToView.navigationBarBackButtonHidden(true), isActive: $isNavEnabled, label: { EmptyView() })
-                        })*/
-                        .sheet(isPresented: self.$isImagePHPickerDisplay, content: {
-                            ImagePHPickerModel(selectedImage: self.$image)
+                        .sheet(isPresented: self.$pickerViewModel.showPicker, content: {
+                            ImagePicker(sourceType: pickerViewModel.source == .library ? .photoLibrary : .camera, selectedImage: $image/*, presentationMode: */)
+                                .ignoresSafeArea()
                         })
-                        .sheet(isPresented: self.$isUIImagePickerDisplay, content: {
-                            UIImagePickerModel(selectedImage: self.$image, sourceType: self.sourceType)
+                        .alert("Error", isPresented: $pickerViewModel.showCameraAlert, presenting: pickerViewModel.cameraError, actions: { cameraError in
+                            cameraError.button
+                        }, message: { cameraError in
+                            Text(cameraError.message)
                         })
-                        /*.sheet(isPresented: self.$isNavEnabled, content: {
-                            FrameView(image: model.frame)
-                        })*/
                     })
                     //.frame(minWidth: 80, idealWidth: 80, maxWidth: .infinity, minHeight: 65, idealHeight: 65, maxHeight: 200)
                     .frame(minWidth: 80, maxWidth: .infinity, minHeight: 65, maxHeight: 180)
@@ -293,8 +290,8 @@ struct SendDocumentsView: View {
     }
     
     func getImage() -> UIImage? {
-        if ImagePHPickerModel(selectedImage: $image).selectedImage != nil {
-            let imageData = ImagePHPickerModel(selectedImage: $image).selectedImage
+        if ImagePicker(selectedImage: $image).selectedImage != nil {
+            let imageData = ImagePicker(selectedImage: $image).selectedImage
             return imageData
         }
         return nil

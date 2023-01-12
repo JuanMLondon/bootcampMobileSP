@@ -112,6 +112,7 @@ struct LoginView: View {
             .edgesIgnoringSafeArea(.vertical)
         }
         .onAppear(perform: {
+            UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
             print("Last used email: \(viewModel.defaults.string(forKey: "LastUserEmail") ?? "Not found.")")
             self.viewModel.retrieveUserSettings()
         })

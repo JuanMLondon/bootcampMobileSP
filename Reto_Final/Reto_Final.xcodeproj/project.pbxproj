@@ -7,21 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A40A951C2962553B0082F8B3 /* UIImagePickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40A951B2962553B0082F8B3 /* UIImagePickerModel.swift */; };
 		A41FE3EB294A21CD0098CA77 /* Reto_FinalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41FE3EA294A21CD0098CA77 /* Reto_FinalApp.swift */; };
 		A41FE3ED294A21CD0098CA77 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41FE3EC294A21CD0098CA77 /* LoginView.swift */; };
 		A41FE3EF294A21CF0098CA77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A41FE3EE294A21CF0098CA77 /* Assets.xcassets */; };
 		A41FE3F2294A21CF0098CA77 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A41FE3F1294A21CF0098CA77 /* Preview Assets.xcassets */; };
-		A4202EE8296482190038FF02 /* UIIPCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4202EE7296482190038FF02 /* UIIPCoordinator.swift */; };
-		A4202EEA29648A680038FF02 /* PHPCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4202EE929648A680038FF02 /* PHPCoordinator.swift */; };
 		A4323CC62961F6F000652F00 /* SaveImageToLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4323CC52961F6F000652F00 /* SaveImageToLibrary.swift */; };
-		A43686CA2960D0B900974099 /* CameraError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43686C92960D0B900974099 /* CameraError.swift */; };
-		A43686CC2960D74000974099 /* FrameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43686CB2960D74000974099 /* FrameManager.swift */; };
-		A43686CE2960DAB700974099 /* FrameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43686CD2960DAB700974099 /* FrameViewModel.swift */; };
-		A43686D02961008000974099 /* CGImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43686CF2961008000974099 /* CGImageExtension.swift */; };
-		A43686D22961053100974099 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43686D12961053100974099 /* ErrorView.swift */; };
 		A43AD1D12959F948001A8754 /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43AD1D02959F948001A8754 /* EmailValidator.swift */; };
 		A43C244C294FBB49003F0277 /* OfficesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43C244B294FBB49003F0277 /* OfficesData.swift */; };
+		A43F1D1B296F4C8300E4DE3C /* ImagePickerViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43F1D1A296F4C8300E4DE3C /* ImagePickerViewVM.swift */; };
+		A43F1D1D296F4E6B00E4DE3C /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43F1D1C296F4E6B00E4DE3C /* ImagePickerView.swift */; };
+		A43F1D1F296F524C00E4DE3C /* Picker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43F1D1E296F524C00E4DE3C /* Picker.swift */; };
 		A4400D8C294F56410042D671 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4400D8B294F56410042D671 /* MenuViewModel.swift */; };
 		A4400D8E294F56A70042D671 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4400D8D294F56A70042D671 /* UserData.swift */; };
 		A4400D91294F57450042D671 /* SendDocumentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4400D90294F57450042D671 /* SendDocumentsView.swift */; };
@@ -33,21 +28,16 @@
 		A4418E0B295F04E10086FC7B /* DropdownNavigationMenuVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4418E0A295F04E10086FC7B /* DropdownNavigationMenuVM.swift */; };
 		A44A0951296B2FCA0052AAFE /* GetOfficesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44A0950296B2FCA0052AAFE /* GetOfficesService.swift */; };
 		A461C7962963927600D40572 /* CustomRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461C7952963927600D40572 /* CustomRoundedButton.swift */; };
+		A4784284296F5679008CEEBB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4784283296F5679008CEEBB /* ImagePicker.swift */; };
 		A47C7E3A296A11FD008013AA /* GetDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47C7E39296A11FD008013AA /* GetDataService.swift */; };
 		A47F1808296CC5E1002E463E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47F1807296CC5E1002E463E /* LocationManager.swift */; };
 		A481FAE0295FC1A2009F0DF2 /* DocumentsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A481FADF295FC1A2009F0DF2 /* DocumentsData.swift */; };
-		A481FAE4295FE0B7009F0DF2 /* ImagePHPickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A481FAE3295FE0B7009F0DF2 /* ImagePHPickerModel.swift */; };
-		A48844612961DF120051A729 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48844602961DF110051A729 /* ControlView.swift */; };
-		A48844632961DF4D0051A729 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48844622961DF4D0051A729 /* ToggleButton.swift */; };
 		A48F46FA294BB8E100F2F8C3 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F46F9294BB8E100F2F8C3 /* MenuView.swift */; };
 		A491F2A52952A84300EF1FC0 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A491F2A42952A84300EF1FC0 /* AuthenticationService.swift */; };
 		A49C7D2B2966F46200A31ED7 /* GetDocumentsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49C7D2A2966F46200A31ED7 /* GetDocumentsService.swift */; };
 		A4B4F554296A40910005B190 /* DocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B4F553296A40910005B190 /* DocumentView.swift */; };
 		A4C5C2C2296459C2000D4C85 /* SendDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C5C2C1296459C2000D4C85 /* SendDataService.swift */; };
 		A4CCBF8F294E3007009DBE5F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CCBF8E294E3007009DBE5F /* LoginViewModel.swift */; };
-		A4DCB972296B229C00848BB8 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DCB971296B229C00848BB8 /* CameraView.swift */; };
-		A4E10F952960AEF900F11AE2 /* FrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E10F942960AEF900F11AE2 /* FrameView.swift */; };
-		A4E10F972960C15000F11AE2 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E10F962960C15000F11AE2 /* CameraManager.swift */; };
 		A4EF3D16295F34BB00E02929 /* CustomMenuBarVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EF3D15295F34BB00E02929 /* CustomMenuBarVM.swift */; };
 		A4F7E1A8295B14AA009FF094 /* DropdownNavigationMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F7E1A7295B14AA009FF094 /* DropdownNavigationMenu.swift */; };
 		A4F9B609295E2F9E00BB3F3A /* CustomMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F9B608295E2F9E00BB3F3A /* CustomMenuBar.swift */; };
@@ -56,23 +46,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A40A951B2962553B0082F8B3 /* UIImagePickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImagePickerModel.swift; sourceTree = "<group>"; };
 		A41FE3E7294A21CD0098CA77 /* Reto_Final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reto_Final.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A41FE3EA294A21CD0098CA77 /* Reto_FinalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reto_FinalApp.swift; sourceTree = "<group>"; };
 		A41FE3EC294A21CD0098CA77 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A41FE3EE294A21CF0098CA77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A41FE3F1294A21CF0098CA77 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		A4202EE7296482190038FF02 /* UIIPCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIIPCoordinator.swift; sourceTree = "<group>"; };
-		A4202EE929648A680038FF02 /* PHPCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHPCoordinator.swift; sourceTree = "<group>"; };
 		A4323CC52961F6F000652F00 /* SaveImageToLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveImageToLibrary.swift; sourceTree = "<group>"; };
-		A43686C92960D0B900974099 /* CameraError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraError.swift; sourceTree = "<group>"; };
-		A43686CB2960D74000974099 /* FrameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameManager.swift; sourceTree = "<group>"; };
-		A43686CD2960DAB700974099 /* FrameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameViewModel.swift; sourceTree = "<group>"; };
-		A43686CF2961008000974099 /* CGImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGImageExtension.swift; sourceTree = "<group>"; };
-		A43686D12961053100974099 /* ErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		A43AD1D02959F948001A8754 /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
 		A43AD1D4295A1C7D001A8754 /* Reto-Final-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Reto-Final-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A43C244B294FBB49003F0277 /* OfficesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficesData.swift; sourceTree = "<group>"; };
+		A43F1D1A296F4C8300E4DE3C /* ImagePickerViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewVM.swift; sourceTree = "<group>"; };
+		A43F1D1C296F4E6B00E4DE3C /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
+		A43F1D1E296F524C00E4DE3C /* Picker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picker.swift; sourceTree = "<group>"; };
 		A4400D8B294F56410042D671 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		A4400D8D294F56A70042D671 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		A4400D90294F57450042D671 /* SendDocumentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDocumentsView.swift; sourceTree = "<group>"; };
@@ -84,21 +69,16 @@
 		A4418E0A295F04E10086FC7B /* DropdownNavigationMenuVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownNavigationMenuVM.swift; sourceTree = "<group>"; };
 		A44A0950296B2FCA0052AAFE /* GetOfficesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOfficesService.swift; sourceTree = "<group>"; };
 		A461C7952963927600D40572 /* CustomRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRoundedButton.swift; sourceTree = "<group>"; };
+		A4784283296F5679008CEEBB /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		A47C7E39296A11FD008013AA /* GetDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDataService.swift; sourceTree = "<group>"; };
 		A47F1807296CC5E1002E463E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		A481FADF295FC1A2009F0DF2 /* DocumentsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsData.swift; sourceTree = "<group>"; };
-		A481FAE3295FE0B7009F0DF2 /* ImagePHPickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePHPickerModel.swift; sourceTree = "<group>"; };
-		A48844602961DF110051A729 /* ControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
-		A48844622961DF4D0051A729 /* ToggleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
 		A48F46F9294BB8E100F2F8C3 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		A491F2A42952A84300EF1FC0 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		A49C7D2A2966F46200A31ED7 /* GetDocumentsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDocumentsService.swift; sourceTree = "<group>"; };
 		A4B4F553296A40910005B190 /* DocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentView.swift; sourceTree = "<group>"; };
 		A4C5C2C1296459C2000D4C85 /* SendDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDataService.swift; sourceTree = "<group>"; };
 		A4CCBF8E294E3007009DBE5F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		A4DCB971296B229C00848BB8 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
-		A4E10F942960AEF900F11AE2 /* FrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameView.swift; sourceTree = "<group>"; };
-		A4E10F962960C15000F11AE2 /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		A4EF3D15295F34BB00E02929 /* CustomMenuBarVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMenuBarVM.swift; sourceTree = "<group>"; };
 		A4F7E1A7295B14AA009FF094 /* DropdownNavigationMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownNavigationMenu.swift; sourceTree = "<group>"; };
 		A4F9B608295E2F9E00BB3F3A /* CustomMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMenuBar.swift; sourceTree = "<group>"; };
@@ -208,11 +188,7 @@
 		A4323CBE2961F15B00652F00 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				A4DCB971296B229C00848BB8 /* CameraView.swift */,
-				A48844602961DF110051A729 /* ControlView.swift */,
-				A43686D12961053100974099 /* ErrorView.swift */,
-				A4E10F942960AEF900F11AE2 /* FrameView.swift */,
-				A48844622961DF4D0051A729 /* ToggleButton.swift */,
+				A43F1D1C296F4E6B00E4DE3C /* ImagePickerView.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -222,15 +198,9 @@
 			children = (
 				A4FAD6A2296335C500329333 /* SaveLocally.swift */,
 				A4323CC52961F6F000652F00 /* SaveImageToLibrary.swift */,
-				A43686C92960D0B900974099 /* CameraError.swift */,
-				A4E10F962960C15000F11AE2 /* CameraManager.swift */,
-				A43686CF2961008000974099 /* CGImageExtension.swift */,
-				A43686CB2960D74000974099 /* FrameManager.swift */,
-				A481FAE3295FE0B7009F0DF2 /* ImagePHPickerModel.swift */,
-				A4202EE929648A680038FF02 /* PHPCoordinator.swift */,
-				A40A951B2962553B0082F8B3 /* UIImagePickerModel.swift */,
-				A4202EE7296482190038FF02 /* UIIPCoordinator.swift */,
 				A4FAD6A0296332CF00329333 /* CompressUIImage.swift */,
+				A43F1D1E296F524C00E4DE3C /* Picker.swift */,
+				A4784283296F5679008CEEBB /* ImagePicker.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -238,7 +208,7 @@
 		A4323CC02961F24F00652F00 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				A43686CD2960DAB700974099 /* FrameViewModel.swift */,
+				A43F1D1A296F4C8300E4DE3C /* ImagePickerViewVM.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -314,34 +284,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4400D96294F57ED0042D671 /* ViewDocumentsView.swift in Sources */,
-				A43686D02961008000974099 /* CGImageExtension.swift in Sources */,
 				A4400D9B294F58350042D671 /* OfficesView.swift in Sources */,
+				A43F1D1F296F524C00E4DE3C /* Picker.swift in Sources */,
 				A4400D98294F580B0042D671 /* ViewDocumentsViewModel.swift in Sources */,
 				A4FAD6A1296332CF00329333 /* CompressUIImage.swift in Sources */,
 				A4323CC62961F6F000652F00 /* SaveImageToLibrary.swift in Sources */,
 				A4400D9D294F58760042D671 /* OfficesViewModel.swift in Sources */,
-				A4DCB972296B229C00848BB8 /* CameraView.swift in Sources */,
-				A43686CE2960DAB700974099 /* FrameViewModel.swift in Sources */,
-				A4202EEA29648A680038FF02 /* PHPCoordinator.swift in Sources */,
-				A48844632961DF4D0051A729 /* ToggleButton.swift in Sources */,
-				A43686CC2960D74000974099 /* FrameManager.swift in Sources */,
-				A4E10F972960C15000F11AE2 /* CameraManager.swift in Sources */,
+				A43F1D1B296F4C8300E4DE3C /* ImagePickerViewVM.swift in Sources */,
 				A4400D91294F57450042D671 /* SendDocumentsView.swift in Sources */,
 				A4F7E1A8295B14AA009FF094 /* DropdownNavigationMenu.swift in Sources */,
 				A41FE3ED294A21CD0098CA77 /* LoginView.swift in Sources */,
-				A43686CA2960D0B900974099 /* CameraError.swift in Sources */,
 				A47F1808296CC5E1002E463E /* LocationManager.swift in Sources */,
 				A48F46FA294BB8E100F2F8C3 /* MenuView.swift in Sources */,
-				A48844612961DF120051A729 /* ControlView.swift in Sources */,
-				A481FAE4295FE0B7009F0DF2 /* ImagePHPickerModel.swift in Sources */,
-				A4E10F952960AEF900F11AE2 /* FrameView.swift in Sources */,
 				A4EF3D16295F34BB00E02929 /* CustomMenuBarVM.swift in Sources */,
+				A43F1D1D296F4E6B00E4DE3C /* ImagePickerView.swift in Sources */,
 				A481FAE0295FC1A2009F0DF2 /* DocumentsData.swift in Sources */,
 				A4C5C2C2296459C2000D4C85 /* SendDataService.swift in Sources */,
 				A4400D8C294F56410042D671 /* MenuViewModel.swift in Sources */,
 				A49C7D2B2966F46200A31ED7 /* GetDocumentsService.swift in Sources */,
-				A43686D22961053100974099 /* ErrorView.swift in Sources */,
-				A40A951C2962553B0082F8B3 /* UIImagePickerModel.swift in Sources */,
 				A43C244C294FBB49003F0277 /* OfficesData.swift in Sources */,
 				A461C7962963927600D40572 /* CustomRoundedButton.swift in Sources */,
 				A4CCBF8F294E3007009DBE5F /* LoginViewModel.swift in Sources */,
@@ -351,10 +311,10 @@
 				A4B4F554296A40910005B190 /* DocumentView.swift in Sources */,
 				A47C7E3A296A11FD008013AA /* GetDataService.swift in Sources */,
 				A4400D93294F57690042D671 /* SendDocumentsViewModel.swift in Sources */,
-				A4202EE8296482190038FF02 /* UIIPCoordinator.swift in Sources */,
 				A43AD1D12959F948001A8754 /* EmailValidator.swift in Sources */,
 				A41FE3EB294A21CD0098CA77 /* Reto_FinalApp.swift in Sources */,
 				A4F9B609295E2F9E00BB3F3A /* CustomMenuBar.swift in Sources */,
+				A4784284296F5679008CEEBB /* ImagePicker.swift in Sources */,
 				A4400D8E294F56A70042D671 /* UserData.swift in Sources */,
 				A4418E0B295F04E10086FC7B /* DropdownNavigationMenuVM.swift in Sources */,
 			);
@@ -489,6 +449,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Reto-Final-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Para capturar documentos usando la cámara.";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Para acceder a la aplicación utilizando datos biométricos.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Requerida para localizar las oficinas de Sophos en su ubicación actual.";
@@ -525,6 +486,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Reto-Final-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Para capturar documentos usando la cámara.";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Para acceder a la aplicación utilizando datos biométricos.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Requerida para localizar las oficinas de Sophos en su ubicación actual.";

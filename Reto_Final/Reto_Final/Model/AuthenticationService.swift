@@ -43,9 +43,9 @@ class AuthenticationService: ObservableObject {
                 
             } else if let safeData = data {
                 DispatchQueue.main.async {
-                    /*do {
+                    do {
                         
-                        let loginResponse = try JSONDecoder().decode(UserData.self, from: safeData)*/
+                        let loginResponse = try JSONDecoder().decode(UserData.self, from: safeData)
                         
                         self?.working = false
                         self?.failed = false
@@ -55,13 +55,13 @@ class AuthenticationService: ObservableObject {
                             self!.loggedInUser = (success != nil) ? self?.loggedInUser : UserModel(id: "", nombre: "", apellido: "", acceso: false, admin: false)
                         })
                         
-                        /*print("User name test (from authenticationService.login): \(String(describing: self!.loggedInUser!.nombre))")
+                        /*print("User name test (from authenticationService.login): \(String(describing: self!.loggedInUser!.nombre))")*/
                         print("Response ok: \((response as! HTTPURLResponse).statusCode)")
-                        print(loginResponse)*/
+                        print(loginResponse)
                         
                         completion(true)
                         
-                    /*} catch let jsonError {
+                    } catch let jsonError {
                         
                         self?.working = false
                         self?.failed = true
@@ -70,7 +70,7 @@ class AuthenticationService: ObservableObject {
                         print("Unable to decode response \(jsonError)")
                         
                         completion(false)
-                    }*/
+                    }
                 }
             }
         })

@@ -137,7 +137,7 @@ class SendDataService: ObservableObject {
         let imageData = image.jpegData(compressionQuality: 0)
         //let imageData = UIImageJPEGRepresentation(image, 0.1)
         let base64String = imageData?.base64EncodedString()
-        //print(base64String ?? "")
+        print(base64String ?? "")
         return base64String!
     }
 }
